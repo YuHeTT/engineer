@@ -26,6 +26,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 using Engineer.Core;
+using Engineer.Config;   // 需要 SimConfigAsset
 
 namespace Engineer.Editor
 {
