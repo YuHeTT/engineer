@@ -66,12 +66,14 @@
 | `ButtonPrimary` | `点击按钮/EPS09_Button_02.png` | 主行动按钮的亮色边框 |
 
 其余角色（`ScreenBackdrop` / `ScreenDim` / `PanelSoft` / `Card` / `BarTrack` / `BarFill` / `Divider` / `InputField` / `Gauge`）
-**故意留空**：保持白盒纯色，Console 会列一遍「这些角色还没有默认素材」。想给某个角色配图，
+**故意留空**：保持白盒纯色，Console 会按「角色×个数」把它们列出来（例如 `Card×8、Divider×8、InputField×11、PanelSoft×4、ScreenBackdrop×3`），
+对照同一句里的「共处理 N 个元素」就知道没套上图的元素去哪了。想给某个角色配图，
 改 `Assets/Scripts/UI/Editor/UiSkin.cs` 里 `Table` 的**那一行**就够了（路径相对 `EPS素材/`，含扩展名）。
 
 配套两个开关（菜单里带对勾）：
 
-* **Tools ▸ UI ▸ 皮肤：构建时自动套用** —— 开了之后每次「构建白盒界面」都自动把素材铺上；
+* **Tools ▸ UI ▸ 皮肤：构建时自动套用** —— **默认就是开的**：每次「构建白盒界面」都会顺手把素材（角色默认 + 映射覆盖）铺上，
+  重建后不会莫名退回纯色块；想要纯色版构建就把这个勾去掉；
 * **Tools ▸ UI ▸ 皮肤：文字配色同步为青蓝** —— 白盒原来的暖橙文字色和青蓝素材放一起会打架，
   这个开关把 `TextPrimary / TextSecondary / TextMuted / ValueMuted / TextAccent` 五种**主题色**换成冷色
   （手工改过的颜色不动），可随时切回；按钮的 `ColorTint` 也会换成中性白，免得悬停反馈把素材染成橙色。
@@ -90,6 +92,10 @@
 （如 `Screens/Screen_Welcome/Button_Intro`），`sprite` = 素材资产路径（留空 = 这个元素不要图）。
 
 > 想整体回到纯色白盒：**Tools ▸ UI ▸ 皮肤：清除皮肤**（删映射 + 关自动套用 + 重建）。
+> 它在删除前会**自动备份**映射到 `UserSettings/UiSkinMappingBackup.json`（Assets 之外，不会被当资源删掉），
+> 误清之后用 **Tools ▸ UI ▸ 皮肤：从备份恢复映射** 就能找回，再跑一次「套用」即可。
+> 注意「清除皮肤」是**唯一**会碰映射文件的菜单——手工挑图的清单只活在 `Assets/UIresources/白盒皮肤映射.json` 里，
+> 想留档就顺手提交到版本库。
 
 ### 3.3 纯手工拖（只在临时试看时用）
 

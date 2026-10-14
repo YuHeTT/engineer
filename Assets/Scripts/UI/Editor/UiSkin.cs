@@ -34,14 +34,19 @@ namespace Engineer.UI.EditorTools
         private const string MenuAutoApply = "Tools/UI/皮肤：构建时自动套用";
         private const string MenuCoolText = "Tools/UI/皮肤：文字配色同步为青蓝";
         private const string MenuOpenMapping = "Tools/UI/皮肤：打开映射文件";
+        private const string MenuRestoreMapping = "Tools/UI/皮肤：从备份恢复映射";
 
         private const string AutoApplyPrefKey = "Engineer.UI.UiSkin.AutoApplyOnBuild";
         private const string CoolTextPrefKey = "Engineer.UI.UiSkin.CoolText";
 
-        /// <summary>构建白盒时是否自动套素材（存 EditorPrefs，按机器记忆）。</summary>
+        /// <summary>
+        /// 构建白盒时是否自动套素材（存 EditorPrefs，按机器记忆）。
+        /// 默认**开**：构建出来的界面直接带素材（角色默认 + 映射覆盖），
+        /// 否则每次重建都会悄悄退回纯色块，容易让人以为「贴图丢了」。
+        /// </summary>
         public static bool AutoApplyOnBuild
         {
-            get => EditorPrefs.GetBool(AutoApplyPrefKey, false);
+            get => EditorPrefs.GetBool(AutoApplyPrefKey, true);
             set => EditorPrefs.SetBool(AutoApplyPrefKey, value);
         }
 
@@ -94,6 +99,7 @@ namespace Engineer.UI.EditorTools
             if (!EditorUtility.DisplayDialog("UI 皮肤",
                 "清除皮肤会：\n" +
                 "  1) 删掉映射文件 " + UiSkinMapping.MappingPath + "\n" +
+                "     （删之前自动备份一份到 " + UiSkinMapping.BackupPath + "，可用「皮肤：从备份恢复映射」找回）\n" +
                 "  2) 关闭「构建时自动套用」\n" +
                 "  3) 重建整棵白盒界面（= 纯色块版本）\n\n" +
                 "几何由代码生成，重建不会丢东西；但手工在场景里加过的额外物体不会保留。确定继续？",
@@ -104,13 +110,41 @@ namespace Engineer.UI.EditorTools
 
             AutoApplyOnBuild = false;
 
+            // 先备份再删：手工挑图的映射是「人做出来的东西」，不能只留一份在 Assets 里等着被删。
+            var backup = UiSkinMapping.Backup();
+
             if (System.IO.File.Exists(UiSkinMapping.MappingPath))
             {
                 AssetDatabase.DeleteAsset(UiSkinMapping.MappingPath);
-                Debug.Log("[UI皮肤] 已删除映射文件 " + UiSkinMapping.MappingPath + "。");
+                Debug.Log("[UI皮肤] 已删除映射文件 " + UiSkinMapping.MappingPath +
+                          (backup != null
+                              ? "（已备份到 " + backup + "，可用「皮肤：从备份恢复映射」找回）。"
+                              : "。"));
             }
 
             UiWhiteboxBuilder.BuildFromMenu();
+        }
+
+        [MenuItem(MenuRestoreMapping, false, 26)]
+        private static void RestoreMappingMenu()
+        {
+            if (!UiSkinMapping.HasBackup)
+            {
+                EditorUtility.DisplayDialog("UI 皮肤",
+                    "还没有备份文件：\n" + UiSkinMapping.BackupPath +
+                    "\n\n「皮肤：清除皮肤」在删除映射前会自动备份一份；备份过之后就能从这里恢复。", "好");
+                return;
+            }
+
+            if (!EditorUtility.DisplayDialog("UI 皮肤",
+                "用备份覆盖当前映射？\n\n" + UiSkinMapping.BackupPath + "\n→ " + UiSkinMapping.MappingPath +
+                "\n\n覆盖后执行「皮肤：套用 EPS 素材」或重新构建即可看到效果。", "恢复", "取消"))
+            {
+                return;
+            }
+
+            Debug.Log("[UI皮肤] 已从备份恢复映射：" + UiSkinMapping.Restore() +
+                      "（接着跑一次「皮肤：套用 EPS 素材」就会套回场景）");
         }
 
         [MenuItem(MenuAutoApply, false, 23)]
@@ -224,7 +258,7 @@ namespace Engineer.UI.EditorTools
             if (root == null) return 0;
 
             var applied = 0;
-            var unconfigured = new List<string>();
+            var unconfigured = new Dictionary<UiSkinRole, int>();
             var missing = new List<string>();
             var noBorder = new List<string>();
 
@@ -232,7 +266,8 @@ namespace Engineer.UI.EditorTools
             {
                 if (!Table.TryGetValue(slot.role, out var entry))
                 {
-                    unconfigured.Add(slot.role.ToString());
+                    unconfigured.TryGetValue(slot.role, out var seen);
+                    unconfigured[slot.role] = seen + 1;
                     continue;
                 }
 
@@ -303,14 +338,28 @@ namespace Engineer.UI.EditorTools
             return role == UiSkinRole.Button || role == UiSkinRole.ButtonPrimary;
         }
 
-        /// <summary>没配素材的角色只提示一次，避免刷屏；这些元素保持白盒纯色。</summary>
-        private static void ReportUnconfigured(List<string> roles)
+        /// <summary>
+        /// 没配素材的角色只提示一次，避免刷屏；这些元素保持白盒纯色。
+        /// 带上「各多少个」，一眼能看出上一句「共处理 N 个元素」剩下的元素去哪了。
+        /// </summary>
+        private static void ReportUnconfigured(Dictionary<UiSkinRole, int> roles)
         {
             if (roles.Count == 0) return;
 
-            roles.Sort();
-            Debug.Log("[UI皮肤] 这些角色还没有默认素材（保持纯色白盒，需要时在 UiSkin.Table 里补一行）：" +
-                      string.Join("、", roles));
+            var parts = new List<string>();
+            var total = 0;
+            foreach (var pair in roles)
+            {
+                parts.Add(pair.Key + "×" + pair.Value);
+                total += pair.Value;
+            }
+
+            parts.Sort();
+
+            Debug.Log("[UI皮肤] 还有 " + total + " 个元素没有默认素材（保持纯色白盒）：" +
+                      string.Join("、", parts) +
+                      "。给某个角色配图 = 在 UiSkin.Table 里补一行；" +
+                      "只想给个别元素换图 = 手工拖好图后点「皮肤：记录当前皮肤到映射文件」。");
         }
 
         private static Sprite Load(string relativePath)
