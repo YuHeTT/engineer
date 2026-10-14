@@ -132,7 +132,7 @@ namespace Engineer.UI.EditorTools
                 UiLayout.Row(line.rectTransform, 24f, 72f, 24f, 56f, 8f, i);
             }
 
-            var resultBox = UiFactory.MakePanel(formulaPanel.rectTransform, "ResultBox", UiTheme.PanelBgSoft);
+            var resultBox = UiFactory.MakePanel(formulaPanel.rectTransform, "ResultBox", UiTheme.PanelBgSoft, UiSkinRole.PanelSoft);
             UiLayout.BottomBand(resultBox.rectTransform, 24f, 24f, 24f, 240f);
 
             var resultTitle = UiFactory.MakeText(resultBox.rectTransform, "Title", UiContent.RevenueResultTitle,

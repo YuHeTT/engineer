@@ -51,21 +51,86 @@
 
 ## 3. 在界面里怎么用
 
-1. **Inspector 拖引用（推荐）**：直接把 Sprite 拖到 `Image.Source Image` / `Button.Source Image`。
-2. **按钮四态**：按钮素材用「同一张图 + 不同 `Image.color`」区分常态/高亮/按下，颜色取 `Assets/Scripts/UI/Editor/UiWhiteboxTheme.cs` 里的 `UiTheme.ButtonNormal / ButtonHighlighted / ButtonPressed`（`Button.colors` 的 transition 也走这套值）。
-3. **代码加载**：`Resources.Load` 只认 `Resources` 目录；本目录不在 `Resources` 下，所以脚本里要用就**序列化引用**（白盒构建器就是这么按名字找然后写字段的）。
-4. **九宫格**：面板/边框类素材若要任意拉伸，在 Inspector 里开 `Sprite Editor ▸ Border` 设置九宫格边距，并把 `Image.Type` 设为 `Sliced`。
+白盒界面（`UiWhiteboxBuilder` 生成的 12 屏）的几何全部来自代码，重建是**幂等**的（先删 `UI_Root` 再整棵重建）。
+所以素材不能只靠「手工拖」——重建一次就没了。按持久程度给三条路：
+
+### 3.1 一键套皮（推荐的起点）
+
+菜单 **Tools ▸ UI ▸ 皮肤：套用 EPS 素材（当前场景）**：遍历界面树，按元素的**角色**
+（`UiSkinSlot`，构建时由 `UiWhiteboxFactory` 顺手登记）把素材填进 `Image.sprite`。当前默认只配了三个角色：
+
+| 角色 | 默认素材 | 说明 |
+| --- | --- | --- |
+| `Panel` | `文本框与数据面板/EPS07_Panel_01.png` | 弹窗 / 结算页的主面板底图 |
+| `Button` | `点击按钮/EPS09_Button_01.png` | 普通按钮的发光边框（Sliced 九宫格） |
+| `ButtonPrimary` | `点击按钮/EPS09_Button_02.png` | 主行动按钮的亮色边框 |
+
+其余角色（`ScreenBackdrop` / `ScreenDim` / `PanelSoft` / `Card` / `BarTrack` / `BarFill` / `Divider` / `InputField` / `Gauge`）
+**故意留空**：保持白盒纯色，Console 会列一遍「这些角色还没有默认素材」。想给某个角色配图，
+改 `Assets/Scripts/UI/Editor/UiSkin.cs` 里 `Table` 的**那一行**就够了（路径相对 `EPS素材/`，含扩展名）。
+
+配套两个开关（菜单里带对勾）：
+
+* **Tools ▸ UI ▸ 皮肤：构建时自动套用** —— 开了之后每次「构建白盒界面」都自动把素材铺上；
+* **Tools ▸ UI ▸ 皮肤：文字配色同步为青蓝** —— 白盒原来的暖橙文字色和青蓝素材放一起会打架，
+  这个开关把 `TextPrimary / TextSecondary / TextMuted / ValueMuted / TextAccent` 五种**主题色**换成冷色
+  （手工改过的颜色不动），可随时切回；按钮的 `ColorTint` 也会换成中性白，免得悬停反馈把素材染成橙色。
+
+### 3.2 手工微调 + 存成映射（推荐的正经做法）
+
+角色表只能覆盖「面板 / 按钮」这类通用元素，具体某块仪表、某张卡片还得人眼挑。流程：
+
+1. 先套一次素材（3.1），让界面有个雏形；
+2. 在 Hierarchy 选元素 → Inspector 的 `Image` → 拖 `Source Image`，按需改 `Image Type`
+   （`Simple` / `Sliced`）、颜色，必要时开 `Preserve Aspect`；
+3. 菜单 **Tools ▸ UI ▸ 皮肤：记录当前皮肤到映射文件** → 生成 `Assets/UIresources/白盒皮肤映射.json`；
+4. 以后每次重建界面，映射会在**角色默认之后**套回去（后套的赢，所以手工挑的图不会被角色默认值盖掉）。
+
+映射文件是普通 JSON，可以直接手改 / diff / 删条目：`path` = 相对 `UI_Root` 的层级路径
+（如 `Screens/Screen_Welcome/Button_Intro`），`sprite` = 素材资产路径（留空 = 这个元素不要图）。
+
+> 想整体回到纯色白盒：**Tools ▸ UI ▸ 皮肤：清除皮肤**（删映射 + 关自动套用 + 重建）。
+
+### 3.3 纯手工拖（只在临时试看时用）
+
+直接把 Sprite 拖到 `Image.Source Image` 就能立刻看效果，**但重跑构建会清空**；
+想让选择留下来，走 3.2 的「记录当前皮肤」。
+另外，代码里要引用素材请用**序列化引用**——素材不在 `Resources/` 下，`Resources.Load` 取不到。
+
+### 3.4 九宫格边距
+
+* `点击按钮/EPS09_*.png` 这类「中空边框」按钮图，导入器已经替它们写好九宫格边距
+  （`UiEpsSpriteImporter.SliceBorders`，左右 80px、上下 28px），直接 `Image.Type = Sliced` 拉伸不变形；
+  位置不合适就改这个常量，再跑一次「EPS 素材：修正导入设置（按 Sprite 重导）」。
+* 其它素材要用九宫格，得在 **Sprite Editor ▸ Border** 里自己设边距；面板这类带斜切角的形状一般不适合九宫格，
+  直接 `Simple` 铺满摆放框更省事。
 
 ---
 
-## 4. 和《Unity界面.docx》的关系
+## 4. 挑图前先看：素材风格速查
+
+`预览/` 里那 6 张 JPG 是缩略图总表（图名 = 前缀），挑图先翻它，比一张张点开快：
+
+| 前缀 | 风格 / 内容 | 白盒阶段 |
+| --- | --- | --- |
+| EPS07 | 青蓝科幻 HUD：面板、六边/三角图标、圆形仪表 | ✅ 科技调性，首选 |
+| EPS09 | 发光「中空边框」按钮（金 / 紫 / 蓝各两档） | ✅ 按钮、标签页 |
+| EPS11 / 12 / 16 / 17 / 18 / 19 | 文本框、数据面板、圆形仪表 | ✅ 数据类元素 |
+| EPS24 / 25 / 28 / 29 / 30 / 31 | 直播（LIVE / FOLLOW / DONATE）、活动页等**别的主题** | ⚠️ 和本项目调性不符，先别配 |
+
+> 同一个 EPS 编号下的 `_01/_02/…` 是同一套的不同档位（粗细、明暗、方向），**同屏尽量用同一个编号**才不会花。
+
+---
+
+## 5. 和《Unity界面.docx》的关系
 
 * `预览/` 里的 6 张拼版图是**设计侧**的参考（源文件编号 07/09/12/16/24），和 `Docs/白盒界面-元素对照表.md` 第 3 节里的 image1…image12 编号**不是同一套号**，对照时请看图内容、不要按编号对。
-* 白盒界面（`UiWhiteboxBuilder` 生成的 12 屏）当前**没有引用**任何 EPS 素材，纯色块 + TMP 文本即可跑通流程；换皮阶段再把这些 Sprite 接进 `UiTheme` / `UiWhiteboxFactory` 的 `Image.sprite` 即可，不影响逻辑层。
+* 白盒界面（`UiWhiteboxBuilder` 生成的 12 屏）**默认不引用**任何 EPS 素材：纯色块 + TMP 文本即可跑通流程，逻辑层与素材无关；
+  素材是通过 `UiSkin` 角色表 / `白盒皮肤映射.json` 挂到 `Image.sprite` 上的，随时可以整体摘掉（3.2 的「清除皮肤」）。
 
 ---
 
-## 5. 原始目录 `UI/` 怎么处理
+## 6. 原始目录 `UI/` 怎么处理
 
 `UI/` 留在工程根目录（`Assets` 之外）就完全不影响 Unity 导入，`.gitignore` 已排除 `Tools/.work`、`Tools/.python`、`Tools/__pycache__` 三个可再生产物。若要回收磁盘（约 430 MB），确认不再重跑导出流水线后执行：
 
