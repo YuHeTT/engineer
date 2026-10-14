@@ -22,7 +22,9 @@ namespace Engineer.UI.EditorTools
     /// 特点：
     ///   * 幂等：每次构建先删掉旧的 UI_Root，再整棵重建，不会出现半新半旧的层级；
     ///   * 不依赖任何手动拖拽引用，全部由代码按《Unity界面.docx》的 12 张图摆放；
-    ///   * 只生成界面骨架（矩形 + 文字 + 按钮 + 输入框），几何/材质/动效留给后续阶段。
+    ///   * 只生成界面骨架（矩形 + 文字 + 按钮 + 输入框），几何/材质/动效留给后续阶段；
+    ///   * 换皮：构建时只给元素贴「角色」标签（<see cref="UiSkinSlot"/>），素材由
+    ///     Tools ▸ UI ▸ 皮肤：套用 EPS 素材 一键填（见 <see cref="UiSkin"/>），重建后能再套回来。
     /// </summary>
     public static partial class UiWhiteboxBuilder
     {
@@ -206,7 +208,7 @@ namespace Engineer.UI.EditorTools
 
             if (dim)
             {
-                var backdrop = UiFactory.MakeImage(screenRoot, "Backdrop", UiTheme.ScreenDim);
+                var backdrop = UiFactory.MakeImage(screenRoot, "Backdrop", UiTheme.ScreenDim, UiSkinRole.ScreenDim);
                 backdrop.raycastTarget = true;
             }
 
@@ -250,7 +252,7 @@ namespace Engineer.UI.EditorTools
             var screen = screenRoot.gameObject.AddComponent<T>();
             screen.SetState(state);
 
-            var view = UiFactory.MakeImage(screenRoot, "ViewPlaceholder", UiTheme.ViewBackdrop);
+            var view = UiFactory.MakeImage(screenRoot, "ViewPlaceholder", UiTheme.ViewBackdrop, UiSkinRole.ScreenBackdrop);
             view.raycastTarget = true;
 
             var note = UiFactory.MakeText(screenRoot, "ViewPlaceholder_Note", viewNote,
@@ -362,6 +364,10 @@ namespace Engineer.UI.EditorTools
             {
                 if (screen != null) screen.gameObject.SetActive(screen.State == GameState.Welcome);
             }
+
+            // ---------- 可选：构建完直接把 EPS 素材套上 ----------
+            // 开关：Tools ▸ UI ▸ 皮肤：构建时自动套用；纯色白盒阶段保持关闭即可。
+            UiSkin.ApplyAfterBuild(rootObject);
 
             Debug.Log("[UI] 已构建 " + screens.Count + " 个屏，场景：" + TargetScenePath + "。按 Play 即可点击走通全流程。");
         }

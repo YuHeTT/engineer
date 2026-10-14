@@ -41,7 +41,7 @@ namespace Engineer.UI.EditorTools
             UiLayout.TopBand(stageStatus.rectTransform, 0f, 64f, 0f, 32f);
 
             // ---------- 左下：所有数据（9 项，3×3）----------
-            var dataPanel = UiFactory.MakePanel(hud, "DataPanel", UiTheme.PanelBgSoft);
+            var dataPanel = UiFactory.MakePanel(hud, "DataPanel", UiTheme.PanelBgSoft, UiSkinRole.PanelSoft);
             UiLayout.BottomLeft(dataPanel.rectTransform, 0f, 92f, 900f, 360f);
 
             var dataTitle = UiFactory.MakeText(dataPanel.rectTransform, "Title", UiContent.DataPanelTitle,
@@ -197,7 +197,7 @@ namespace Engineer.UI.EditorTools
         private static void BuildValuePanel(RectTransform hud, string objectName, string title, string subtitle,
             bool alignLeft, bool probe, out TMP_Text[] values)
         {
-            var panel = UiFactory.MakePanel(hud, objectName, UiTheme.PanelBgSoft);
+            var panel = UiFactory.MakePanel(hud, objectName, UiTheme.PanelBgSoft, UiSkinRole.PanelSoft);
             if (alignLeft) UiLayout.BottomLeft(panel.rectTransform, 0f, 92f, 460f, 430f);
             else UiLayout.BottomRight(panel.rectTransform, 0f, 92f, 460f, 430f);
 

@@ -51,17 +51,33 @@ namespace Engineer.UI.EditorTools
         /// <summary>创建纯色图片（默认不接收射线，避免挡住按钮）。</summary>
         public static Image MakeImage(Transform parent, string name, Color color)
         {
+            return MakeImage(parent, name, color, UiSkinRole.None);
+        }
+
+        /// <summary>
+        /// 同上，并登记「皮肤角色」：工具 Tools ▸ UI ▸ 皮肤：套用 EPS 素材 时不看名字、只看这个角色，
+        /// 所以界面重建后素材也能一键套回来（见 <see cref="UiSkinSlot"/>）。
+        /// </summary>
+        public static Image MakeImage(Transform parent, string name, Color color, UiSkinRole role)
+        {
             var rt = MakeGroup(parent, name);
             var image = rt.gameObject.AddComponent<Image>();
             image.color = color;
             image.raycastTarget = false;
+            UiSkinSlot.Set(rt.gameObject, role);
             return image;
         }
 
-        /// <summary>创建面板（纯色图片 + 会挡住点击穿透）。</summary>
+        /// <summary>创建面板（纯色图片 + 会挡住点击穿透），默认登记为「主面板」角色。</summary>
         public static Image MakePanel(Transform parent, string name, Color color)
         {
-            var image = MakeImage(parent, name, color);
+            return MakePanel(parent, name, color, UiSkinRole.Panel);
+        }
+
+        /// <summary>同上，但指定角色：HUD 数据面板用 PanelSoft、选项卡用 Card、全屏底图用 ScreenBackdrop。</summary>
+        public static Image MakePanel(Transform parent, string name, Color color, UiSkinRole role)
+        {
+            var image = MakeImage(parent, name, color, role);
             image.raycastTarget = true;
             return image;
         }
@@ -91,7 +107,7 @@ namespace Engineer.UI.EditorTools
         /// <summary>水平分隔线。</summary>
         public static Image MakeDivider(Transform parent, string name)
         {
-            return MakeImage(parent, name, UiTheme.Divider);
+            return MakeImage(parent, name, UiTheme.Divider, UiSkinRole.Divider);
         }
 
         /// <summary>按钮：底图 + 居中文字。</summary>
@@ -108,6 +124,7 @@ namespace Engineer.UI.EditorTools
             var background = rt.gameObject.AddComponent<Image>();
             background.color = primary ? UiTheme.ButtonPrimaryNormal : UiTheme.ButtonNormal;
             background.raycastTarget = true;
+            UiSkinSlot.Set(rt.gameObject, primary ? UiSkinRole.ButtonPrimary : UiSkinRole.Button);
 
             var button = rt.gameObject.AddComponent<Button>();
             button.targetGraphic = background;
@@ -123,8 +140,8 @@ namespace Engineer.UI.EditorTools
         /// <summary>进度条：返回底槽，fill 为可按 fillAmount 控制的填充。</summary>
         public static Image MakeProgressBar(Transform parent, string name, out Image fill)
         {
-            var track = MakeImage(parent, name, UiTheme.Divider);
-            fill = MakeImage(track.rectTransform, "Fill", UiTheme.Accent);
+            var track = MakeImage(parent, name, UiTheme.Divider, UiSkinRole.BarTrack);
+            fill = MakeImage(track.rectTransform, "Fill", UiTheme.Accent, UiSkinRole.BarFill);
             UiLayout.Stretch(fill.rectTransform, 0f, 0f, 0f, 0f);
             fill.type = Image.Type.Filled;
             fill.fillMethod = Image.FillMethod.Horizontal;
@@ -144,6 +161,7 @@ namespace Engineer.UI.EditorTools
             var background = rt.gameObject.AddComponent<Image>();
             background.color = UiTheme.InputBg;
             background.raycastTarget = true;
+            UiSkinSlot.Set(rt.gameObject, UiSkinRole.InputField);
 
             var field = rt.gameObject.AddComponent<TMP_InputField>();
             field.targetGraphic = background;

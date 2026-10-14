@@ -21,7 +21,7 @@ namespace Engineer.UI.EditorTools
             screen.SetState(GameState.Welcome);
 
             // 主视觉占位（正式版是项目主视觉 / 3D 农田）
-            UiFactory.MakePanel(screenRoot, "HeroBackdrop", UiTheme.ViewBackdrop);
+            UiFactory.MakePanel(screenRoot, "HeroBackdrop", UiTheme.ViewBackdrop, UiSkinRole.ScreenBackdrop);
 
             var title = UiFactory.MakeText(screenRoot, "AppTitle", UiContent.AppTitle,
                 UiTheme.FontDisplay, UiTheme.TextPrimary, TextAlignmentOptions.Center);
@@ -87,7 +87,7 @@ namespace Engineer.UI.EditorTools
         private static Button BuildSelectCard(RectTransform cell, PlaceholderScreen screen, string objectName,
             string badge, string title, string description, string actionLabel, GameState target, bool enabled)
         {
-            var card = UiFactory.MakePanel(cell, objectName, enabled ? UiTheme.CardBgSelected : UiTheme.CardBg);
+            var card = UiFactory.MakePanel(cell, objectName, enabled ? UiTheme.CardBgSelected : UiTheme.CardBg, UiSkinRole.Card);
 
             var badgeText = UiFactory.MakeText(card.rectTransform, "Badge", badge,
                 UiTheme.FontSmall, UiTheme.TextAccent, TextAlignmentOptions.MidlineLeft);
