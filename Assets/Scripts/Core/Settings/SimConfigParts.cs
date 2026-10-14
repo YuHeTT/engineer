@@ -11,6 +11,7 @@
 //      TerrainDef         <- terrains.csv       四套地形
 //      CropDef            <- crops.csv          四种作物
 //      YieldConfig        <- metrics.csv        产量模型参数
+//      InputLimits        <- input_limits.csv   玩家输入的水肥边界
 //
 //  【注意】本程序集不引用 UnityEngine，所以这些类不能用 [SerializeField]。
 //    它们是纯数据类，由 Config 层（SimConfigAsset）负责包成 ScriptableObject。
@@ -195,6 +196,78 @@ namespace Engineer.Core
         /// 将来多作物时，每种作物挂自己的一套。
         /// </summary>
         public SuitabilityCurve[] Curves;
+    }
+
+    /// <summary>
+    /// 玩家输入的水肥边界。用来挡住荒谬输入（负数施肥、1e9 灌溉量）。
+    ///
+    /// 【为什么需要这个 —— 属工程健壮性，不改设计】
+    ///   文档没有规定水肥量的上下限。但没有上限时，玩家输入超大值会让
+    ///   土壤指标爆表、产量算出无意义的结果；输入负值更荒谬 ——
+    ///   负施肥会"改良"土壤。这类输入不该进入数值链路。
+    ///
+    /// 【默认值的取法】
+    ///   下限一律 0（不能负投入）。
+    ///   上限默认取"建议量的若干倍"而不是某个硬编码数字 ——
+    ///   因为建议量本身就是该阶段合理的量级，倍数比绝对值更稳定，
+    ///   也不会和策划后续调整建议量脱节。
+    ///
+    /// 【注意】这里只做"防护"，不做"设计"。
+    ///   如果策划将来要规定"每亩最多只能施 X kg"这类玩法约束，
+    ///   应该改 AbsoluteMax 而不是 FormulaMaxMultiple。
+    /// </summary>
+    public sealed class InputLimits
+    {
+        /// <summary>是否启用边界钳制。关掉后玩家输入原样进入演算（用于调试对比）。</summary>
+        public bool Enabled = true;
+
+        /// <summary>是否允许负数输入。默认不允许。</summary>
+        public bool AllowNegative;
+
+        /// <summary>灌溉量上限 = 该阶段建议灌溉量 × 此倍数。</summary>
+        public float IrrigationMultiple = 5f;
+
+        /// <summary>各项肥料上限 = 该阶段建议量 × 此倍数。</summary>
+        public float FertilizerMultiple = 5f;
+
+        /// <summary>建议量为 0 时的绝对上限（如某阶段不施钾肥）。这里给一个宽松的天花板。</summary>
+        public float AbsoluteMaxIrrigation = 1000f;
+
+        /// <summary>建议量为 0 时的肥料绝对上限。</summary>
+        public float AbsoluteMaxFertilizer = 1000f;
+
+        /// <summary>
+        /// 把一次玩家输入钳制进合法范围。
+        /// </summary>
+        /// <param name="applied">玩家原始输入</param>
+        /// <param name="recommended">本阶段建议（提供"建议量"作为上限基准；可为 null）</param>
+        public FertilizerApplication Clamp(FertilizerApplication applied, RecommendedPlan recommended)
+        {
+            if (!Enabled) return applied;
+
+            float recWater = recommended != null ? recommended.BaseIrrigation : 0f;
+            var amounts = recommended != null ? recommended.Amounts : FertilizerAmounts.None;
+
+            return new FertilizerApplication(
+                ClampOne(applied.Irrigation, recWater,                   IrrigationMultiple, AbsoluteMaxIrrigation),
+                ClampOne(applied.Organic,    amounts.Organic,            FertilizerMultiple, AbsoluteMaxFertilizer),
+                ClampOne(applied.N,          amounts.N,                  FertilizerMultiple, AbsoluteMaxFertilizer),
+                ClampOne(applied.P,          amounts.P,                  FertilizerMultiple, AbsoluteMaxFertilizer),
+                ClampOne(applied.K,          amounts.K,                  FertilizerMultiple, AbsoluteMaxFertilizer));
+        }
+
+        /// <summary>单项钳制。基准量为 0 时退回绝对上限。</summary>
+        private float ClampOne(float value, float reference, float multiple, float absoluteMax)
+        {
+            float min = AllowNegative ? -absoluteMax : 0f;
+            float max = reference > 0f ? reference * multiple : absoluteMax;
+            if (max > absoluteMax) max = absoluteMax;
+            if (max < min) max = min;
+            return MathX.Clamp(value, min, max);
+        }
+
+        public override string ToString()
+            => $"灌溉≤建议×{IrrigationMultiple} 肥料≤建议×{FertilizerMultiple}（绝对上限 {AbsoluteMaxIrrigation}/{AbsoluteMaxFertilizer}）";
     }
 
     /// <summary>产量 / 收益模型参数。</summary>

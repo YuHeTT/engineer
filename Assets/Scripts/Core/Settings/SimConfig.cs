@@ -146,6 +146,17 @@ namespace Engineer.Core
         public YieldConfig Yield = new YieldConfig();
 
         // ===================================================================
+        //  七之二、玩家输入边界（工程健壮性，非设计约束）
+        // ===================================================================
+
+        /// <summary>
+        /// 玩家输入的水肥边界。默认下限 0、上限取"建议量 × 5"。
+        /// 用来挡住负数施肥、超大灌溉这类会让数值爆表的输入。
+        /// 想关掉（比如做对比调试）就把 Enabled 设为 false。
+        /// </summary>
+        public InputLimits Inputs = new InputLimits();
+
+        // ===================================================================
         //  八、工厂方法：带文档全部数值的默认配置
         // ===================================================================
 
@@ -226,6 +237,7 @@ namespace Engineer.Core
             // ---------- 10. 长势与产量 ----------
             c.Growth = new GrowthRule { GoodAllAbove = 0.6f, BadAllBelow = 0.6f };
             c.Yield  = new YieldConfig { YmaxGeo = 1000f, UseWeightedWater = false, SStatic = 1f };
+            c.Inputs = new InputLimits();      // 下限 0 / 上限=建议量×5，具体见 InputLimits 注释
 
             return c;
         }
@@ -418,7 +430,8 @@ namespace Engineer.Core
                 if (warnings != null)
                 {
                     var table = new PlanTable(this);
-                    if (!table.CheckCoverage(out var gaps))
+                    // 用 8 档降采样：8^5 ≈ 3.3 万组，够发现空洞，又不会让编辑器卡住
+                    if (!table.CheckCoverage(8, out var gaps))
                     {
                         foreach (var g in gaps) warnings.Add(g);
                     }
@@ -427,6 +440,19 @@ namespace Engineer.Core
 
             // 复合肥折算比例
             if (CompoundRatio <= 0f) errors.Add("CompoundRatio 必须大于 0");
+
+            // 输入边界
+            if (Inputs != null)
+            {
+                if (Inputs.IrrigationMultiple <= 0f)
+                    errors.Add("Inputs.IrrigationMultiple 必须大于 0");
+                if (Inputs.FertilizerMultiple <= 0f)
+                    errors.Add("Inputs.FertilizerMultiple 必须大于 0");
+                if (Inputs.AbsoluteMaxIrrigation <= 0f)
+                    errors.Add("Inputs.AbsoluteMaxIrrigation 必须大于 0");
+                if (Inputs.AbsoluteMaxFertilizer <= 0f)
+                    errors.Add("Inputs.AbsoluteMaxFertilizer 必须大于 0");
+            }
 
             // 产量参数
             if (Yield == null) errors.Add("缺少 YieldConfig");

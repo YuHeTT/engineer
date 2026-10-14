@@ -44,6 +44,19 @@ namespace Engineer.Core
         /// </summary>
         public bool LastMatchUsedFallback { get; private set; }
 
+        /// <summary>
+        /// 构造方案表。
+        ///
+        /// 【重要契约：构造时快照配置，之后不再感知配置变化】
+        ///   构造函数会把 config.PlanRules 按阶段分组并排序，之后就一直用这份副本。
+        ///   如果构造完再去改 SimConfig.PlanRules（增删规则、改优先级），
+        ///   本对象【不会】跟着变 —— 这是一个刻意的设计（避免每帧排序），
+        ///   但也是个容易踩的坑。
+        ///
+        ///   正确做法：配置定型之后再构造 PlanTable。
+        ///   Simulation 在构造函数里创建 PlanTable，所以"改配置要重新 new Simulation"。
+        ///   如果你的场景需要在运行中热改规则，就重新 new 一个 PlanTable。
+        /// </summary>
         public PlanTable(SimConfig config)
         {
             _config = config;
@@ -122,23 +135,54 @@ namespace Engineer.Core
         }
 
         /// <summary>
-        /// 覆盖性自检：在给定的适宜度采样点上，每个阶段都必须能匹配到规则。
+        /// 覆盖性自检：在阈值相关的采样点上枚举全部组合，检查是否都能匹配到规则。
         ///
         /// 采样点特意选在判定阈值附近（0.59 / 0.6 / 0.79 / 0.8），
         /// 因为规则的分支边界都在这里。等距采样（如 0.2,0.29,0.38…）
         /// 反而会漏掉边界附近的问题。
+        ///
+        /// 【性能】完整 12 档是 12^5 ≈ 25 万组 × 4 阶段，
+        /// 编辑器里同步跑约 0.1~0.3 秒。想更快就传 steps=8。
         /// </summary>
+        /// <param name="steps">每个维度的采样档数。0 或负数表示用完整 12 档。</param>
         /// <param name="report">命中的空洞描述</param>
-        public bool CheckCoverage(out System.Collections.Generic.List<string> report)
+        public bool CheckCoverage(int steps, out System.Collections.Generic.List<string> report)
         {
+            report = new System.Collections.Generic.List<string>();
+
             // 阈值相关采样点：保底值、阈值两侧、阈值、满分
-            float[] values =
+            float[] full =
             {
                 0.20f, 0.30f, 0.50f, 0.59f, 0.60f, 0.65f, 0.70f,
                 0.79f, 0.80f, 0.85f, 0.90f, 1.00f,
             };
+
+            float[] values;
+            if (steps <= 0 || steps >= full.Length)
+            {
+                values = full;
+            }
+            else
+            {
+                // 降采样：始终保留阈值本身（0.6 / 0.8），其余等距取
+                var list = new System.Collections.Generic.List<float>();
+                int interior = steps - 3;
+                if (interior < 1) interior = 1;
+                list.Add(0.20f);
+                for (int i = 1; i <= interior; i++)
+                    list.Add(0.20f + 0.80f * i / (interior + 1f));
+                list.Add(0.60f);
+                list.Add(0.80f);
+                list.Add(1.00f);
+                values = list.ToArray();
+            }
+
             return CheckCoverage(values, out report);
         }
+
+        /// <summary>用完整 12 档采样做覆盖性自检。</summary>
+        public bool CheckCoverage(out System.Collections.Generic.List<string> report)
+            => CheckCoverage(0, out report);
 
         /// <summary>
         /// 覆盖性自检（自定义采样点）。会枚举全部组合，复杂度是 O(n^5)。

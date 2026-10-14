@@ -25,7 +25,7 @@
 namespace Engineer.Core
 {
     /// <summary>五阶段模拟的状态机。</summary>
-    public sealed class Simulation
+    public sealed class Simulation : ISimulationView
     {
         private readonly SimConfig _config;
         private readonly PlanTable _planTable;
@@ -40,11 +40,23 @@ namespace Engineer.Core
         private Stage _stage = Stage.S1;
         private int _committedCount;
 
+        /// <summary>
+        /// 当前阶段适宜度的缓存。土壤或阶段一变就失效。
+        ///
+        /// 【为什么需要】UI 一屏里会连调 Evaluate() / Recommend() / CurrentGrowth()，
+        /// 这三个内部都要算适宜度。不缓存的话同一阶段要算三遍，
+        /// 而且如果将来有任何非确定性因素，三次结果还可能不一致。
+        /// </summary>
+        private SuitabilityResult _cachedFit;
+
         public Simulation(SimConfig config)
         {
             _config = config ?? SimConfig.CreateDefault();
             _planTable = new PlanTable(_config);
         }
+
+        /// <summary>清掉适宜度缓存。任何改变土壤或阶段的操作都必须调它。</summary>
+        private void InvalidateCache() => _cachedFit = null;
 
         // ===================================================================
         //  对外只读状态
@@ -59,7 +71,11 @@ namespace Engineer.Core
         /// <summary>当前阶段。Done 表示四阶段已全部结算。</summary>
         public Stage CurrentStage => _stage;
 
-        /// <summary>当前土壤状态（只读语义，请勿直接改）。</summary>
+        /// <summary>
+        /// 当前土壤状态。
+        /// 【只读语义】返回的是内部对象的引用，请勿直接修改。
+        /// 需要修改请先 Clone()。UI 层只读展示不受影响。
+        /// </summary>
         public SoilState CurrentSoil => _soil;
 
         /// <summary>四阶段是否已全部结束。</summary>
@@ -76,8 +92,14 @@ namespace Engineer.Core
             return _history[i];
         }
 
-        /// <summary>全部历史结果（按顺序）。收益界面用来列四阶段参数。</summary>
+        /// <summary>
+        /// 全部历史结果（按顺序）。
+        /// 【只读语义】返回的是内部数组，请勿修改其元素指向。
+        /// </summary>
         public StageResult[] History => _history;
+
+        /// <summary>只读视图。UI 层应依赖这个接口而不是具体类，方便写假数据测试。</summary>
+        public ISimulationView View => this;
 
         // ===================================================================
         //  生命周期
@@ -103,6 +125,7 @@ namespace Engineer.Core
             _soil = SoilGenerator.Generate(userInput, _config, rng);
             _stage = Stage.S1;
             _committedCount = 0;
+            InvalidateCache();
 
             for (int i = 0; i < _stageFertility.Length; i++) _stageFertility[i] = 0f;
             for (int i = 0; i < _history.Length; i++) _history[i] = null;
@@ -114,6 +137,7 @@ namespace Engineer.Core
             _soil = null;
             _stage = Stage.S1;
             _committedCount = 0;
+            InvalidateCache();
             for (int i = 0; i < _stageFertility.Length; i++) _stageFertility[i] = 0f;
             for (int i = 0; i < _history.Length; i++) _history[i] = null;
         }
@@ -122,10 +146,15 @@ namespace Engineer.Core
         //  查询：当前阶段的适宜度与建议
         // ===================================================================
 
-        /// <summary>计算当前土壤的五个适宜度。UI 每次进入阶段时调一次即可。</summary>
+        /// <summary>
+        /// 计算当前土壤的五个适宜度。
+        /// 结果会缓存，同一个阶段内重复调用不会重算（土壤或阶段变了自动失效）。
+        /// </summary>
         public SuitabilityResult Evaluate()
         {
-            return SuitabilityResult.From(_soil, _config);
+            if (_cachedFit == null)
+                _cachedFit = SuitabilityResult.From(_soil, _config);
+            return _cachedFit;
         }
 
         /// <summary>
@@ -151,33 +180,46 @@ namespace Engineer.Core
         /// 提交本阶段的水肥投入，结算并推进到下一阶段。
         /// 内部顺序很重要：先算适宜度（用旧土壤），再演算（得新土壤）。
         /// 顺序反了会导致"本阶段的成绩被本阶段的操作影响"，与文档不符。
+        ///
+        /// 【输入会被钳制】玩家填的数值会先过 SimConfig.Inputs 的边界（默认：下限 0、
+        /// 上限 = 建议量 × 5），挡住负数施肥、超大灌溉这类会让指标爆表的输入。
+        /// 返回的 StageResult.Applied 是【钳制后】的实际投入。
         /// </summary>
-        /// <param name="applied">玩家填的水肥量</param>
+        /// <param name="applied">玩家填的水肥量（会被钳制进合法范围）</param>
         /// <returns>本阶段的完整结果；已结束时返回 null</returns>
         public StageResult Commit(FertilizerApplication applied)
         {
             if (_soil == null || IsFinished) return null;
 
             var stage = _stage;
-            var soilBefore = _soil;
 
-            // 1) 用当前土壤算适宜度与肥力系数
-            var fit = SuitabilityResult.From(soilBefore, _config);
+            // 【快照】必须克隆。_soil 是引用，虽然 Advance 内部会 new 一个，
+            // 但直接把引用存进 result 会留下"外部改了 result.SoilBefore 就改了
+            // 内部状态"的隐患。这里明确存副本。
+            var soilBefore = _soil.Clone();
+
+            // 1) 用当前土壤算适宜度与肥力系数（走缓存，避免重复计算）
+            var fit = Evaluate();
             float stageFertility = fit.StageFertility();
             _stageFertility[Stages.ToIndex(stage)] = stageFertility;
 
             // 2) 取本阶段建议（演算需要它的基准灌溉量作分母）
             var rec = _planTable.Match(stage, fit);
 
-            // 3) 演算下一阶段土壤
-            var soilAfter = SoilAdvance.Advance(soilBefore, stage, applied, rec, _config);
+            // 3) 钳制玩家输入，挡住荒谬值
+            var appliedSafe = _config.Inputs != null
+                ? _config.Inputs.Clamp(applied, rec)
+                : applied;
 
-            // 4) 长势判定
+            // 4) 演算下一阶段土壤（用钳制后的投入）
+            var soilAfter = SoilAdvance.Advance(soilBefore, stage, appliedSafe, rec, _config);
+
+            // 5) 长势判定
             var growth = _config.Growth != null
                 ? _config.Growth.Evaluate(fit)
                 : GrowthLevel.Normal;
 
-            // 5) 组装结果
+            // 6) 组装结果
             var result = new StageResult
             {
                 Stage = stage,
@@ -185,7 +227,7 @@ namespace Engineer.Core
                 SoilAfter = soilAfter,
                 Fit = fit,
                 StageFertility = stageFertility,
-                Applied = applied,
+                Applied = appliedSafe,
                 Recommended = rec,
                 Growth = growth,
             };
@@ -193,9 +235,10 @@ namespace Engineer.Core
             _history[Stages.ToIndex(stage)] = result;
             _committedCount++;
 
-            // 6) 推进
+            // 7) 推进，并让适宜度缓存失效（土壤和阶段都变了）
             _soil = soilAfter;
             _stage = (stage == Stage.S4) ? Stage.Done : Stages.FromIndex(Stages.ToIndex(stage) + 1);
+            InvalidateCache();
 
             return result;
         }
