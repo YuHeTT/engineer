@@ -1,0 +1,19 @@
+{
+    "name": "Engineer.Editor",
+    "rootNamespace": "Engineer.Editor",
+    "references": [
+        "Engineer.Core",
+        "Engineer.Config"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
