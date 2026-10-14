@@ -75,7 +75,12 @@ crashlytics-build.properties
 # Blender 每次「保存」都会自动生成一份 .blend1 备份，内容和主文件几乎一样。
 # 它的问题不是「大」，而是「每保存一次就往 Git 历史里多塞一份」——
 # 模型改 20 次就是 20 × 16MB。这类文件必须忽略。
+#
+# 注意第二行不能省：*.blend1 只匹配以 .blend1 结尾的文件名，匹配不到
+# Unity 为它生成的 .blend1.meta。只忽略宿主、不忽略 meta，就会在仓库里
+# 留下「孤儿 meta」——身份证还在，本人没了。
 *.blend1
+*.blend1.meta
 
 # Unity 资源商店导入工具
 AssetStoreTools*

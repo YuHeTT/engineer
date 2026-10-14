@@ -114,14 +114,34 @@ Commit 信息建议写清楚"改了什么、为什么"，例如：
 | `Logs/` `Temp/` `obj/` | ❌ | 运行日志和编译中间产物 |
 | `UserSettings/` | ❌ | 每个人的编辑器布局和偏好 |
 | `*.sln` `*.csproj` | ❌ | Unity / VS 自动生成，每人不同 |
+| `BlenderSources/` | ✅ | Blender 源文件，**故意放在 `Assets` 外面**（见下节） |
 | `*.blend1` | ❌ | Blender 自动备份，每保存一次就多一份 |
 | `Unity界面.docx` | ✅ | 设计文档，属于"人做出来的"东西 |
+
+### 为什么 `BlenderSources/` 在 `Assets` 外面
+
+Unity 只导入 `Assets/` 和 `Packages/`。放在项目根目录下的其他文件夹，
+Unity **完全不碰**：不导入、不生成 `.meta`、不拖慢打开速度。
+
+`.blend` 如果留在 `Assets/` 里会有三个麻烦：
+
+1. **Unity 导入 `.blend` 必须调用本机装的 Blender。** 没装的人每次打开工程都会看到
+   一串 `Blender could not be found` 报错，久了会让人习惯性忽略 Console。
+2. **不同 Blender 版本转换出的网格可能不一致。** 一个人装 4.0、另一个人装 3.6，
+   Unity 从同一个 `.blend` 导出的模型可能不一样，会产生
+   "同一个场景在不同人机器上长得不一样"这种最难查的问题。
+3. 每次重新导入都要启动 Blender，明显变慢。
+
+**所以：Unity 用 `Assets/` 里的 `.glb` / `.fbx`；要用 Blender 改模型时，
+去 `BlenderSources/` 打开 `.blend`。** 改完导出 `.glb` 覆盖 `Assets/` 里的同名文件——
+**文件名不要改**，否则 Unity 会当成新资源，GUID 变了，场景引用全断。
 
 ---
 
 ## 六、如果以后仓库变得很大
 
-当前素材约 140MB，GitHub 完全承受得住（单文件上限 100MB，仓库警告线 1GB）。
+当前素材约 155MB（`Assets` 约 120MB + `BlenderSources` 约 35MB），
+GitHub 完全承受得住（单文件上限 100MB，仓库警告线 1GB）。
 但 **Git 会永久保存二进制文件的每一个版本**——模型改 20 次，历史里就有 20 份。
 
 如果将来素材总量超过 500MB，或者模型会反复迭代，就该换成 **Git LFS**：
