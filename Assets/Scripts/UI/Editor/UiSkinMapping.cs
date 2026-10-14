@@ -25,6 +25,12 @@ namespace Engineer.UI.EditorTools
         /// <summary>映射文件位置（跟着素材一起进版本库，重建界面时自动生效）。</summary>
         public const string MappingPath = "Assets/UIresources/白盒皮肤映射.json";
 
+        /// <summary>
+        /// 映射的备份位置。**故意放在 Assets 之外**：Unity 不会导入它，也不会被「清除皮肤」当资源删掉，
+        /// 手工挑图的心血就有一份兜底（「皮肤：清除皮肤」删文件前会自动备份到这里）。
+        /// </summary>
+        public const string BackupPath = "UserSettings/UiSkinMappingBackup.json";
+
         /// <summary>一条「某元素 → 某张图」的记录。</summary>
         [System.Serializable]
         public sealed class Binding
@@ -139,6 +145,40 @@ namespace Engineer.UI.EditorTools
             }
 
             return applied;
+        }
+
+        // ==================================================================
+        // 备份 / 恢复（「清除皮肤」删映射前先留一份）
+        // ==================================================================
+
+        /// <summary>有没有可用的备份文件。</summary>
+        public static bool HasBackup
+        {
+            get => File.Exists(BackupPath);
+        }
+
+        /// <summary>
+        /// 把当前映射备份一份；没有映射可备份时返回 null。
+        /// 备份放在 <see cref="BackupPath"/>（Assets 之外），不受「清除皮肤」影响。
+        /// </summary>
+        public static string Backup()
+        {
+            if (!File.Exists(MappingPath)) return null;
+
+            var folder = Path.GetDirectoryName(BackupPath);
+            if (!string.IsNullOrEmpty(folder) && !Directory.Exists(folder)) Directory.CreateDirectory(folder);
+
+            File.Copy(MappingPath, BackupPath, true);
+            return BackupPath;
+        }
+
+        /// <summary>用备份覆盖当前映射，返回映射路径（调用前先查 <see cref="HasBackup"/>）。</summary>
+        public static string Restore()
+        {
+            File.Copy(BackupPath, MappingPath, true);
+            AssetDatabase.ImportAsset(MappingPath);
+            AssetDatabase.SaveAssets();
+            return MappingPath;
         }
 
         // ==================================================================
