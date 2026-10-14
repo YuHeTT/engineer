@@ -1,9 +1,0 @@
-00:00.360  blend            | Read blend: "C:\Users\H-CHILD\Documents\Codex\2026-09-27\woy\outputs\房车_Blender精细版_v2\智能农田房车_精细可开合_v2.blend"
-COLLISION_SAMPLE 1 0
-COLLISION_SAMPLE 55 0
-COLLISION_SAMPLE 85 0
-COLLISION_SAMPLE 160 0
-VALIDATION_RESULT {"failures": [], "collision_count": 0, "glb": {"bytes": 12038820, "nodes": 976, "animations": 1, "animated_nodes": 18}}
-Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
-
-Blender quit
