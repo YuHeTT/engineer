@@ -1,0 +1,32 @@
+{
+  "method": "local Blender 5.2.1",
+  "cloud_generation_tasks": [],
+  "references_packed": 7,
+  "files": [
+    {
+      "name": "智能农田房车_精细可开合_v2.blend",
+      "bytes": 16804608,
+      "sha256": "be99ebc79bce04a3ca6fde351c84e0ce151a74e4f819cba07a298182de190686"
+    },
+    {
+      "name": "智能农田房车_精细可开合_v2.glb",
+      "bytes": 12038820,
+      "sha256": "e75200acbff016945207d62c4c4730d3f5f0f90788e4c5001e2ff5c6946b5688"
+    },
+    {
+      "name": "智能农田房车_精细可开合_v2.fbx",
+      "bytes": 11344972,
+      "sha256": "da8cd7bb0559df73b93381b5974ed5c1b251c20ab50a6b1da51c92fade58a0c4"
+    },
+    {
+      "name": "房车_独立开合动作.glb",
+      "bytes": 12038620,
+      "sha256": "d8dbdae5f786049c46edd9284f2814843255e4a9bcd0e3a02566e010f4aea52b"
+    },
+    {
+      "name": "房车开合演示.mp4",
+      "bytes": 380922,
+      "sha256": "b1ec45ca7f8e0452dad6853ab83a7317e99ce2811b7bc2d66bc32e359ed68d68"
+    }
+  ]
+}

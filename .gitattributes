@@ -1,0 +1,91 @@
+# ==============================================================================
+#  Unity 项目 .gitattributes
+#
+#  两个作用：
+#   1. 告诉 Git 哪些文件是文本、哪些是二进制。
+#      被当成文本的二进制文件（比如 .fbx）会被 Git 改动换行符而损坏。
+#   2. 让场景 / 预制体 / 材质这些 YAML 资源走 Unity 官方的智能合并工具。
+#
+#  关于合并工具：仓库里只写「用哪个合并器」，工具的真实路径是每台机器各自
+#  配置的（见 README）。某台机器没配置时，Git 会自动退回普通文本合并，
+#  不会报错，所以这行写了没有副作用。
+# ==============================================================================
+
+# 默认：Git 按内容自动判断文本/二进制；确认是文本的，在仓库内统一存成 LF
+* text=auto
+
+# ---------- Unity 的 YAML 资源（本项目已开启 Force Text 序列化，它们都是文本）----------
+*.unity              merge=unityyamlmerge
+*.prefab             merge=unityyamlmerge
+*.asset              merge=unityyamlmerge
+*.mat                merge=unityyamlmerge
+*.anim               merge=unityyamlmerge
+*.controller         merge=unityyamlmerge
+*.overrideController merge=unityyamlmerge
+*.physicMaterial     merge=unityyamlmerge
+*.physicsMaterial2D  merge=unityyamlmerge
+*.playable           merge=unityyamlmerge
+*.mask               merge=unityyamlmerge
+*.preset             merge=unityyamlmerge
+*.terrainlayer       merge=unityyamlmerge
+*.mixer              merge=unityyamlmerge
+*.shadervariants     merge=unityyamlmerge
+*.spriteatlas        merge=unityyamlmerge
+*.flare              merge=unityyamlmerge
+*.fontsettings       merge=unityyamlmerge
+*.guiskin            merge=unityyamlmerge
+
+# .meta 是文本，但不配智能合并：两个 .meta 冲突时应该由人来看，不能自动挑一个
+*.meta               text
+
+# ---------- 源码与文本 ----------
+*.cs        text diff=csharp
+*.shader    text
+*.cginc     text
+*.hlsl      text
+*.compute   text
+*.asmdef    text
+*.asmref    text
+*.rsp       text
+*.json      text
+*.xml       text
+*.md        text
+*.txt       text
+*.uxml      text
+*.uss       text
+
+# ---------- 二进制资源：禁止 Git 做换行符转换，也禁止尝试文本 diff / 合并 ----------
+# binary 是 Git 内置宏，等价于 -text -diff
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.webp   binary
+*.bmp    binary
+*.tga    binary
+*.tif    binary
+*.tiff   binary
+*.psd    binary
+*.exr    binary
+*.hdr    binary
+*.fbx    binary
+*.obj    binary
+*.glb    binary
+*.blend  binary
+*.blend1 binary
+*.zip    binary
+*.mp4    binary
+*.mov    binary
+*.wav    binary
+*.mp3    binary
+*.ogg    binary
+*.dll    binary
+*.so     binary
+*.a      binary
+*.lib    binary
+*.pdb    binary
+*.ttf    binary
+*.otf    binary
+*.unitypackage binary
+*.apk    binary
+*.aab    binary

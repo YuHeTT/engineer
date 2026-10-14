@@ -1,0 +1,971 @@
+C:\Users\H-CHILD\Documents\Codex\2026-09-27\woy\outputs\房车_Blender精细版_v2\verify_media.py:8: DeprecationWarning: 'MovieStrip.frame_final_duration' is expected to be removed in Blender 6.0
+  info={'width':strip.elements[0].orig_width,'height':strip.elements[0].orig_height,'frames':strip.frame_final_duration,'fps':strip.fps}
+00:00.640  render           | Saved: 'C:\Users\H-CHILD\Documents\Codex\2026-09-27\woy\outputs\房车_Blender精细版_v2\renders\video_check_01.png'
+00:00.703  render           | Saved: 'C:\Users\H-CHILD\Documents\Codex\2026-09-27\woy\outputs\房车_Blender精细版_v2\renders\video_check_45.png'
+00:00.734  render           | Saved: 'C:\Users\H-CHILD\Documents\Codex\2026-09-27\woy\outputs\房车_Blender精细版_v2\renders\video_check_89.png'
+Extensions: writing cache failed ([WinError 183] 当文件已存在时，无法创建该文件。: 'C:\\Users\\H-CHILD\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\extensions\\.cache').
+VIDEO_DECODE_OK {'width': 960, 'height': 640, 'frames': 90, 'fps': 15.0, 'duration_seconds': 6.0}
+Extensions: writing cache failed ([WinError 183] 当文件已存在时，无法创建该文件。: 'C:\\Users\\H-CHILD\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\extensions\\.cache').
+14:16:23 | INFO: Data are loaded, start creating Blender stuff
+14:16:23 | INFO: Blender create Mesh node Aft corner pillar
+14:16:23 | INFO: Blender create Mesh node Anemometer arm
+14:16:23 | INFO: Blender create Mesh node Anemometer arm.001
+14:16:23 | INFO: Blender create Mesh node Anemometer arm.002
+14:16:23 | INFO: Blender create Mesh node Anemometer arm.003
+14:16:23 | INFO: Blender create Mesh node Anemometer cup
+14:16:23 | INFO: Blender create Mesh node Anemometer cup.001
+14:16:23 | INFO: Blender create Mesh node Anemometer cup.002
+14:16:23 | INFO: Blender create Mesh node Anemometer cup.003
+14:16:23 | INFO: Blender create Mesh node Axle tube
+14:16:23 | INFO: Blender create Mesh node Axle tube.001
+14:16:23 | INFO: Blender create Mesh node Axle tube.002
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.001
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.002
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.003
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.004
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.005
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.006
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.007
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.008
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.009
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.010
+14:16:23 | INFO: Blender create Mesh node Black shutter hinge.011
+14:16:23 | INFO: Blender create Mesh node Blue body stripe
+14:16:23 | INFO: Blender create Mesh node Blue body stripe.001
+14:16:23 | INFO: Blender create Mesh node Blue body stripe.002
+14:16:23 | INFO: Blender create Mesh node Blue operator drawer pedestal
+14:16:23 | INFO: Blender create Mesh node Blue operator drawer pedestal.001
+14:16:23 | INFO: Blender create Mesh node Body fastener
+14:16:23 | INFO: Blender create Mesh node Body fastener plate
+14:16:23 | INFO: Blender create Mesh node Body fastener plate.001
+14:16:23 | INFO: Blender create Mesh node Body fastener plate.002
+14:16:23 | INFO: Blender create Mesh node Body fastener plate.003
+14:16:23 | INFO: Blender create Mesh node Body fastener plate.004
+14:16:23 | INFO: Blender create Mesh node Body fastener plate.005
+14:16:23 | INFO: Blender create Mesh node Body fastener plate.006
+14:16:23 | INFO: Blender create Mesh node Body fastener plate.007
+14:16:23 | INFO: Blender create Mesh node Body fastener.001
+14:16:23 | INFO: Blender create Mesh node Body fastener.002
+14:16:23 | INFO: Blender create Mesh node Body fastener.003
+14:16:23 | INFO: Blender create Mesh node Body fastener.004
+14:16:23 | INFO: Blender create Mesh node Body fastener.005
+14:16:23 | INFO: Blender create Mesh node Body fastener.006
+14:16:23 | INFO: Blender create Mesh node Body fastener.007
+14:16:23 | INFO: Blender create Mesh node Cab blue stripe
+14:16:23 | INFO: Blender create Mesh node Cab blue stripe.001
+14:16:23 | INFO: Blender create Mesh node Cab floor
+14:16:23 | INFO: Blender create Mesh node Cab foothold
+14:16:23 | INFO: Blender create Mesh node Cab foothold.001
+14:16:23 | INFO: Blender create Mesh node Cab foothold.002
+14:16:23 | INFO: Blender create Mesh node Cab foothold.003
+14:16:23 | INFO: Blender create Mesh node Cab front A pillar
+14:16:23 | INFO: Blender create Mesh node Cab front A pillar.001
+14:16:23 | INFO: Blender create Mesh node Cab lower door
+14:16:23 | INFO: Blender create Mesh node Cab lower door.001
+14:16:23 | INFO: Blender create Mesh node Cab lower front fascia
+14:16:23 | INFO: Blender create Mesh node Cab panel seam
+14:16:23 | INFO: Blender create Mesh node Cab panel seam.001
+14:16:23 | INFO: Blender create Mesh node Cab panel seam.002
+14:16:23 | INFO: Blender create Mesh node Cab panel seam.003
+14:16:23 | INFO: Blender create Mesh node Cab rear pillar
+14:16:23 | INFO: Blender create Mesh node Cab rear pillar.001
+14:16:23 | INFO: Blender create Mesh node Cab rear wall left
+14:16:23 | INFO: Blender create Mesh node Cab rear wall right
+14:16:23 | INFO: Blender create Mesh node Cab roof
+14:16:23 | INFO: Blender create Mesh node Cab rubber window gasket
+14:16:23 | INFO: Blender create Mesh node Cab rubber window gasket.001
+14:16:23 | INFO: Blender create Mesh node Cab side corner indicator
+14:16:23 | INFO: Blender create Mesh node Cab side corner indicator.001
+14:16:23 | INFO: Blender create Mesh node Cab side glass
+14:16:23 | INFO: Blender create Mesh node Cab side glass.001
+14:16:23 | INFO: Blender create Mesh node Cab walk-through header
+14:16:23 | INFO: Blender create Mesh node Cab window divider
+14:16:23 | INFO: Blender create Mesh node Cab window divider.001
+14:16:23 | INFO: Blender create Mesh node Cab window header
+14:16:23 | INFO: Blender create Mesh node Cab window header.001
+14:16:23 | INFO: Blender create Mesh node Cabin aft driver-side floor
+14:16:23 | INFO: Blender create Mesh node Cabin main floor
+14:16:23 | INFO: Blender create Mesh node Cabinet latch
+14:16:23 | INFO: Blender create Mesh node Cabinet latch.001
+14:16:23 | INFO: Blender create Mesh node Cabinet latch.002
+14:16:23 | INFO: Blender create Mesh node Cabinet latch.003
+14:16:23 | INFO: Blender create Mesh node Case handle
+14:16:23 | INFO: Blender create Mesh node Case handle.001
+14:16:23 | INFO: Blender create Mesh node Case handle.002
+14:16:23 | INFO: Blender create Mesh node Case yellow latch
+14:16:23 | INFO: Blender create Mesh node Case yellow latch.001
+14:16:23 | INFO: Blender create Mesh node Case yellow latch.002
+14:16:23 | INFO: Blender create Mesh node Case yellow latch.003
+14:16:23 | INFO: Blender create Mesh node Case yellow latch.004
+14:16:23 | INFO: Blender create Mesh node Case yellow latch.005
+14:16:23 | INFO: Blender create Mesh node Ceiling light strip
+14:16:23 | INFO: Blender create Mesh node Ceiling light strip.001
+14:16:23 | INFO: Blender create Mesh node Continuous warm task light
+14:16:23 | INFO: Blender create Mesh node Continuous warm task light.001
+14:16:23 | INFO: Blender create Mesh node Contoured wheel fender
+14:16:23 | INFO: Blender create Mesh node Contoured wheel fender.001
+14:16:23 | INFO: Blender create Mesh node Contoured wheel fender.002
+14:16:23 | INFO: Blender create Mesh node Contoured wheel fender.003
+14:16:23 | INFO: Blender create Mesh node Contoured wheel fender.004
+14:16:23 | INFO: Blender create Mesh node Contoured wheel fender.005
+14:16:23 | INFO: Blender create Mesh node Corner extrusion top
+14:16:23 | INFO: Blender create Mesh node Corner extrusion top.001
+14:16:23 | INFO: Blender create Mesh node Corner extrusion upright
+14:16:23 | INFO: Blender create Mesh node Corner extrusion upright.001
+14:16:23 | INFO: Blender create Mesh node Corner extrusion upright.002
+14:16:23 | INFO: Blender create Mesh node Corner extrusion upright.003
+14:16:23 | INFO: Blender create Mesh node Corner rivet
+14:16:23 | INFO: Blender create Mesh node Corner rivet.001
+14:16:23 | INFO: Blender create Mesh node Corner rivet.002
+14:16:23 | INFO: Blender create Mesh node Corner rivet.003
+14:16:23 | INFO: Blender create Mesh node Corner rivet.004
+14:16:23 | INFO: Blender create Mesh node Corner rivet.005
+14:16:23 | INFO: Blender create Mesh node Corner rivet.006
+14:16:23 | INFO: Blender create Mesh node Corner rivet.007
+14:16:23 | INFO: Blender create Mesh node Corner rivet.008
+14:16:23 | INFO: Blender create Mesh node Corner rivet.009
+14:16:23 | INFO: Blender create Mesh node Corner rivet.010
+14:16:23 | INFO: Blender create Mesh node Corner rivet.011
+14:16:23 | INFO: Blender create Mesh node Crew door header
+14:16:23 | INFO: Blender create Mesh node Crew entry grab handle
+14:16:23 | INFO: Blender create Mesh node Crew entry grab handle.001
+14:16:23 | INFO: Blender create Mesh node Crossmember
+14:16:23 | INFO: Blender create Mesh node Crossmember.001
+14:16:23 | INFO: Blender create Mesh node Crossmember.002
+14:16:23 | INFO: Blender create Mesh node Crossmember.003
+14:16:23 | INFO: Blender create Mesh node Crossmember.004
+14:16:23 | INFO: Blender create Mesh node Crew door handle
+14:16:23 | INFO: Blender create Mesh node Crew door hinge
+14:16:23 | INFO: Blender create Mesh node Crew door hinge.001
+14:16:23 | INFO: Blender create Mesh node Crew door lower
+14:16:23 | INFO: Blender create Mesh node Crew door tinted glass
+14:16:23 | INFO: Blender create Mesh node Crew door upper header
+14:16:23 | INFO: Blender create Mesh node Crew door window post
+14:16:23 | INFO: Blender create Mesh node Crew door window post.001
+14:16:23 | INFO: Blender create Mesh node Crew door window rubber
+14:16:23 | INFO: Blender create Mesh node Boarding ladder stringer
+14:16:23 | INFO: Blender create Mesh node Boarding ladder stringer.001
+14:16:23 | INFO: Blender create Mesh node Perforated boarding tread
+14:16:23 | INFO: Blender create Mesh node Perforated boarding tread.001
+14:16:23 | INFO: Blender create Mesh node Perforated boarding tread.002
+14:16:23 | INFO: Blender create Mesh node Perforated boarding tread.003
+14:16:23 | INFO: Blender create Mesh node Tread grip slot
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.001
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.002
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.003
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.004
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.005
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.006
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.007
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.008
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.009
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.010
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.011
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.012
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.013
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.014
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.015
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.016
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.017
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.018
+14:16:23 | INFO: Blender create Mesh node Tread grip slot.019
+14:16:23 | INFO: Blender create Mesh node Drone elevator platform
+14:16:23 | INFO: Blender create Mesh node Blue motor mount
+14:16:23 | INFO: Blender create Mesh node Blue motor mount.001
+14:16:23 | INFO: Blender create Mesh node Blue motor mount.002
+14:16:23 | INFO: Blender create Mesh node Blue motor mount.003
+14:16:23 | INFO: Blender create Mesh node Brushless motor
+14:16:23 | INFO: Blender create Mesh node Brushless motor.001
+14:16:23 | INFO: Blender create Mesh node Brushless motor.002
+14:16:23 | INFO: Blender create Mesh node Brushless motor.003
+14:16:23 | INFO: Blender create Mesh node Camera front glass
+14:16:23 | INFO: Blender create Mesh node Camera gimbal
+14:16:23 | INFO: Blender create Mesh node Carbon UAV boom
+14:16:23 | INFO: Blender create Mesh node Carbon UAV boom.001
+14:16:23 | INFO: Blender create Mesh node Carbon UAV boom.002
+14:16:23 | INFO: Blender create Mesh node Carbon UAV boom.003
+14:16:23 | INFO: Blender create Mesh node Drone blue dorsal strip
+14:16:23 | INFO: Blender create Mesh node Drone GNSS cap
+14:16:23 | INFO: Blender create Mesh node Drone lower avionics
+14:16:23 | INFO: Blender create Mesh node Drone white shell
+14:16:23 | INFO: Blender create Mesh node Landing foot
+14:16:23 | INFO: Blender create Mesh node Landing foot.001
+14:16:23 | INFO: Blender create Mesh node Landing foot.002
+14:16:23 | INFO: Blender create Mesh node Landing foot.003
+14:16:23 | INFO: Blender create Mesh node Landing leg
+14:16:23 | INFO: Blender create Mesh node Landing leg.001
+14:16:23 | INFO: Blender create Mesh node Landing leg.002
+14:16:23 | INFO: Blender create Mesh node Landing leg.003
+14:16:23 | INFO: Blender create Mesh node Rotor blade
+14:16:23 | INFO: Blender create Mesh node Rotor blade.001
+14:16:23 | INFO: Blender create Mesh node Rotor blade.002
+14:16:23 | INFO: Blender create Mesh node Rotor blade.003
+14:16:23 | INFO: Blender create Mesh node Rotor screw
+14:16:23 | INFO: Blender create Mesh node Rotor screw.001
+14:16:23 | INFO: Blender create Mesh node Rotor screw.002
+14:16:23 | INFO: Blender create Mesh node Rotor screw.003
+14:16:23 | INFO: Blender create Mesh node UAV nav light
+14:16:23 | INFO: Blender create Mesh node UAV nav light.001
+14:16:23 | INFO: Blender create Mesh node UAV nav light.002
+14:16:23 | INFO: Blender create Mesh node UAV nav light.003
+14:16:23 | INFO: Blender create Mesh node Landing guide
+14:16:23 | INFO: Blender create Mesh node Landing guide.001
+14:16:23 | INFO: Blender create Mesh node Landing tie-down eye
+14:16:23 | INFO: Blender create Mesh node Landing tie-down eye.001
+14:16:23 | INFO: Blender create Mesh node Landing tie-down eye.002
+14:16:23 | INFO: Blender create Mesh node Landing tie-down eye.003
+14:16:23 | INFO: Blender create Mesh node Ramp base screw
+14:16:23 | INFO: Blender create Mesh node Ramp base screw.001
+14:16:23 | INFO: Blender create Mesh node Ramp diamond tread
+14:16:23 | INFO: Blender create Mesh node Ramp hinge knuckle
+14:16:23 | INFO: Blender create Mesh node Ramp hinge knuckle.001
+14:16:23 | INFO: Blender create Mesh node Ramp hinge knuckle.002
+14:16:23 | INFO: Blender create Mesh node Ramp latch pocket
+14:16:23 | INFO: Blender create Mesh node Ramp latch pocket.001
+14:16:23 | INFO: Blender create Mesh node Ramp release lever
+14:16:23 | INFO: Blender create Mesh node Ramp release lever.001
+14:16:23 | INFO: Blender create Mesh node Ramp rim
+14:16:23 | INFO: Blender create Mesh node Ramp rim.001
+14:16:24 | INFO: Blender create Mesh node ROBOT_RAMP_inner_deck
+14:16:24 | INFO: Blender create Mesh node ROBOT_RAMP_outer_door
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel.004
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel.005
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel.006
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel.007
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt.004
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt.005
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt.006
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt.007
+14:16:24 | INFO: Blender create Mesh node Hatch inner rib.002
+14:16:24 | INFO: Blender create Mesh node Hatch inner rib.003
+14:16:24 | INFO: Blender create Mesh node Hatch lifting handle.001
+14:16:24 | INFO: Blender create Mesh node Hatch screw.004
+14:16:24 | INFO: Blender create Mesh node Hatch screw.005
+14:16:24 | INFO: Blender create Mesh node Hatch screw.006
+14:16:24 | INFO: Blender create Mesh node Hatch screw.007
+14:16:24 | INFO: Blender create Mesh node HATCH_FRONT_inner_reinforcement
+14:16:24 | INFO: Blender create Mesh node HATCH_FRONT_panel
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel.001
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel.002
+14:16:24 | INFO: Blender create Mesh node Hatch hinge barrel.003
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt.001
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt.002
+14:16:24 | INFO: Blender create Mesh node Hatch hinge bolt.003
+14:16:24 | INFO: Blender create Mesh node Hatch inner rib
+14:16:24 | INFO: Blender create Mesh node Hatch inner rib.001
+14:16:24 | INFO: Blender create Mesh node Hatch lifting handle
+14:16:24 | INFO: Blender create Mesh node Hatch screw
+14:16:24 | INFO: Blender create Mesh node Hatch screw.001
+14:16:24 | INFO: Blender create Mesh node Hatch screw.002
+14:16:24 | INFO: Blender create Mesh node Hatch screw.003
+14:16:24 | INFO: Blender create Mesh node HATCH_REAR_inner_reinforcement
+14:16:24 | INFO: Blender create Mesh node HATCH_REAR_panel
+14:16:24 | INFO: Blender create Mesh node Dashboard
+14:16:24 | INFO: Blender create Mesh node Data chart bar
+14:16:24 | INFO: Blender create Mesh node Data chart bar.001
+14:16:24 | INFO: Blender create Mesh node Data chart bar.002
+14:16:24 | INFO: Blender create Mesh node Data chart bar.003
+14:16:24 | INFO: Blender create Mesh node Data chart bar.004
+14:16:24 | INFO: Blender create Mesh node Data chart bar.005
+14:16:24 | INFO: Blender create Mesh node Data chart bar.006
+14:16:24 | INFO: Blender create Mesh node Data chart bar.007
+14:16:24 | INFO: Blender create Mesh node Data chart bar.008
+14:16:24 | INFO: Blender create Mesh node Data chart bar.009
+14:16:24 | INFO: Blender create Mesh node Data chart bar.010
+14:16:24 | INFO: Blender create Mesh node Data chart bar.011
+14:16:24 | INFO: Blender create Mesh node Data chart bar.012
+14:16:24 | INFO: Blender create Mesh node Data chart bar.013
+14:16:24 | INFO: Blender create Mesh node Data chart bar.014
+14:16:24 | INFO: Blender create Mesh node Differential
+14:16:24 | INFO: Blender create Mesh node Differential.001
+14:16:24 | INFO: Blender create Mesh node Differential.002
+14:16:24 | INFO: Blender create Mesh node Dock guide
+14:16:24 | INFO: Blender create Mesh node Dock guide.001
+14:16:24 | INFO: Blender create Mesh node Dock wall storage
+14:16:24 | INFO: Blender create Mesh node Dock wall storage.001
+14:16:24 | INFO: Blender create Mesh node Dock wall storage.002
+14:16:24 | INFO: Blender create Mesh node Dock wall storage.003
+14:16:24 | INFO: Blender create Mesh node Dock wall storage.004
+14:16:24 | INFO: Blender create Mesh node Dock wall storage.005
+14:16:24 | INFO: Blender create Mesh node Door handle pocket
+14:16:24 | INFO: Blender create Mesh node Door handle pocket.001
+14:16:24 | INFO: Blender create Mesh node Door pull
+14:16:24 | INFO: Blender create Mesh node Door pull.001
+14:16:24 | INFO: Blender create Mesh node Drawer metal pull
+14:16:24 | INFO: Blender create Mesh node Drawer metal pull.001
+14:16:24 | INFO: Blender create Mesh node Drawer metal pull.002
+14:16:24 | INFO: Blender create Mesh node Drawer metal pull.003
+14:16:24 | INFO: Blender create Mesh node Drawer metal pull.004
+14:16:24 | INFO: Blender create Mesh node Drawer metal pull.005
+14:16:24 | INFO: Blender create Mesh node Driver side wall
+14:16:24 | INFO: Blender create Mesh node Driver-side ladder frame rail
+14:16:24 | INFO: Blender create Mesh node Driveshaft
+14:16:24 | INFO: Blender create Mesh node Chair arm support.004
+14:16:24 | INFO: Blender create Mesh node Chair arm support.005
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.010
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.011
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.012
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.013
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.014
+14:16:24 | INFO: Blender create Mesh node Chair caster.010
+14:16:24 | INFO: Blender create Mesh node Chair caster.011
+14:16:24 | INFO: Blender create Mesh node Chair caster.012
+14:16:24 | INFO: Blender create Mesh node Chair caster.013
+14:16:24 | INFO: Blender create Mesh node Chair caster.014
+14:16:24 | INFO: Blender create Mesh node Chair swivel post.002
+14:16:24 | INFO: Blender create Mesh node Padded armrest.004
+14:16:24 | INFO: Blender create Mesh node Padded armrest.005
+14:16:24 | INFO: Blender create Mesh node Seat back stitch.004
+14:16:24 | INFO: Blender create Mesh node Seat back stitch.005
+14:16:24 | INFO: Blender create Mesh node Seat back.002
+14:16:24 | INFO: Blender create Mesh node Seat cushion.002
+14:16:24 | INFO: Blender create Mesh node Chair arm support.006
+14:16:24 | INFO: Blender create Mesh node Chair arm support.007
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.015
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.016
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.017
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.018
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.019
+14:16:24 | INFO: Blender create Mesh node Chair caster.015
+14:16:24 | INFO: Blender create Mesh node Chair caster.016
+14:16:24 | INFO: Blender create Mesh node Chair caster.017
+14:16:24 | INFO: Blender create Mesh node Chair caster.018
+14:16:24 | INFO: Blender create Mesh node Chair caster.019
+14:16:24 | INFO: Blender create Mesh node Chair swivel post.003
+14:16:24 | INFO: Blender create Mesh node Padded armrest.006
+14:16:24 | INFO: Blender create Mesh node Padded armrest.007
+14:16:24 | INFO: Blender create Mesh node Seat back stitch.006
+14:16:24 | INFO: Blender create Mesh node Seat back stitch.007
+14:16:24 | INFO: Blender create Mesh node Seat back.003
+14:16:24 | INFO: Blender create Mesh node Seat cushion.003
+14:16:24 | INFO: Blender create Mesh node Drone bay endwall
+14:16:24 | INFO: Blender create Mesh node Drone bay endwall.001
+14:16:24 | INFO: Blender create Mesh node Drone bay sealed bottom
+14:16:24 | INFO: Blender create Mesh node Drone bay sidewall
+14:16:24 | INFO: Blender create Mesh node Drone bay sidewall.001
+14:16:24 | INFO: Blender create Mesh node Electrical latch
+14:16:24 | INFO: Blender create Mesh node Electrical latch.001
+14:16:24 | INFO: Blender create Mesh node Electrical locker door
+14:16:24 | INFO: Blender create Mesh node Electrical locker door.001
+14:16:24 | INFO: Blender create Mesh node Emergency stop
+14:16:24 | INFO: Blender create Mesh node Emergency stop.001
+14:16:24 | INFO: Blender create Mesh node Faucet outlet
+14:16:24 | INFO: Blender create Mesh node Faucet spout
+14:16:24 | INFO: Blender create Mesh node Faucet stem
+14:16:24 | INFO: Blender create Mesh node Forward electrical cabinet
+14:16:24 | INFO: Blender create Mesh node Front bulkhead left
+14:16:24 | INFO: Blender create Mesh node Front bulkhead right
+14:16:24 | INFO: Blender create Mesh node Front bumper
+14:16:24 | INFO: Blender create Mesh node Front entry pillar
+14:16:24 | INFO: Blender create Mesh node Front protection skid
+14:16:24 | INFO: Blender create Mesh node Front tow ring
+14:16:24 | INFO: Blender create Mesh node Front tow ring.001
+14:16:24 | INFO: Blender create Mesh node Garage ceiling
+14:16:24 | INFO: Blender create Mesh node Garage floor
+14:16:24 | INFO: Blender create Mesh node Garage jamb
+14:16:24 | INFO: Blender create Mesh node Garage jamb.001
+14:16:24 | INFO: Blender create Mesh node Garage LED strip
+14:16:24 | INFO: Blender create Mesh node Garage partition
+14:16:24 | INFO: Blender create Mesh node Garage partition.001
+14:16:24 | INFO: Blender create Mesh node Garage sealed back
+14:16:24 | INFO: Blender create Mesh node Garage threshold bridge
+14:16:24 | INFO: Blender create Mesh node Garage upper jamb
+14:16:24 | INFO: Blender create Mesh node Garage upper load-bearing rail
+14:16:24 | INFO: Blender create Mesh node Grille bright upper edge
+14:16:24 | INFO: Blender create Mesh node Grille bright upper edge.001
+14:16:24 | INFO: Blender create Mesh node Grille bright upper edge.002
+14:16:24 | INFO: Blender create Mesh node Grille bright upper edge.003
+14:16:24 | INFO: Blender create Mesh node Grille horizontal louvre
+14:16:24 | INFO: Blender create Mesh node Grille horizontal louvre.001
+14:16:24 | INFO: Blender create Mesh node Grille horizontal louvre.002
+14:16:24 | INFO: Blender create Mesh node Grille horizontal louvre.003
+14:16:24 | INFO: Blender create Mesh node Hand controller base
+14:16:24 | INFO: Blender create Mesh node Hand controller base.001
+14:16:24 | INFO: Blender create Mesh node Hand controller stick
+14:16:24 | INFO: Blender create Mesh node Hand controller stick.001
+14:16:24 | INFO: Blender create Mesh node Hatch rubber seal
+14:16:24 | INFO: Blender create Mesh node Hatch rubber seal.001
+14:16:24 | INFO: Blender create Mesh node Headlamp black surround
+14:16:24 | INFO: Blender create Mesh node Headlamp black surround.001
+14:16:24 | INFO: Blender create Mesh node Instrument binnacle
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent.001
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent.002
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent.003
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent.004
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent.005
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent.006
+14:16:24 | INFO: Blender create Mesh node Instrument cabinet vent.007
+14:16:24 | INFO: Blender create Mesh node Instrument charging cabinet
+14:16:24 | INFO: Blender create Mesh node Interior dark window
+14:16:24 | INFO: Blender create Mesh node Interior dark window.001
+14:16:24 | INFO: Blender create Mesh node Interior window frame
+14:16:24 | INFO: Blender create Mesh node Interior window frame.001
+14:16:24 | INFO: Blender create Mesh node Keyboard keycaps
+14:16:24 | INFO: Blender create Mesh node Leaf spring
+14:16:24 | INFO: Blender create Mesh node Leaf spring.001
+14:16:24 | INFO: Blender create Mesh node Leaf spring.002
+14:16:24 | INFO: Blender create Mesh node Leaf spring.003
+14:16:24 | INFO: Blender create Mesh node Leaf spring.004
+14:16:24 | INFO: Blender create Mesh node Leaf spring.005
+14:16:24 | INFO: Blender create Mesh node Leaf spring.006
+14:16:24 | INFO: Blender create Mesh node Leaf spring.007
+14:16:24 | INFO: Blender create Mesh node Leaf spring.008
+14:16:24 | INFO: Blender create Mesh node Leaf spring.009
+14:16:24 | INFO: Blender create Mesh node Leaf spring.010
+14:16:24 | INFO: Blender create Mesh node Leaf spring.011
+14:16:24 | INFO: Blender create Mesh node Leaf spring.012
+14:16:24 | INFO: Blender create Mesh node Leaf spring.013
+14:16:24 | INFO: Blender create Mesh node Leaf spring.014
+14:16:24 | INFO: Blender create Mesh node Leaf spring.015
+14:16:24 | INFO: Blender create Mesh node Leaf spring.016
+14:16:24 | INFO: Blender create Mesh node Leaf spring.017
+14:16:24 | INFO: Blender create Mesh node Leaf spring.018
+14:16:24 | INFO: Blender create Mesh node Leaf spring.019
+14:16:24 | INFO: Blender create Mesh node Leaf spring.020
+14:16:24 | INFO: Blender create Mesh node Leaf spring.021
+14:16:24 | INFO: Blender create Mesh node Leaf spring.022
+14:16:24 | INFO: Blender create Mesh node Leaf spring.023
+14:16:24 | INFO: Blender create Mesh node LED running light
+14:16:24 | INFO: Blender create Mesh node LED running light.001
+14:16:24 | INFO: Blender create Mesh node Lower extruded rub rail
+14:16:24 | INFO: Blender create Mesh node Lower extruded rub rail.001
+14:16:24 | INFO: Blender create Mesh node Lower service locker
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.001
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.002
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.003
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.004
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.005
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.006
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.007
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.008
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.009
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.010
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.011
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.012
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.013
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.014
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.015
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.016
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.017
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.018
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.019
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.020
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.021
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.022
+14:16:24 | INFO: Blender create Mesh node Lower service locker screw.023
+14:16:24 | INFO: Blender create Mesh node Lower service locker.001
+14:16:24 | INFO: Blender create Mesh node Lower service locker.002
+14:16:24 | INFO: Blender create Mesh node Lower service locker.003
+14:16:24 | INFO: Blender create Mesh node Lower service locker.004
+14:16:24 | INFO: Blender create Mesh node Lower service locker.005
+14:16:24 | INFO: Blender create Mesh node Mast upper antenna
+14:16:24 | INFO: Blender create Mesh node Mirror glass
+14:16:24 | INFO: Blender create Mesh node Mirror glass.001
+14:16:24 | INFO: Blender create Mesh node Mirror large shell
+14:16:24 | INFO: Blender create Mesh node Mirror large shell.001
+14:16:24 | INFO: Blender create Mesh node Mirror lower arm
+14:16:24 | INFO: Blender create Mesh node Mirror lower arm.001
+14:16:24 | INFO: Blender create Mesh node Mirror lower wide angle
+14:16:24 | INFO: Blender create Mesh node Mirror lower wide angle.001
+14:16:24 | INFO: Blender create Mesh node Mirror upper arm
+14:16:24 | INFO: Blender create Mesh node Mirror upper arm.001
+14:16:24 | INFO: Blender create Mesh node Monitor arm
+14:16:24 | INFO: Blender create Mesh node Monitor arm.001
+14:16:24 | INFO: Blender create Mesh node Monitor arm.002
+14:16:24 | INFO: Blender create Mesh node Monitor back
+14:16:24 | INFO: Blender create Mesh node Monitor back.001
+14:16:24 | INFO: Blender create Mesh node Monitor back.002
+14:16:24 | INFO: Blender create Mesh node Monitor display
+14:16:24 | INFO: Blender create Mesh node Monitor display.001
+14:16:24 | INFO: Blender create Mesh node Monitor display.002
+14:16:24 | INFO: Blender create Mesh node Monitor header
+14:16:24 | INFO: Blender create Mesh node Monitor header.001
+14:16:24 | INFO: Blender create Mesh node Monitor header.002
+14:16:24 | INFO: Blender create Mesh node Mouse
+14:16:24 | INFO: Blender create Mesh node Chair arm support
+14:16:24 | INFO: Blender create Mesh node Chair arm support.001
+14:16:24 | INFO: Blender create Mesh node Chair base spoke
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.001
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.002
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.003
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.004
+14:16:24 | INFO: Blender create Mesh node Chair caster
+14:16:24 | INFO: Blender create Mesh node Chair caster.001
+14:16:24 | INFO: Blender create Mesh node Chair caster.002
+14:16:24 | INFO: Blender create Mesh node Chair caster.003
+14:16:24 | INFO: Blender create Mesh node Chair caster.004
+14:16:24 | INFO: Blender create Mesh node Chair swivel post
+14:16:24 | INFO: Blender create Mesh node Padded armrest
+14:16:24 | INFO: Blender create Mesh node Padded armrest.001
+14:16:24 | INFO: Blender create Mesh node Seat back
+14:16:24 | INFO: Blender create Mesh node Seat back stitch
+14:16:24 | INFO: Blender create Mesh node Seat back stitch.001
+14:16:24 | INFO: Blender create Mesh node Seat cushion
+14:16:24 | INFO: Blender create Mesh node Chair arm support.002
+14:16:24 | INFO: Blender create Mesh node Chair arm support.003
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.005
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.006
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.007
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.008
+14:16:24 | INFO: Blender create Mesh node Chair base spoke.009
+14:16:24 | INFO: Blender create Mesh node Chair caster.005
+14:16:24 | INFO: Blender create Mesh node Chair caster.006
+14:16:24 | INFO: Blender create Mesh node Chair caster.007
+14:16:24 | INFO: Blender create Mesh node Chair caster.008
+14:16:24 | INFO: Blender create Mesh node Chair caster.009
+14:16:24 | INFO: Blender create Mesh node Chair swivel post.001
+14:16:24 | INFO: Blender create Mesh node Padded armrest.002
+14:16:24 | INFO: Blender create Mesh node Padded armrest.003
+14:16:24 | INFO: Blender create Mesh node Seat back stitch.002
+14:16:24 | INFO: Blender create Mesh node Seat back stitch.003
+14:16:24 | INFO: Blender create Mesh node Seat back.001
+14:16:24 | INFO: Blender create Mesh node Seat cushion.001
+14:16:24 | INFO: Blender create Mesh node Operator drawer front
+14:16:24 | INFO: Blender create Mesh node Operator drawer front.001
+14:16:24 | INFO: Blender create Mesh node Operator drawer front.002
+14:16:24 | INFO: Blender create Mesh node Operator drawer front.003
+14:16:24 | INFO: Blender create Mesh node Operator drawer front.004
+14:16:24 | INFO: Blender create Mesh node Operator drawer front.005
+14:16:24 | INFO: Blender create Mesh node Operator keyboard
+14:16:24 | INFO: Blender create Mesh node Operator worktop
+14:16:24 | INFO: Blender create Mesh node Passenger-side ladder frame rail
+14:16:24 | INFO: Blender create Mesh node Projector glass
+14:16:24 | INFO: Blender create Mesh node Projector glass.001
+14:16:24 | INFO: Blender create Mesh node Projector glass.002
+14:16:24 | INFO: Blender create Mesh node Projector glass.003
+14:16:24 | INFO: Blender create Mesh node Projector headlamp
+14:16:24 | INFO: Blender create Mesh node Projector headlamp.001
+14:16:24 | INFO: Blender create Mesh node Projector headlamp.002
+14:16:24 | INFO: Blender create Mesh node Projector headlamp.003
+14:16:24 | INFO: Blender create Mesh node Radiator black trapezoid
+14:16:24 | INFO: Blender create Mesh node Radiator vertical mesh
+14:16:24 | INFO: Blender create Mesh node Radiator vertical mesh.001
+14:16:24 | INFO: Blender create Mesh node Radiator vertical mesh.002
+14:16:24 | INFO: Blender create Mesh node Radiator vertical mesh.003
+14:16:24 | INFO: Blender create Mesh node Radiator vertical mesh.004
+14:16:24 | INFO: Blender create Mesh node Radio whip
+14:16:24 | INFO: Blender create Mesh node Radio whip.001
+14:16:24 | INFO: Blender create Mesh node Radome base
+14:16:24 | INFO: Blender create Mesh node Radome base.001
+14:16:24 | INFO: Blender create Mesh node Rail standoff
+14:16:24 | INFO: Blender create Mesh node Rail standoff.001
+14:16:24 | INFO: Blender create Mesh node Rail standoff.002
+14:16:24 | INFO: Blender create Mesh node Rail standoff.003
+14:16:24 | INFO: Blender create Mesh node Rail standoff.004
+14:16:24 | INFO: Blender create Mesh node Rail standoff.005
+14:16:24 | INFO: Blender create Mesh node Rail standoff.006
+14:16:24 | INFO: Blender create Mesh node Rail standoff.007
+14:16:24 | INFO: Blender create Mesh node Raised garage top inside
+14:16:24 | INFO: Blender create Mesh node Ramp support rod
+14:16:24 | INFO: Blender create Mesh node Ramp support rod.001
+14:16:24 | INFO: Blender create Mesh node Ramp support sleeve
+14:16:24 | INFO: Blender create Mesh node Ramp support sleeve.001
+14:16:24 | INFO: Blender create Mesh node Rear door hinge
+14:16:24 | INFO: Blender create Mesh node Rear door hinge.001
+14:16:24 | INFO: Blender create Mesh node Rear door hinge.002
+14:16:24 | INFO: Blender create Mesh node Rear door hinge.003
+14:16:24 | INFO: Blender create Mesh node Rear flexible mudflap
+14:16:24 | INFO: Blender create Mesh node Rear flexible mudflap.001
+14:16:24 | INFO: Blender create Mesh node Rear flexible mudflap.002
+14:16:24 | INFO: Blender create Mesh node Rear flexible mudflap.003
+14:16:24 | INFO: Blender create Mesh node Rear flexible mudflap.004
+14:16:24 | INFO: Blender create Mesh node Rear flexible mudflap.005
+14:16:24 | INFO: Blender create Mesh node Rear indicator
+14:16:24 | INFO: Blender create Mesh node Rear indicator.001
+14:16:24 | INFO: Blender create Mesh node Rear lamp surround
+14:16:24 | INFO: Blender create Mesh node Rear lamp surround.001
+14:16:24 | INFO: Blender create Mesh node Rear offset chassis crossmember
+14:16:24 | INFO: Blender create Mesh node Rear service door
+14:16:24 | INFO: Blender create Mesh node Rear service door gasket
+14:16:24 | INFO: Blender create Mesh node Rear stop lamp
+14:16:24 | INFO: Blender create Mesh node Rear stop lamp.001
+14:16:24 | INFO: Blender create Mesh node Rear tool cabinet
+14:16:24 | INFO: Blender create Mesh node Rear towing crossbar
+14:16:24 | INFO: Blender create Mesh node Rear wall
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.001
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.002
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.003
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.004
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.005
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.006
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.007
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.008
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.009
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.010
+14:16:24 | INFO: Blender create Mesh node Recessed compression latch.011
+14:16:24 | INFO: Blender create Mesh node Recovery eye
+14:16:24 | INFO: Blender create Mesh node Recovery eye.001
+14:16:24 | INFO: Blender create Mesh node Roof bay side bridge
+14:16:24 | INFO: Blender create Mesh node Roof bay side bridge.001
+14:16:24 | INFO: Blender create Mesh node Roof equipment rail
+14:16:24 | INFO: Blender create Mesh node Roof equipment rail.001
+14:16:24 | INFO: Blender create Mesh node Roof gas strut chrome rod
+14:16:24 | INFO: Blender create Mesh node Roof gas strut chrome rod.001
+14:16:24 | INFO: Blender create Mesh node Roof gas strut chrome rod.002
+14:16:24 | INFO: Blender create Mesh node Roof gas strut chrome rod.003
+14:16:24 | INFO: Blender create Mesh node Roof gas strut sleeve
+14:16:24 | INFO: Blender create Mesh node Roof gas strut sleeve.001
+14:16:24 | INFO: Blender create Mesh node Roof gas strut sleeve.002
+14:16:24 | INFO: Blender create Mesh node Roof gas strut sleeve.003
+14:16:24 | INFO: Blender create Mesh node Roof panel
+14:16:24 | INFO: Blender create Mesh node Roof panel.001
+14:16:24 | INFO: Blender create Mesh node Roof rack base
+14:16:24 | INFO: Blender create Mesh node Roof rack end
+14:16:24 | INFO: Blender create Mesh node Roof rack end.001
+14:16:24 | INFO: Blender create Mesh node Roof rack post
+14:16:24 | INFO: Blender create Mesh node Roof rack post.001
+14:16:24 | INFO: Blender create Mesh node Roof rack post.002
+14:16:24 | INFO: Blender create Mesh node Roof rack post.003
+14:16:24 | INFO: Blender create Mesh node Roof rack post.004
+14:16:24 | INFO: Blender create Mesh node Roof rack post.005
+14:16:24 | INFO: Blender create Mesh node Roof rack top rail
+14:16:24 | INFO: Blender create Mesh node Roof rack top rail.001
+14:16:24 | INFO: Blender create Mesh node Continuous rubber track
+14:16:24 | INFO: Blender create Mesh node Continuous rubber track.001
+14:16:24 | INFO: Blender create Mesh node Drill mounting rail
+14:16:24 | INFO: Blender create Mesh node Lidar black band
+14:16:24 | INFO: Blender create Mesh node Lidar white cap
+14:16:24 | INFO: Blender create Mesh node Probe cone
+14:16:24 | INFO: Blender create Mesh node Rover beveled hull
+14:16:24 | INFO: Blender create Mesh node Rover blue top
+14:16:24 | INFO: Blender create Mesh node Rover chassis
+14:16:24 | INFO: Blender create Mesh node Rover road wheel
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.001
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.002
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.003
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.004
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.005
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.006
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.007
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.008
+14:16:24 | INFO: Blender create Mesh node Rover road wheel.009
+14:16:24 | INFO: Blender create Mesh node Rover stereo fascia
+14:16:24 | INFO: Blender create Mesh node Rover tread blocks
+14:16:24 | INFO: Blender create Mesh node Rover tread blocks.001
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.001
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.002
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.003
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.004
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.005
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.006
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.007
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.008
+14:16:24 | INFO: Blender create Mesh node Rover wheel hub.009
+14:16:24 | INFO: Blender create Mesh node Soil probe drive
+14:16:24 | INFO: Blender create Mesh node Soil probe shaft
+14:16:24 | INFO: Blender create Mesh node Stereo camera rim
+14:16:24 | INFO: Blender create Mesh node Stereo camera rim.001
+14:16:24 | INFO: Blender create Mesh node Stereo optical glass
+14:16:24 | INFO: Blender create Mesh node Stereo optical glass.001
+14:16:24 | INFO: Blender create Mesh node Rugged field equipment case
+14:16:24 | INFO: Blender create Mesh node Rugged field equipment case.001
+14:16:24 | INFO: Blender create Mesh node Rugged field equipment case.002
+14:16:24 | INFO: Blender create Mesh node Sample bench cabinetry
+14:16:24 | INFO: Blender create Mesh node Sample bench main steel top
+14:16:24 | INFO: Blender create Mesh node Sample cabinet door
+14:16:24 | INFO: Blender create Mesh node Sample cabinet door.001
+14:16:24 | INFO: Blender create Mesh node Sample cabinet door.002
+14:16:24 | INFO: Blender create Mesh node Sample cabinet door.003
+14:16:24 | INFO: Blender create Mesh node Sample preparation inset
+14:16:24 | INFO: Blender create Mesh node Shock piston
+14:16:24 | INFO: Blender create Mesh node Shock piston.001
+14:16:24 | INFO: Blender create Mesh node Shock piston.002
+14:16:24 | INFO: Blender create Mesh node Shock piston.003
+14:16:24 | INFO: Blender create Mesh node Shock piston.004
+14:16:24 | INFO: Blender create Mesh node Shock piston.005
+14:16:24 | INFO: Blender create Mesh node Shock sleeve
+14:16:24 | INFO: Blender create Mesh node Shock sleeve.001
+14:16:24 | INFO: Blender create Mesh node Shock sleeve.002
+14:16:24 | INFO: Blender create Mesh node Shock sleeve.003
+14:16:24 | INFO: Blender create Mesh node Shock sleeve.004
+14:16:24 | INFO: Blender create Mesh node Shock sleeve.005
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp.001
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp.002
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp.003
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp.004
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp.005
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp.006
+14:16:24 | INFO: Blender create Mesh node Side amber clearance lamp.007
+14:16:24 | INFO: Blender create Mesh node Sink bowl bottom
+14:16:24 | INFO: Blender create Mesh node Sink bowl sides
+14:16:24 | INFO: Blender create Mesh node Sink bowl sides.001
+14:16:24 | INFO: Blender create Mesh node Sink bowl sides.002
+14:16:24 | INFO: Blender create Mesh node Sink bowl sides.003
+14:16:24 | INFO: Blender create Mesh node Sink drain
+14:16:24 | INFO: Blender create Mesh node Sink end rim
+14:16:24 | INFO: Blender create Mesh node Sink end rim.001
+14:16:24 | INFO: Blender create Mesh node Sink side rim
+14:16:24 | INFO: Blender create Mesh node Sink side rim.001
+14:16:24 | INFO: Blender create Mesh node Skid cutout insert
+14:16:24 | INFO: Blender create Mesh node Skid cutout insert.001
+14:16:24 | INFO: Blender create Mesh node Skid cutout insert.002
+14:16:24 | INFO: Blender create Mesh node Solar aluminium frame
+14:16:24 | INFO: Blender create Mesh node Solar aluminium frame.001
+14:16:24 | INFO: Blender create Mesh node Solar cell busbars
+14:16:24 | INFO: Blender create Mesh node Solar cell busbars.001
+14:16:24 | INFO: Blender create Mesh node Solar module
+14:16:24 | INFO: Blender create Mesh node Solar module.001
+14:16:24 | INFO: Blender create Mesh node Steering column
+14:16:24 | INFO: Blender create Mesh node Steering rim
+14:16:24 | INFO: Blender create Mesh node Steering spoke
+14:16:24 | INFO: Blender create Mesh node Sun visor
+14:16:24 | INFO: Blender create Mesh node Telemetry readout
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.001
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.002
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.003
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.004
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.005
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.006
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.007
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.008
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.009
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.010
+14:16:24 | INFO: Blender create Mesh node Telemetry readout.011
+14:16:24 | INFO: Blender create Mesh node Tool cabinet upper locker
+14:16:24 | INFO: Blender create Mesh node Tool drawer front
+14:16:24 | INFO: Blender create Mesh node Tool drawer front.001
+14:16:24 | INFO: Blender create Mesh node Tool drawer front.002
+14:16:24 | INFO: Blender create Mesh node Tool drawer front.003
+14:16:24 | INFO: Blender create Mesh node Tool drawer handle
+14:16:24 | INFO: Blender create Mesh node Tool drawer handle.001
+14:16:24 | INFO: Blender create Mesh node Tool drawer handle.002
+14:16:24 | INFO: Blender create Mesh node Tool drawer handle.003
+14:16:24 | INFO: Blender create Mesh node Underfloor battery enclosure
+14:16:24 | INFO: Blender create Mesh node Underfloor battery enclosure.001
+14:16:24 | INFO: Blender create Mesh node Underfloor strap
+14:16:24 | INFO: Blender create Mesh node Underfloor strap.001
+14:16:24 | INFO: Blender create Mesh node Underfloor strap.002
+14:16:24 | INFO: Blender create Mesh node Underfloor strap.003
+14:16:24 | INFO: Blender create Mesh node Underfloor strap.004
+14:16:24 | INFO: Blender create Mesh node Underfloor strap.005
+14:16:24 | INFO: Blender create Mesh node Upper locker latch
+14:16:24 | INFO: Blender create Mesh node Upper locker latch.001
+14:16:24 | INFO: Blender create Mesh node Upper locker latch.002
+14:16:24 | INFO: Blender create Mesh node Upper locker latch.003
+14:16:24 | INFO: Blender create Mesh node Upper locker latch.004
+14:16:24 | INFO: Blender create Mesh node Upper locker latch.005
+14:16:24 | INFO: Blender create Mesh node Upper service shutter
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.001
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.002
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.003
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.004
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.005
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.006
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.007
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.008
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.009
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.010
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.011
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.012
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.013
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.014
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.015
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.016
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.017
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.018
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.019
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.020
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.021
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.022
+14:16:24 | INFO: Blender create Mesh node Upper service shutter screw.023
+14:16:24 | INFO: Blender create Mesh node Upper service shutter.001
+14:16:24 | INFO: Blender create Mesh node Upper service shutter.002
+14:16:24 | INFO: Blender create Mesh node Upper service shutter.003
+14:16:24 | INFO: Blender create Mesh node Upper service shutter.004
+14:16:24 | INFO: Blender create Mesh node Upper service shutter.005
+14:16:24 | INFO: Blender create Mesh node Upper storage fascia
+14:16:24 | INFO: Blender create Mesh node Upper storage fascia.001
+14:16:24 | INFO: Blender create Mesh node Vent grille
+14:16:24 | INFO: Blender create Mesh node Vent grille.001
+14:16:24 | INFO: Blender create Mesh node Vent louvre
+14:16:24 | INFO: Blender create Mesh node Vent louvre.001
+14:16:24 | INFO: Blender create Mesh node Vent louvre.002
+14:16:24 | INFO: Blender create Mesh node Vent louvre.003
+14:16:24 | INFO: Blender create Mesh node Vent louvre.004
+14:16:24 | INFO: Blender create Mesh node Vent louvre.005
+14:16:24 | INFO: Blender create Mesh node Vent louvre.006
+14:16:24 | INFO: Blender create Mesh node Vent louvre.007
+14:16:24 | INFO: Blender create Mesh node Vent louvre.008
+14:16:24 | INFO: Blender create Mesh node Vent louvre.009
+14:16:24 | INFO: Blender create Mesh node Vent louvre.010
+14:16:24 | INFO: Blender create Mesh node Vent louvre.011
+14:16:24 | INFO: Blender create Mesh node Vent louvre.012
+14:16:24 | INFO: Blender create Mesh node Vent louvre.013
+14:16:24 | INFO: Blender create Mesh node Vent louvre.014
+14:16:24 | INFO: Blender create Mesh node Vent louvre.015
+14:16:24 | INFO: Blender create Mesh node Vent louvre.016
+14:16:24 | INFO: Blender create Mesh node Vent louvre.017
+14:16:24 | INFO: Blender create Mesh node Visor clearance LED
+14:16:24 | INFO: Blender create Mesh node Visor clearance LED.001
+14:16:24 | INFO: Blender create Mesh node Walkable aft rubber floor
+14:16:24 | INFO: Blender create Mesh node Walkable main rubber floor
+14:16:24 | INFO: Blender create Mesh node Wall over rear garage
+14:16:24 | INFO: Blender create Mesh node Weather mast
+14:16:24 | INFO: Blender create Mesh node Directional tread.001
+14:16:24 | INFO: Blender create Mesh node Hub cap.001
+14:16:24 | INFO: Blender create Mesh node Lug nut.010
+14:16:24 | INFO: Blender create Mesh node Lug nut.011
+14:16:24 | INFO: Blender create Mesh node Lug nut.012
+14:16:24 | INFO: Blender create Mesh node Lug nut.013
+14:16:24 | INFO: Blender create Mesh node Lug nut.014
+14:16:24 | INFO: Blender create Mesh node Lug nut.015
+14:16:24 | INFO: Blender create Mesh node Lug nut.016
+14:16:24 | INFO: Blender create Mesh node Lug nut.017
+14:16:24 | INFO: Blender create Mesh node Lug nut.018
+14:16:24 | INFO: Blender create Mesh node Lug nut.019
+14:16:24 | INFO: Blender create Mesh node Rim machined lip.001
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.008
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.009
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.010
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.011
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.012
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.013
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.014
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.015
+14:16:24 | INFO: Blender create Mesh node Tire molded sidewall.001
+14:16:24 | INFO: Blender create Mesh node TIRE_0_1
+14:16:24 | INFO: Blender create Mesh node Wheel recessed steel disk.001
+14:16:24 | INFO: Blender create Mesh node Directional tread
+14:16:24 | INFO: Blender create Mesh node Hub cap
+14:16:24 | INFO: Blender create Mesh node Lug nut
+14:16:24 | INFO: Blender create Mesh node Lug nut.001
+14:16:24 | INFO: Blender create Mesh node Lug nut.002
+14:16:24 | INFO: Blender create Mesh node Lug nut.003
+14:16:24 | INFO: Blender create Mesh node Lug nut.004
+14:16:24 | INFO: Blender create Mesh node Lug nut.005
+14:16:24 | INFO: Blender create Mesh node Lug nut.006
+14:16:24 | INFO: Blender create Mesh node Lug nut.007
+14:16:24 | INFO: Blender create Mesh node Lug nut.008
+14:16:24 | INFO: Blender create Mesh node Lug nut.009
+14:16:24 | INFO: Blender create Mesh node Rim machined lip
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.001
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.002
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.003
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.004
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.005
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.006
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.007
+14:16:24 | INFO: Blender create Mesh node Tire molded sidewall
+14:16:24 | INFO: Blender create Mesh node TIRE_0_-1
+14:16:24 | INFO: Blender create Mesh node Wheel recessed steel disk
+14:16:24 | INFO: Blender create Mesh node Directional tread.003
+14:16:24 | INFO: Blender create Mesh node Hub cap.003
+14:16:24 | INFO: Blender create Mesh node Lug nut.030
+14:16:24 | INFO: Blender create Mesh node Lug nut.031
+14:16:24 | INFO: Blender create Mesh node Lug nut.032
+14:16:24 | INFO: Blender create Mesh node Lug nut.033
+14:16:24 | INFO: Blender create Mesh node Lug nut.034
+14:16:24 | INFO: Blender create Mesh node Lug nut.035
+14:16:24 | INFO: Blender create Mesh node Lug nut.036
+14:16:24 | INFO: Blender create Mesh node Lug nut.037
+14:16:24 | INFO: Blender create Mesh node Lug nut.038
+14:16:24 | INFO: Blender create Mesh node Lug nut.039
+14:16:24 | INFO: Blender create Mesh node Rim machined lip.003
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.024
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.025
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.026
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.027
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.028
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.029
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.030
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.031
+14:16:24 | INFO: Blender create Mesh node Tire molded sidewall.003
+14:16:24 | INFO: Blender create Mesh node TIRE_1_1
+14:16:24 | INFO: Blender create Mesh node Wheel recessed steel disk.003
+14:16:24 | INFO: Blender create Mesh node Directional tread.002
+14:16:24 | INFO: Blender create Mesh node Hub cap.002
+14:16:24 | INFO: Blender create Mesh node Lug nut.020
+14:16:24 | INFO: Blender create Mesh node Lug nut.021
+14:16:24 | INFO: Blender create Mesh node Lug nut.022
+14:16:24 | INFO: Blender create Mesh node Lug nut.023
+14:16:24 | INFO: Blender create Mesh node Lug nut.024
+14:16:24 | INFO: Blender create Mesh node Lug nut.025
+14:16:24 | INFO: Blender create Mesh node Lug nut.026
+14:16:24 | INFO: Blender create Mesh node Lug nut.027
+14:16:24 | INFO: Blender create Mesh node Lug nut.028
+14:16:24 | INFO: Blender create Mesh node Lug nut.029
+14:16:24 | INFO: Blender create Mesh node Rim machined lip.002
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.016
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.017
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.018
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.019
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.020
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.021
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.022
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.023
+14:16:24 | INFO: Blender create Mesh node Tire molded sidewall.002
+14:16:24 | INFO: Blender create Mesh node TIRE_1_-1
+14:16:24 | INFO: Blender create Mesh node Wheel recessed steel disk.002
+14:16:24 | INFO: Blender create Mesh node Directional tread.005
+14:16:24 | INFO: Blender create Mesh node Hub cap.005
+14:16:24 | INFO: Blender create Mesh node Lug nut.050
+14:16:24 | INFO: Blender create Mesh node Lug nut.051
+14:16:24 | INFO: Blender create Mesh node Lug nut.052
+14:16:24 | INFO: Blender create Mesh node Lug nut.053
+14:16:24 | INFO: Blender create Mesh node Lug nut.054
+14:16:24 | INFO: Blender create Mesh node Lug nut.055
+14:16:24 | INFO: Blender create Mesh node Lug nut.056
+14:16:24 | INFO: Blender create Mesh node Lug nut.057
+14:16:24 | INFO: Blender create Mesh node Lug nut.058
+14:16:24 | INFO: Blender create Mesh node Lug nut.059
+14:16:24 | INFO: Blender create Mesh node Rim machined lip.005
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.040
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.041
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.042
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.043
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.044
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.045
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.046
+14:16:24 | INFO: Blender create Mesh node Rim ventilation recess.047
+14:16:24 | INFO: Blender create Mesh node Tire molded sidewall.005
+14:16:24 | INFO: Blender create Mesh node TIRE_2_1
+14:16:24 | INFO: Blender create Mesh node Wheel recessed steel disk.005
+14:16:24 | INFO: Blender create Mesh node Directional tread.004
+14:16:25 | INFO: Blender create Mesh node Hub cap.004
+14:16:25 | INFO: Blender create Mesh node Lug nut.040
+14:16:25 | INFO: Blender create Mesh node Lug nut.041
+14:16:25 | INFO: Blender create Mesh node Lug nut.042
+14:16:25 | INFO: Blender create Mesh node Lug nut.043
+14:16:25 | INFO: Blender create Mesh node Lug nut.044
+14:16:25 | INFO: Blender create Mesh node Lug nut.045
+14:16:25 | INFO: Blender create Mesh node Lug nut.046
+14:16:25 | INFO: Blender create Mesh node Lug nut.047
+14:16:25 | INFO: Blender create Mesh node Lug nut.048
+14:16:25 | INFO: Blender create Mesh node Lug nut.049
+14:16:25 | INFO: Blender create Mesh node Rim machined lip.004
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.032
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.033
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.034
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.035
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.036
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.037
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.038
+14:16:25 | INFO: Blender create Mesh node Rim ventilation recess.039
+14:16:25 | INFO: Blender create Mesh node Tire molded sidewall.004
+14:16:25 | INFO: Blender create Mesh node TIRE_2_-1
+14:16:25 | INFO: Blender create Mesh node Wheel recessed steel disk.004
+14:16:25 | INFO: Blender create Mesh node White cabin ceiling below drone well
+14:16:25 | INFO: Blender create Mesh node White navigation dome
+14:16:25 | INFO: Blender create Mesh node White navigation dome.001
+14:16:25 | INFO: Blender create Mesh node Wide laminated windshield
+14:16:25 | INFO: Blender create Mesh node Windshield weatherstrip
+14:16:25 | INFO: Blender create Mesh node Wiper arm
+14:16:25 | INFO: Blender create Mesh node Wiper arm.001
+14:16:25 | INFO: Blender create Mesh node Wiper blade
+14:16:25 | INFO: Blender create Mesh node Wiper blade.001
+14:16:25 | INFO: Blender create Mesh node Workzone wall
+14:16:25 | INFO: glTF import finished in 1.39s
+INDEPENDENT_PLAYBACK_OK {'Roof_OpenClose': {'changed_controls': {'CTRL_ROOF_FRONT': True, 'CTRL_ROOF_REAR': True, 'CTRL_ROBOT_RAMP': False}, 'reclosed': True}, 'RobotGarage_OpenClose': {'changed_controls': {'CTRL_ROOF_FRONT': False, 'CTRL_ROOF_REAR': False, 'CTRL_ROBOT_RAMP': True}, 'reclosed': True}}
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

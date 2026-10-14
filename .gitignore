@@ -1,0 +1,81 @@
+# ==============================================================================
+#  Unity 项目 .gitignore
+#
+#  核心原则：忽略「Unity 能自己重新生成」的东西，保留「人做出来的」东西。
+#  Library/ 里的缓存全部可由 Assets + ProjectSettings + Packages 重新算出来，
+#  而且每台机器算出来的都不一样，提交它只会让仓库爆炸并制造无意义的冲突。
+# ==============================================================================
+
+# ---------- Unity 自动生成的缓存目录（本文件存在的主要理由）----------
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# ---------- .meta 规则 ----------
+# Assets 下的 .meta 必须全部跟踪：它记录资源的 GUID，场景引用靠它定位。
+# 下面这行是「反忽略」，防止以后有人加了笼统的 *.meta 规则把资源身份证误杀。
+!/[Aa]ssets/**/*.meta
+
+# ---------- 自动生成的 IDE 解决方案 / 工程文件（Unity 每次都会重建）----------
+# 注意：engineer.sln 属于这一类，所以被忽略了，这是刻意的。
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# ---------- 明确无用的 Unity 元文件 ----------
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# ---------- 崩溃报告 ----------
+sysinfo.txt
+
+# ---------- 打包产物 ----------
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# ---------- Addressables / Android 的临时产物 ----------
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# ---------- 崩溃统计插件生成的文件 ----------
+crashlytics-build.properties
+
+# ---------- 编辑器 / IDE 的个人配置 ----------
+.vs/
+.vscode/
+.idea/
+
+# ==============================================================================
+#  本项目追加的规则
+# ==============================================================================
+
+# Blender 每次「保存」都会自动生成一份 .blend1 备份，内容和主文件几乎一样。
+# 它的问题不是「大」，而是「每保存一次就往 Git 历史里多塞一份」——
+# 模型改 20 次就是 20 × 16MB。这类文件必须忽略。
+*.blend1
+
+# Unity 资源商店导入工具
+AssetStoreTools*

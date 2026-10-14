@@ -1,0 +1,7 @@
+00:00.391  blend            | Read blend: "C:\Users\H-CHILD\Documents\Codex\2026-09-27\woy\outputs\房车_Blender精细版_v2\智能农田房车_精细可开合_v2.blend"
+00:00.547  image.write      | ERROR OpenImageIO write failed: Could not open file "\.thumbnails\large\blender_2764_9a5136a36d4d7dc3916fcf41aeb6c77c.png.png"
+Info: Saved as "智能农田房车_精细可开合_v2.blend"
+DELIVERY_FILES_VERIFIED 5 7
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "CrewEntry_OpenClose",
+    "nodes": [
+      "CTRL_CREW_DOOR",
+      "CTRL_CREW_STEPS"
+    ]
+  },
+  {
+    "name": "Roof_OpenClose",
+    "nodes": [
+      "CTRL_DRONE_LIFT",
+      "CTRL_ROOF_FRONT",
+      "CTRL_ROOF_REAR",
+      "Roof gas strut chrome rod",
+      "Roof gas strut chrome rod.001",
+      "Roof gas strut chrome rod.002",
+      "Roof gas strut chrome rod.003",
+      "Roof gas strut sleeve",
+      "Roof gas strut sleeve.001",
+      "Roof gas strut sleeve.002",
+      "Roof gas strut sleeve.003"
+    ]
+  },
+  {
+    "name": "RobotGarage_OpenClose",
+    "nodes": [
+      "CTRL_ROBOT_RAMP",
+      "Ramp support rod",
+      "Ramp support rod.001",
+      "Ramp support sleeve",
+      "Ramp support sleeve.001"
+    ]
+  }
+]

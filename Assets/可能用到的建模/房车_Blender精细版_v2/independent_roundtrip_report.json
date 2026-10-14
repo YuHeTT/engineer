@@ -1,0 +1,18 @@
+{
+  "Roof_OpenClose": {
+    "changed_controls": {
+      "CTRL_ROOF_FRONT": true,
+      "CTRL_ROOF_REAR": true,
+      "CTRL_ROBOT_RAMP": false
+    },
+    "reclosed": true
+  },
+  "RobotGarage_OpenClose": {
+    "changed_controls": {
+      "CTRL_ROOF_FRONT": false,
+      "CTRL_ROOF_REAR": false,
+      "CTRL_ROBOT_RAMP": true
+    },
+    "reclosed": true
+  }
+}
