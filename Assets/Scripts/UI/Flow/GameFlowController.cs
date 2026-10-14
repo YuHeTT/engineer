@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Engineer.Config;
+using Engineer.Core;
 
 namespace Engineer.UI
 {
@@ -10,6 +12,11 @@ namespace Engineer.UI
     ///   * 所有屏都在场景里常驻，只切换 active，不做销毁重建；
     ///   * 「返回上一步」按历史栈回退；
     ///   * 「开始新的模拟」清空历史并重置 <see cref="GameContext"/>。
+    ///
+    /// 【与数值内核的关系】
+    ///   本类是**唯一**创建 <see cref="GameSession"/> 的地方，并在 Awake 时把它注入
+    ///   <see cref="GameContext"/>。各个屏只通过 GameContext.Session 读数据、提交水肥，
+    ///   不自己去 new Simulation —— 避免出现多个互不相同的内核实例。
     /// </summary>
     [DisallowMultipleComponent]
     public class GameFlowController : MonoBehaviour
@@ -21,18 +28,32 @@ namespace Engineer.UI
         [Tooltip("是否在控制台打印状态切换日志。")]
         [SerializeField] private bool logTransitions = true;
 
+        [Header("数值内核")]
+        [Tooltip("数值配置资产。留空则使用 SimConfig.CreateDefault()（文档默认数值）。")]
+        [SerializeField] private SimConfigAsset configAsset;
+
+        [Tooltip("是否在启动时打印一次配置自检结果（有错误会打成 Error）。")]
+        [SerializeField] private bool validateConfigOnAwake = true;
+
         [Header("全部界面屏（由 UI 白盒构建器自动收集）")]
         [SerializeField] private List<PlaceholderScreen> screens = new List<PlaceholderScreen>();
 
         private readonly Dictionary<GameState, PlaceholderScreen> screenMap = new Dictionary<GameState, PlaceholderScreen>();
         private readonly Stack<GameState> history = new Stack<GameState>();
         private GameContext context = new GameContext();
+        private GameSession session;
         private PlaceholderScreen current;
 
         /// <summary>跨屏共享数据。</summary>
         public GameContext Context
         {
             get { return context; }
+        }
+
+        /// <summary>数值内核桥接层。</summary>
+        public GameSession Session
+        {
+            get { return session; }
         }
 
         /// <summary>当前状态。</summary>
@@ -43,6 +64,7 @@ namespace Engineer.UI
 
         private void Awake()
         {
+            CreateSession();
             RebuildScreenMap();
 
             // 场景里同时存在多个屏时，除起始屏外全部隐藏，避免打开时所有屏叠在一起。
@@ -53,6 +75,29 @@ namespace Engineer.UI
                 pair.Value.gameObject.SetActive(pair.Key == startState);
             }
             current = Find(startState);
+        }
+
+        /// <summary>创建数值内核会话并注入共享数据。配置资产留空时用文档默认值兜底。</summary>
+        private void CreateSession()
+        {
+            SimConfig config = null;
+
+            if (configAsset != null)
+            {
+                config = configAsset.BuildSimConfig();
+                if (validateConfigOnAwake && !configAsset.Validate(config))
+                    Debug.LogError("[UI] 数值配置自检未通过，见 SimConfigAsset 的 lastValidationMessage。");
+            }
+
+            if (config == null)
+            {
+                config = SimConfig.CreateDefault();
+                if (logTransitions)
+                    Debug.Log("[UI] 未指定数值配置资产，使用 SimConfig.CreateDefault()（文档默认数值）。");
+            }
+
+            session = new GameSession(config);
+            context.BindSession(session);
         }
 
         private void Start()
@@ -147,12 +192,42 @@ namespace Engineer.UI
             if (logTransitions) Debug.Log("[UI] 重新开始模拟。");
         }
 
-        /// <summary>进入下一个阶段；已经是最后阶段时不做任何事。</summary>
+        /// <summary>
+        /// 推进阶段计数（纯 UI 侧，不碰数值内核）。
+        ///
+        /// 【重要】接了内核之后，正常情况下**不要**调这个方法 ——
+        /// 阶段推进应当由 <see cref="CommitStageDosage"/> 提交水肥时驱动，
+        /// 否则界面会显示到下一阶段，但内核土壤还停在原地。
+        /// 保留它是为了没有接内核时（纯白盒走查）仍能串起流程。
+        /// </summary>
         public bool AdvanceStage()
         {
             if (context.IsLastStage) return false;
             context.StageIndex++;
             return true;
+        }
+
+        /// <summary>
+        /// 提交本阶段水肥并推进。
+        /// 这是接了内核之后**唯一**正确的推进方式。
+        /// </summary>
+        /// <returns>本阶段结果；未开始或已结束时返回 null</returns>
+        public Engineer.Core.StageResult CommitStageDosage()
+        {
+            if (session == null || !session.IsStarted) return null;
+
+            var result = session.CommitFromDosage(context.StageDosage);
+            context.SyncStageFromSession();
+            ClearStageDosage();
+            return result;
+        }
+
+        /// <summary>用六项基础数据启动数值内核。由「土地基础数据设置」界面调用。</summary>
+        public bool BeginSimulation()
+        {
+            var ok = context.BeginSimulation();
+            if (ok) context.SyncStageFromSession();
+            return ok;
         }
 
         /// <summary>提交本阶段水肥量后清空输入槽。</summary>

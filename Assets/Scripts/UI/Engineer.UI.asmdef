@@ -1,0 +1,18 @@
+{
+    "name": "Engineer.UI",
+    "rootNamespace": "Engineer.UI",
+    "references": [
+        "Engineer.Core",
+        "Engineer.Config",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

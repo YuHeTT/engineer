@@ -1345,6 +1345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startState: 0
   logTransitions: 1
+  configAsset: {fileID: 11400000, guid: ba53093a19630104bb9f0eb7c071e02c, type: 2}
+  validateConfigOnAwake: 1
   screens:
   - {fileID: 2120783227}
   - {fileID: 1610166620}
@@ -1355,7 +1357,7 @@ MonoBehaviour:
   - {fileID: 754007362}
   - {fileID: 1120100839}
   - {fileID: 1651058777}
-  - {fileID: 364525282}
+  - {fileID: 364525284}
 --- !u!1 &58597558
 GameObject:
   m_ObjectHideFlags: 0
@@ -8588,7 +8590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 364525283}
-  - component: {fileID: 364525282}
+  - component: {fileID: 364525284}
   m_Layer: 0
   m_Name: Screen_Revenue
   m_TagString: Untagged
@@ -8596,29 +8598,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &364525282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 364525281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 685acb1b2ea926f468aa072bc7c3c3d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  state: 9
-  actions:
-  - button: {fileID: 1912181274}
-    kind: 1
-    target: 0
-    note: 
-  - button: {fileID: 939797072}
-    kind: 2
-    target: 0
-    note: 
-  autoCacheAllTexts: 1
 --- !u!224 &364525283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8641,6 +8620,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &364525284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364525281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d608f86e0cecfd947842a21cc4cbd7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 9
+  actions:
+  - button: {fileID: 1912181274}
+    kind: 1
+    target: 0
+    note: 
+  - button: {fileID: 939797072}
+    kind: 2
+    target: 0
+    note: 
+  autoCacheAllTexts: 1
+  titleText: {fileID: 0}
+  subtitleText: {fileID: 0}
+  formulaTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  resultTitle: {fileID: 0}
+  resultValue: {fileID: 0}
+  resultNote: {fileID: 0}
+  stageRows:
+  - stageLabel: {fileID: 0}
+    fertilityText: {fileID: 0}
+    soilText: {fileID: 0}
+    noteText: {fileID: 0}
+  - stageLabel: {fileID: 0}
+    fertilityText: {fileID: 0}
+    soilText: {fileID: 0}
+    noteText: {fileID: 0}
+  - stageLabel: {fileID: 0}
+    fertilityText: {fileID: 0}
+    soilText: {fileID: 0}
+    noteText: {fileID: 0}
+  - stageLabel: {fileID: 0}
+    fertilityText: {fileID: 0}
+    soilText: {fileID: 0}
+    noteText: {fileID: 0}
+  staticValueTexts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  yieldUnit: "kg/\u4EA9"
+  showEconomicsIfAvailable: 1
 --- !u!1 &375323241
 GameObject:
   m_ObjectHideFlags: 0
@@ -8959,6 +8995,7 @@ GameObject:
   - component: {fileID: 395443395}
   - component: {fileID: 395443394}
   - component: {fileID: 395443393}
+  - component: {fileID: 395443397}
   m_Layer: 0
   m_Name: Button_Locked
   m_TagString: Untagged
@@ -9025,7 +9062,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 395443395}
   m_OnClick:
     m_PersistentCalls:
@@ -9081,6 +9118,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395443391}
   m_CullTransparentMesh: 1
+--- !u!114 &395443397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395443391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: low_wetland
+  displayName: "\u6CFD\u6D3C\u57DF"
+  category: 0
+  targetState: 3
+  description: 
 --- !u!1 &398084470
 GameObject:
   m_ObjectHideFlags: 0
@@ -11641,6 +11695,7 @@ GameObject:
   - component: {fileID: 490397436}
   - component: {fileID: 490397435}
   - component: {fileID: 490397434}
+  - component: {fileID: 490397438}
   m_Layer: 0
   m_Name: Button_Select
   m_TagString: Untagged
@@ -11763,6 +11818,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 490397432}
   m_CullTransparentMesh: 1
+--- !u!114 &490397438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490397432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: flat_plain
+  displayName: "\u5E73\u5DDD\u53F0"
+  category: 0
+  targetState: 3
+  description: 
 --- !u!1 &495076589
 GameObject:
   m_ObjectHideFlags: 0
@@ -16656,6 +16728,7 @@ GameObject:
   - component: {fileID: 679372206}
   - component: {fileID: 679372205}
   - component: {fileID: 679372204}
+  - component: {fileID: 679372208}
   m_Layer: 0
   m_Name: Button_Locked
   m_TagString: Untagged
@@ -16722,7 +16795,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 679372206}
   m_OnClick:
     m_PersistentCalls:
@@ -16778,6 +16851,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679372202}
   m_CullTransparentMesh: 1
+--- !u!114 &679372208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679372202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: steep_ridge
+  displayName: "\u5D07\u5CAD\u9636"
+  category: 0
+  targetState: 3
+  description: 
 --- !u!1 &682995338
 GameObject:
   m_ObjectHideFlags: 0
@@ -19097,6 +19187,7 @@ MonoBehaviour:
   - {fileID: 812847334}
   primaryButton: {fileID: 259886024}
   primaryButtonLabel: {fileID: 425777249}
+  showDelta: 0
 --- !u!1 &754495094
 GameObject:
   m_ObjectHideFlags: 0
@@ -20926,7 +21017,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 823346089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 685acb1b2ea926f468aa072bc7c3c3d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 17f8ed48cbc8232479928bdeee9ab58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 3
@@ -20935,11 +21026,24 @@ MonoBehaviour:
     kind: 1
     target: 0
     note: 
-  - button: {fileID: 952011258}
-    kind: 0
-    target: 4
-    note: 
   autoCacheAllTexts: 1
+  paramInputs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  paramLabels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  plantSelectButton: {fileID: 0}
+  clampToConfigRange: 1
+  showRangeHint: 1
 --- !u!1 &831496544
 GameObject:
   m_ObjectHideFlags: 0
@@ -27328,6 +27432,7 @@ MonoBehaviour:
   updateButton: {fileID: 181839799}
   manualButton: {fileID: 295345580}
   autoButton: {fileID: 1549728264}
+  probeErrorAmplitude: 0
 --- !u!1 &1124974194
 GameObject:
   m_ObjectHideFlags: 0
@@ -29205,7 +29310,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1214713684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 685acb1b2ea926f468aa072bc7c3c3d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bd22978302e1944d953399ecc58d78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: 5
@@ -29219,6 +29324,34 @@ MonoBehaviour:
     target: 6
     note: 
   autoCacheAllTexts: 1
+  rowValues:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rowLabels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  noteText: {fileID: 0}
+  overwriteLabels: 1
 --- !u!1 &1215197883
 GameObject:
   m_ObjectHideFlags: 0
@@ -32970,7 +33103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.000038, y: -19.731997}
+  m_AnchoredPosition: {x: 6.0000305, y: -19.731995}
   m_SizeDelta: {x: -76.784, y: -150.852}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1355573330
@@ -33120,6 +33253,7 @@ GameObject:
   - component: {fileID: 1359440841}
   - component: {fileID: 1359440840}
   - component: {fileID: 1359440839}
+  - component: {fileID: 1359440843}
   m_Layer: 0
   m_Name: Button_Locked
   m_TagString: Untagged
@@ -33186,7 +33320,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1359440841}
   m_OnClick:
     m_PersistentCalls:
@@ -33242,6 +33376,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359440837}
   m_CullTransparentMesh: 1
+--- !u!114 &1359440843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359440837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: sweet_potato
+  displayName: "\u7EA2\u85AF"
+  category: 1
+  targetState: 5
+  description: 
 --- !u!1 &1367598137
 GameObject:
   m_ObjectHideFlags: 0
@@ -33616,6 +33767,7 @@ GameObject:
   - component: {fileID: 1377630370}
   - component: {fileID: 1377630369}
   - component: {fileID: 1377630368}
+  - component: {fileID: 1377630372}
   m_Layer: 0
   m_Name: Button_Locked
   m_TagString: Untagged
@@ -33682,7 +33834,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1377630370}
   m_OnClick:
     m_PersistentCalls:
@@ -33738,6 +33890,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377630366}
   m_CullTransparentMesh: 1
+--- !u!114 &1377630372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377630366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: potato
+  displayName: "\u571F\u8C46"
+  category: 1
+  targetState: 5
+  description: 
 --- !u!1 &1387575690
 GameObject:
   m_ObjectHideFlags: 0
@@ -36177,6 +36346,7 @@ GameObject:
   - component: {fileID: 1524500951}
   - component: {fileID: 1524500950}
   - component: {fileID: 1524500949}
+  - component: {fileID: 1524500953}
   m_Layer: 0
   m_Name: Button_Locked
   m_TagString: Untagged
@@ -36243,7 +36413,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1524500951}
   m_OnClick:
     m_PersistentCalls:
@@ -36299,6 +36469,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1524500947}
   m_CullTransparentMesh: 1
+--- !u!114 &1524500953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524500947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: plateau
+  displayName: "\u9AD8\u539F\u576A"
+  category: 0
+  targetState: 3
+  description: 
 --- !u!1 &1533407748
 GameObject:
   m_ObjectHideFlags: 0
@@ -37117,6 +37304,7 @@ GameObject:
   - component: {fileID: 1552003376}
   - component: {fileID: 1552003375}
   - component: {fileID: 1552003374}
+  - component: {fileID: 1552003378}
   m_Layer: 0
   m_Name: Button_Select
   m_TagString: Untagged
@@ -37239,6 +37427,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552003372}
   m_CullTransparentMesh: 1
+--- !u!114 &1552003378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552003372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: corn
+  displayName: "\u7389\u7C73"
+  category: 1
+  targetState: 5
+  description: 
 --- !u!1 &1552608924
 GameObject:
   m_ObjectHideFlags: 0
@@ -38985,6 +39190,9 @@ MonoBehaviour:
   - {fileID: 1560708331}
   confirmButton: {fileID: 408321302}
   confirmLabel: {fileID: 1546024676}
+  prefillWithRecommendation: 1
+  warnOnFallbackRecommendation: 1
+  logSuggestionRefresh: 1
 --- !u!1 &1652573841
 GameObject:
   m_ObjectHideFlags: 0
@@ -45248,7 +45456,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.000038, y: -77.60098}
+  m_AnchoredPosition: {x: 6.0000305, y: -77.60098}
   m_SizeDelta: {x: -76.784, y: 24.58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1918399506
@@ -50092,6 +50300,7 @@ GameObject:
   - component: {fileID: 2136157075}
   - component: {fileID: 2136157074}
   - component: {fileID: 2136157073}
+  - component: {fileID: 2136157077}
   m_Layer: 0
   m_Name: Button_Locked
   m_TagString: Untagged
@@ -50158,7 +50367,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2136157075}
   m_OnClick:
     m_PersistentCalls:
@@ -50214,6 +50423,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136157071}
   m_CullTransparentMesh: 1
+--- !u!114 &2136157077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136157071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e7f98702309b3e4cb887e88b6f537da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionId: beet
+  displayName: "\u751C\u83DC"
+  category: 1
+  targetState: 5
+  description: 
 --- !u!1 &2142997906
 GameObject:
   m_ObjectHideFlags: 0

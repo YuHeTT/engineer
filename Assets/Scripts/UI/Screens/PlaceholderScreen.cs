@@ -55,6 +55,10 @@ namespace Engineer.UI
         [Tooltip("勾选后，本屏所有 TMP 文本与输入框都会在「开始新的模拟」时复位到初始值。")]
         [SerializeField] private bool autoCacheAllTexts = true;
 
+        [Header("诊断")]
+        [Tooltip("打印每次按钮动作的分发与目标状态。排查「按钮跳错界面」这类问题时打开。")]
+        [SerializeField] private bool logActionDispatch = true;
+
         private GameFlowController flow;
         private bool initialCached;
         private TMP_Text[] cachedTexts;
@@ -176,6 +180,16 @@ namespace Engineer.UI
 
         private void Handle(ScreenAction action)
         {
+            if (logActionDispatch)
+            {
+                var buttonName = action.button != null ? action.button.name : "(null)";
+                var targetName = action.kind == ScreenActionKind.GoTo
+                    ? " -> " + GameStateInfo.DisplayName(action.target)
+                    : string.Empty;
+                Debug.Log(string.Format("[UI] {0} 的按钮 {1} 触发 {2}{3}",
+                    name, buttonName, action.kind, targetName), this);
+            }
+
             switch (action.kind)
             {
                 case ScreenActionKind.GoTo:
