@@ -1,0 +1,3557 @@
+{
+  "format_version": 1,
+  "source_directory": "C:\\Users\\StarryXiaoKui\\Downloads\\EPS格式",
+  "asset_count": 181,
+  "assets": [
+    {
+      "path": "图标/EPS07_Icon_01.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 369,
+      "height": 370,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.772867,
+        0.057333,
+        0.855574,
+        0.182042
+      ],
+      "source_groups": [
+        "源文件_7_g0396"
+      ],
+      "shape_count": 14,
+      "sha256": "c169c4f9e7249c330389bb33e0887c9d0b8ad78583703542693b6fdde2c2e5ea",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_02.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 373,
+      "height": 286,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.651465,
+        0.062172,
+        0.745332,
+        0.171156
+      ],
+      "source_groups": [
+        "源文件_7_g0392"
+      ],
+      "shape_count": 6,
+      "sha256": "a4c28cb43fbd1a35637d9c51c2032611459b050e06f68b4c0644156fcce954de",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_03.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 369,
+      "height": 323,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.886769,
+        0.065169,
+        0.969574,
+        0.174214
+      ],
+      "source_groups": [
+        "源文件_7_g0401"
+      ],
+      "shape_count": 12,
+      "sha256": "8cd227450a94fe1624955f085050ed8f9b5b071918fb079f69bc2a0eb27d6d10",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_04.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 374,
+      "height": 295,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.64994,
+        0.26592,
+        0.750312,
+        0.385975
+      ],
+      "source_groups": [
+        "源文件_7_g0404"
+      ],
+      "shape_count": 12,
+      "sha256": "6d7f625c08dd32230cfe34f7ec46578d6367cea75ff3ef84250cc3c903235e5e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_05.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 369,
+      "height": 323,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.773461,
+        0.269151,
+        0.856293,
+        0.378232
+      ],
+      "source_groups": [
+        "源文件_7_g0407"
+      ],
+      "shape_count": 4,
+      "sha256": "15d19204dc9aeb8bdaa70b465107b501151ecd4898bc2f72afc0b0e2a52bd4ca",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_06.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 371,
+      "height": 309,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.887499,
+        0.269093,
+        0.974376,
+        0.378422
+      ],
+      "source_groups": [
+        "源文件_7_g0419"
+      ],
+      "shape_count": 3,
+      "sha256": "1a5d089adb1b813cb1ef954bee4fe630add2f3c962b5b5e9187e6d34b0049c17",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_07.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 375,
+      "height": 316,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.530664,
+        0.445239,
+        0.634742,
+        0.577432
+      ],
+      "source_groups": [
+        "源文件_7_g0409"
+      ],
+      "shape_count": 5,
+      "sha256": "85e0b668bbeeb0dbb427861d1c462e92bbc80d7bf2f251dfa09d6f544e28fa73",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_08.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 370,
+      "height": 352,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.656573,
+        0.455622,
+        0.741685,
+        0.57732
+      ],
+      "source_groups": [
+        "源文件_7_g0411"
+      ],
+      "shape_count": 6,
+      "sha256": "9b4186b1d79b17f910b1d62cb642eabca9bf07eb85f6fe9cabec5a35c3912807",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_09.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 370,
+      "height": 324,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.772416,
+        0.455624,
+        0.857528,
+        0.567706
+      ],
+      "source_groups": [
+        "源文件_7_g0414"
+      ],
+      "shape_count": 8,
+      "sha256": "ee0e049129957a9b6acd8faf5ca243de6604fe585f248bebc671074e7ad9f8ea",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS07_Icon_10.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 370,
+      "height": 361,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.8856,
+        0.455622,
+        0.970712,
+        0.579973
+      ],
+      "source_groups": [
+        "源文件_7_g0416"
+      ],
+      "shape_count": 5,
+      "sha256": "21e56faa0e3a0975eac50a28cd008383e147f9b2d4fd4a8be6060fcff881ff66",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_01.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 492,
+      "height": 491,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.539162,
+        0.052761,
+        0.626332,
+        0.183516
+      ],
+      "source_groups": [
+        "源文件_7_g0388"
+      ],
+      "shape_count": 6,
+      "sha256": "9ca0736f3579d1d74c6c5d188ebcc94318065bd21b7ad4ebad35eb3a78e55960",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_02.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 496,
+      "height": 496,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.531963,
+        0.24543,
+        0.633828,
+        0.398228
+      ],
+      "source_groups": [
+        "源文件_7_g0377"
+      ],
+      "shape_count": 36,
+      "sha256": "f213099ada9f71b8e78b88d07936e34257f386a3bf01e77c75c023c5cb4651ed",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_03.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 495,
+      "height": 496,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.412227,
+        0.246621,
+        0.514092,
+        0.399419
+      ],
+      "source_groups": [
+        "源文件_7_g0383"
+      ],
+      "shape_count": 17,
+      "sha256": "498da65131e27d386e19047a149ee5b7bce11db3ef1ca7abefbde83aaa231241",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_04.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 496,
+      "height": 492,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.411729,
+        0.442124,
+        0.514312,
+        0.595098
+      ],
+      "source_groups": [
+        "源文件_7_g0315"
+      ],
+      "shape_count": 11,
+      "sha256": "b69a5b0a9dc0d8bcf2fffd4a3bc95a1e61dd08ab3b2723c13b342d49b3e17289",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_05.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 497,
+      "height": 435,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.275577,
+        0.63488,
+        0.385851,
+        0.779977
+      ],
+      "source_groups": [
+        "源文件_7_g0002"
+      ],
+      "shape_count": 53,
+      "sha256": "53cc974c1c7c272e886df730906b03bc3de43b0f7430d0363f6ee0bbf8b20e0b",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_06.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 494,
+      "height": 493,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.022133,
+        0.637108,
+        0.115971,
+        0.777864
+      ],
+      "source_groups": [
+        "源文件_7_g0241"
+      ],
+      "shape_count": 87,
+      "sha256": "33b3aac4cc8bbca5a29a67752424ad9ba4cc26b7e0539d8a115ef03df8714faa",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_07.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 493,
+      "height": 493,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.152738,
+        0.637109,
+        0.246575,
+        0.777865
+      ],
+      "source_groups": [
+        "源文件_7_g0354"
+      ],
+      "shape_count": 13,
+      "sha256": "f4f828c123cf694079d57b98537c046ab529a136e2aa807f731d48ff5d614279",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_08.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 495,
+      "height": 472,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.413792,
+        0.63706,
+        0.512023,
+        0.777799
+      ],
+      "source_groups": [
+        "源文件_7_g0322"
+      ],
+      "shape_count": 40,
+      "sha256": "219d8fb1c20d4b057569310673297e7e29b8c1ac50bd61f64924e17542127087",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_09.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 490,
+      "height": 494,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.026943,
+        0.822588,
+        0.120052,
+        0.963627
+      ],
+      "source_groups": [
+        "源文件_7_g0080"
+      ],
+      "shape_count": 47,
+      "sha256": "1706cd01e381021ca7d7f9633690428b29d3ae03e85124fcc312c92825cfc0a9",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_10.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 493,
+      "height": 494,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.288282,
+        0.822865,
+        0.382119,
+        0.963621
+      ],
+      "source_groups": [
+        "源文件_7_g0038"
+      ],
+      "shape_count": 52,
+      "sha256": "2bb1e1d6ffa20239cda9d7d6fee9dc56297f40523d77c320afb945ff417bfc41",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_11.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 494,
+      "height": 490,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.415851,
+        0.822779,
+        0.510246,
+        0.963543
+      ],
+      "source_groups": [
+        "源文件_7_g0308"
+      ],
+      "shape_count": 19,
+      "sha256": "317f4d8fe117815b71b5c12af56f6f37b83e8cafafdbe3778866773e6e08cac4",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_12.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 479,
+      "height": 490,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.164077,
+        0.831808,
+        0.244278,
+        0.954746
+      ],
+      "source_groups": [
+        "源文件_7_g0122"
+      ],
+      "shape_count": 124,
+      "sha256": "a473ab235237b49f87b847161be68b7922344cf89299b682868bb577328df21f",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS07_Gauge_13.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 351,
+      "height": 370,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.417475,
+        0.048022,
+        0.510593,
+        0.188797
+      ],
+      "source_groups": [
+        "源文件_7_g0439",
+        "源文件_7_g0387"
+      ],
+      "shape_count": 5,
+      "sha256": "f10786af3d9930cee40fc8b536f84739e453af226a7d3c4f6dbbec690f4293f3",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS07_Panel_01.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 1001,
+      "height": 613,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.216289,
+        0.042832,
+        0.377994,
+        0.193335
+      ],
+      "source_groups": [
+        "源文件_7_g0359"
+      ],
+      "shape_count": 12,
+      "sha256": "3fe8805b7082de0ec0e71603ec176dcbde3e56a9ba239f5e57ebefadbbe7e056",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS07_Panel_02.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 1001,
+      "height": 589,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.019518,
+        0.045224,
+        0.182164,
+        0.190891
+      ],
+      "source_groups": [
+        "源文件_7_g0375"
+      ],
+      "shape_count": 10,
+      "sha256": "c878cc9401ca6b7dd925434c3dce9395a29a15331b681ed56d8031b45f48cade",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS07_Panel_03.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 1001,
+      "height": 669,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.019518,
+        0.239923,
+        0.182164,
+        0.404632
+      ],
+      "source_groups": [
+        "源文件_7_g0368"
+      ],
+      "shape_count": 9,
+      "sha256": "a03ee3a8e88be711429e5624d16354296c39e2a924bd91091ed35d264b2b2145",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS07_Panel_04.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 1001,
+      "height": 584,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.214775,
+        0.249097,
+        0.379553,
+        0.395468
+      ],
+      "source_groups": [
+        "源文件_7_g0362"
+      ],
+      "shape_count": 13,
+      "sha256": "3322e7f08361117352c4453807ea6091d21b615e5960df576d5965ee1329ab3a",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS07_Panel_05.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 1001,
+      "height": 640,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.215898,
+        0.439489,
+        0.378495,
+        0.597486
+      ],
+      "source_groups": [
+        "源文件_7_g0371"
+      ],
+      "shape_count": 15,
+      "sha256": "a10507e53aa82547c7e09a41ed69768c30f26c4579a844cb3195909cc59c37a7",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS07_Panel_06.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 1001,
+      "height": 581,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.019507,
+        0.446758,
+        0.182065,
+        0.590444
+      ],
+      "source_groups": [
+        "源文件_7_g0365"
+      ],
+      "shape_count": 7,
+      "sha256": "ea1c8467af57a48a8e0cbcdf2d9aa7e7bf0be8116d2b9649828d46c5e4140b76",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS07_Button_01.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 762,
+      "height": 183,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.549731,
+        0.636827,
+        0.804395,
+        0.731208
+      ],
+      "source_groups": [
+        "源文件_7_g0426"
+      ],
+      "shape_count": 6,
+      "sha256": "164d01f45fb4a15e4dac9904f09506702d3eef31e8377cb1aec3f0b20ee4d446",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS07_Button_02.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 762,
+      "height": 150,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.549982,
+        0.759373,
+        0.804763,
+        0.837397
+      ],
+      "source_groups": [
+        "源文件_7_g0424"
+      ],
+      "shape_count": 6,
+      "sha256": "e300a06aac2d7ec2420e712dd1df6b125b22b1779a3a6f4df32dfa9b4cbc742e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS07_Button_03.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 762,
+      "height": 181,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.549967,
+        0.860421,
+        0.809749,
+        0.955686
+      ],
+      "source_groups": [
+        "源文件_7_g0421"
+      ],
+      "shape_count": 5,
+      "sha256": "ee573b4c2eeda5b30654a9a15be3db646ddb2dfb05313ef51a0455fca2ffeb0a",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "边框与装饰/EPS07_Decoration_01.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 310,
+      "height": 1010,
+      "category": "边框与装饰",
+      "source_rect_normalized": [
+        0.823391,
+        0.635958,
+        0.892395,
+        0.961399
+      ],
+      "source_groups": [
+        "源文件_7_g0430"
+      ],
+      "shape_count": 13,
+      "sha256": "27accc3e7fa6d70e0858ed0adf91bbc4c661ce5fa3bc1ae0ab61bdbd4d7dfbd8",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "边框与装饰/EPS07_Decoration_02.png",
+      "source_number": 7,
+      "source_name": "源文件 (7).eps",
+      "width": 318,
+      "height": 1009,
+      "category": "边框与装饰",
+      "source_rect_normalized": [
+        0.906789,
+        0.640404,
+        0.977486,
+        0.965844
+      ],
+      "source_groups": [
+        "源文件_7_g0434"
+      ],
+      "shape_count": 14,
+      "sha256": "f85a3fd8e31410dd2e6ac783ba5e028642aaf78e65ed5b169a305e887533c54c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_01.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 731,
+      "height": 228,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.027253,
+        0.189271,
+        0.257552,
+        0.500729
+      ],
+      "source_groups": [],
+      "shape_count": 59,
+      "sha256": "78851a4f8acbb1a09cd804cf9bc25f0114a21a80bb145858497cb0be903d0cc0",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_02.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 738,
+      "height": 227,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.264219,
+        0.19,
+        0.492516,
+        0.501125
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "28dd83a3ac2d1d7a545f7c6fd2297291d9416c0f596cd16791f571f8e49612a7",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_03.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 721,
+      "height": 225,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.504227,
+        0.189312,
+        0.73753,
+        0.501193
+      ],
+      "source_groups": [],
+      "shape_count": 59,
+      "sha256": "e08096663b432647ae97cb60f322f23eabc13120d79f771ccb1d3b375e3abf72",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_04.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 716,
+      "height": 221,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.745391,
+        0.189714,
+        0.980697,
+        0.500599
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "b563bfd2180496d6cc32eb69ddc198bdeceb2ae1475d274dd51a2320c28ee0a6",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_05.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 731,
+      "height": 172,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.027253,
+        0.529479,
+        0.257552,
+        0.820573
+      ],
+      "source_groups": [],
+      "shape_count": 92,
+      "sha256": "9ca1a76630e452e021f2c7a43fb916eed038a00cb498b65a148e4dce3f7bc347",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_06.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 737,
+      "height": 210,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.264219,
+        0.529625,
+        0.492516,
+        0.820562
+      ],
+      "source_groups": [],
+      "shape_count": 84,
+      "sha256": "8b0286f0d6de0849b3ef40112f3ac955d9c9804d68114c3378a99d81a610be36",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_07.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 722,
+      "height": 170,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.504227,
+        0.529104,
+        0.73753,
+        0.820354
+      ],
+      "source_groups": [],
+      "shape_count": 92,
+      "sha256": "d50ce24321c2c4ca6cc204487791da37d98ada3f37d7e92c443cb47321c76c00",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS09_Button_08.png",
+      "source_number": 9,
+      "source_name": "源文件 (9).eps",
+      "width": 716,
+      "height": 204,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.745391,
+        0.529974,
+        0.980697,
+        0.820052
+      ],
+      "source_groups": [],
+      "shape_count": 84,
+      "sha256": "2e3a4f90f5cd765cbb4b26bf1cbafc88303b6fd53390d28a4d8918f4eab5e3dc",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS11_Panel_01.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 1003,
+      "height": 600,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.062139,
+        0.065522,
+        0.692754,
+        0.640459
+      ],
+      "source_groups": [],
+      "shape_count": 27,
+      "sha256": "98512c8092a722122ab6624235f14f6a6997cc071aac794e7f3317da517daa0d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS11_Panel_02.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 961,
+      "height": 487,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.698328,
+        0.066168,
+        0.937562,
+        0.259772
+      ],
+      "source_groups": [],
+      "shape_count": 14,
+      "sha256": "8f8164ab3039b55ffef968a9a99fa85a85659d2f90b2d61ac8a4d7b1cf50e272",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS11_Panel_03.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 900,
+      "height": 956,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.698367,
+        0.268088,
+        0.933507,
+        0.641953
+      ],
+      "source_groups": [],
+      "shape_count": 14,
+      "sha256": "510a55c3943ff1698001eb06afe3f799ec23490f90a1a9a7072df446759dc395",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS11_Panel_04.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 981,
+      "height": 152,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.065422,
+        0.754049,
+        0.38173,
+        0.841072
+      ],
+      "source_groups": [],
+      "shape_count": 15,
+      "sha256": "2a446353b4b057a3ca7d19b1a5c4dec08b6a69029c39e29a9e48c95178778c1c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS11_Panel_05.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 986,
+      "height": 152,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.380234,
+        0.753876,
+        0.694541,
+        0.840809
+      ],
+      "source_groups": [],
+      "shape_count": 15,
+      "sha256": "f2975c4119936b9caf70ed05d10861019616c01251898aea9adf82b30ae72e65",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS11_Panel_06.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 983,
+      "height": 152,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.379292,
+        0.843025,
+        0.6946,
+        0.933926
+      ],
+      "source_groups": [],
+      "shape_count": 15,
+      "sha256": "d676096a279e94711b1de0c46aa3ce4f7ca6406530f873f6bded72830e44a347",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS11_Button_01.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 734,
+      "height": 165,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.0645,
+        0.636188,
+        0.3525,
+        0.754875
+      ],
+      "source_groups": [],
+      "shape_count": 16,
+      "sha256": "431bd2bf5fa1560dbe009a5e97c67c9ffe94e8b187e6ace776684fdd53e5eba7",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS11_Button_02.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 739,
+      "height": 166,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.356383,
+        0.636238,
+        0.642755,
+        0.755219
+      ],
+      "source_groups": [],
+      "shape_count": 17,
+      "sha256": "b74dec026d4cf0352a87162e7f941df6fb2290cc10132315ca48b8c166158edc",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS11_Button_03.png",
+      "source_number": 11,
+      "source_name": "源文件 (11).eps",
+      "width": 737,
+      "height": 166,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.646497,
+        0.636221,
+        0.933871,
+        0.755057
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "80d3ca81963924cf864cddce28e3c4e16cab4683fe63105f6cc9da427e87881c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS12_Gauge_01.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 503,
+      "height": 504,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.231247,
+        0.55129,
+        0.374694,
+        0.806306
+      ],
+      "source_groups": [
+        "源文件_12_g0678"
+      ],
+      "shape_count": 108,
+      "sha256": "8ba077d9a4e2199c2e4b4439eef0dae8837272f0bda7530a7511933db449b05d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS12_Gauge_02.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 501,
+      "height": 502,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.385461,
+        0.563329,
+        0.515298,
+        0.79415
+      ],
+      "source_groups": [
+        "源文件_12_g0704"
+      ],
+      "shape_count": 141,
+      "sha256": "77e277374d8122108fa220add2515a6bcd8955dbaf17367034b474f8445aa09c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS12_Gauge_03.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 484,
+      "height": 483,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.525293,
+        0.653602,
+        0.594177,
+        0.776063
+      ],
+      "source_groups": [
+        "源文件_12_g0636"
+      ],
+      "shape_count": 25,
+      "sha256": "ae97cc690aa36cd5e56f34c02b7fbe3539496ad0fe04eafed20c120ea2612a17",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "圆形仪表/EPS12_Gauge_04.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 484,
+      "height": 483,
+      "category": "圆形仪表",
+      "source_rect_normalized": [
+        0.604248,
+        0.653602,
+        0.673132,
+        0.776063
+      ],
+      "source_groups": [
+        "源文件_12_g0646"
+      ],
+      "shape_count": 16,
+      "sha256": "d9994744b41bec50b338108e170bed08ee93b217c7354af52f11e0d0150d8af8",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_01.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 995,
+      "height": 976,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.528003,
+        0.029531,
+        0.663135,
+        0.265312
+      ],
+      "source_groups": [
+        "源文件_12_g0625"
+      ],
+      "shape_count": 14,
+      "sha256": "3e3c1fbf404bf8e01638ecf4a6aab472b3d8f8c633ac228b3f9a524e0e431fb3",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_02.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1013,
+      "height": 590,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.69658,
+        0.029824,
+        0.96112,
+        0.305576
+      ],
+      "source_groups": [
+        "源文件_12_g0665"
+      ],
+      "shape_count": 10,
+      "sha256": "f7544b3de9cdd685e87d4753994e5393ad6e8033558b96ca6d2100674f47f186",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_03.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 794,
+      "height": 1003,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.52665,
+        0.295632,
+        0.664663,
+        0.604208
+      ],
+      "source_groups": [
+        "源文件_12_g0631"
+      ],
+      "shape_count": 31,
+      "sha256": "d422a3c4bf6309cdd6e62a5593b07da459b485b1456af2fca23c1943a5d5862f",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_04.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1013,
+      "height": 583,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.705859,
+        0.333505,
+        0.955257,
+        0.591311
+      ],
+      "source_groups": [
+        "源文件_12_g0659"
+      ],
+      "shape_count": 14,
+      "sha256": "68891c21d46101aa3ebc62abf4ff9be7cc615b2ffd092cd61916f6b6c9c63d4a",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_05.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1005,
+      "height": 403,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.031984,
+        0.475802,
+        0.220397,
+        0.614033
+      ],
+      "source_groups": [
+        "源文件_12_g0576"
+      ],
+      "shape_count": 11,
+      "sha256": "5b7e550eb994b1eaf12ca8e06b3048ef4088154f2ee6d175b57e23d88df91924",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_06.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1013,
+      "height": 720,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.69658,
+        0.624459,
+        0.96112,
+        0.959858
+      ],
+      "source_groups": [
+        "源文件_12_g0672"
+      ],
+      "shape_count": 13,
+      "sha256": "363a9ba5706c17c7be69ecd8cd09ce6615c611430bd934c1ebfca327b5f5dd64",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_07.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1005,
+      "height": 375,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.03553,
+        0.67694,
+        0.219459,
+        0.802949
+      ],
+      "source_groups": [
+        "源文件_12_g0581"
+      ],
+      "shape_count": 5,
+      "sha256": "1b2b9c9fd6ff7d465860157bc880ff51b9790e2d738860506a029bc421fe0d5e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_08.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1008,
+      "height": 398,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.270534,
+        0.030926,
+        0.475483,
+        0.178445
+      ],
+      "source_groups": [
+        "源文件_12_g0593"
+      ],
+      "shape_count": 9,
+      "sha256": "a6f991dbb4fbc0ecfc72036ba22c00b4a46b2a0de463bddc5e1b07b3a6dd98d0",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_09.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1009,
+      "height": 260,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.269944,
+        0.159474,
+        0.483278,
+        0.261596
+      ],
+      "source_groups": [
+        "源文件_12_g0606"
+      ],
+      "shape_count": 8,
+      "sha256": "f54b4294434435a705c84cb783744c5aee5c74afbad442606f8793a63039e4a8",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_10.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1008,
+      "height": 365,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.269929,
+        0.297031,
+        0.478271,
+        0.435067
+      ],
+      "source_groups": [
+        "源文件_12_g0600"
+      ],
+      "shape_count": 9,
+      "sha256": "e384f7d0b38c68e8843773e200daf767c41c957907f339ba7d6176ca11b4ff25",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS12_Panel_11.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1009,
+      "height": 256,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.269979,
+        0.426713,
+        0.477421,
+        0.525296
+      ],
+      "source_groups": [
+        "源文件_12_g0588"
+      ],
+      "shape_count": 8,
+      "sha256": "ede53b837ed44967fa68b965c5529689d0bedb4164e5bdd7bf6dee48f769eb59",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS12_Button_01.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 756,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.036669,
+        0.036539,
+        0.216278,
+        0.127888
+      ],
+      "source_groups": [
+        "源文件_12_g0572"
+      ],
+      "shape_count": 5,
+      "sha256": "b22c5718e4884f67a3b21ad3d0ca64b4307a06e7e5fbcc262f069312c0c61fa1",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS12_Button_02.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 756,
+      "height": 216,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.036219,
+        0.177698,
+        0.217079,
+        0.273028
+      ],
+      "source_groups": [
+        "源文件_12_g0565"
+      ],
+      "shape_count": 4,
+      "sha256": "f9702c8734e5a1f8382d519ede8fb32d9cc045fdce165962aeeb1277c5bdfeda",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS12_Button_03.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 756,
+      "height": 207,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.036669,
+        0.328854,
+        0.216278,
+        0.420618
+      ],
+      "source_groups": [
+        "源文件_12_g0567"
+      ],
+      "shape_count": 7,
+      "sha256": "072128be48a259d727823d34dab882ba794d7b6bf37cbae71fe979a1d8ffc102",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS12_Button_04.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 757,
+      "height": 180,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.031971,
+        0.855233,
+        0.225556,
+        0.941159
+      ],
+      "source_groups": [
+        "源文件_12_g0584"
+      ],
+      "shape_count": 5,
+      "sha256": "952d8467738f8413c5562e42c4cc12f0765fd8a8174e1d3c2ea1d243f1b94ed7",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "边框与装饰/EPS12_Decoration_01.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1019,
+      "height": 92,
+      "category": "边框与装饰",
+      "source_rect_normalized": [
+        0.268782,
+        0.82128,
+        0.643106,
+        0.884904
+      ],
+      "source_groups": [
+        "源文件_12_g0613"
+      ],
+      "shape_count": 17,
+      "sha256": "eb0abe296adaed24137e8f77f1503e5ba5ad7eb40c8a988eb2d2b6b9f85a135d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "边框与装饰/EPS12_Decoration_02.png",
+      "source_number": 12,
+      "source_name": "源文件 (12).eps",
+      "width": 1019,
+      "height": 75,
+      "category": "边框与装饰",
+      "source_rect_normalized": [
+        0.268661,
+        0.910523,
+        0.642307,
+        0.963015
+      ],
+      "source_groups": [
+        "源文件_12_g0618"
+      ],
+      "shape_count": 22,
+      "sha256": "69fdada2a4a7a4c80098ebf53b085a352b789aaf51b0d561aabaf3a1b67fffcf",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS16_Panel_01.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 950,
+      "height": 613,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.022456,
+        0.089824,
+        0.337764,
+        0.920391
+      ],
+      "source_groups": [],
+      "shape_count": 54,
+      "sha256": "49614422dcbf76fb296123f4bc8469e6bfb155afdec72920473bdcd483d73f04",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS16_Panel_02.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 915,
+      "height": 767,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.339487,
+        0.089223,
+        0.590732,
+        0.92066
+      ],
+      "source_groups": [],
+      "shape_count": 50,
+      "sha256": "5fb5327cb981ed6e8b937fd50ac8c081f37e2646ce91cc857f7e4c8f1201b08b",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS16_Panel_03.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 772,
+      "height": 380,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.59748,
+        0.189844,
+        0.732612,
+        0.48041
+      ],
+      "source_groups": [],
+      "shape_count": 46,
+      "sha256": "6453faca3d8502b02b6b8f4199cb69ad1389262ae2e7487ae03cc9ea187bd2bb",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS16_Panel_04.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 772,
+      "height": 380,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.59748,
+        0.509941,
+        0.732612,
+        0.81
+      ],
+      "source_groups": [],
+      "shape_count": 35,
+      "sha256": "ca95651dc5ce04ff4d8cc44b3e62a949f660aec8ca264278a2915554d503d071",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_01.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 608,
+      "height": 224,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.744414,
+        0.034417,
+        0.862568,
+        0.250135
+      ],
+      "source_groups": [],
+      "shape_count": 17,
+      "sha256": "f10d0c6e07e0db8ac94726d9ab09f6785d909dc3b97eff9c91ed7e387354e707",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_02.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 598,
+      "height": 260,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.8625,
+        0.035,
+        0.9825,
+        0.25
+      ],
+      "source_groups": [],
+      "shape_count": 30,
+      "sha256": "a3c9c55d31fac8824cfe63c72e6a81d2fe8ae25ab1b9bb069c7b2398bc410af9",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_03.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 608,
+      "height": 224,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.744414,
+        0.234771,
+        0.862568,
+        0.425292
+      ],
+      "source_groups": [],
+      "shape_count": 21,
+      "sha256": "050bdfa1b717bc1d76714da28ad50566dd653539fc9e8382205fdc5885aab69e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_04.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 598,
+      "height": 259,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.8625,
+        0.235,
+        0.9825,
+        0.425
+      ],
+      "source_groups": [],
+      "shape_count": 34,
+      "sha256": "233617fe1fda82ca351443d3574f327f400d0c64163402f126829a00d74b3cc4",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_05.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 608,
+      "height": 224,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.744414,
+        0.414844,
+        0.862568,
+        0.605365
+      ],
+      "source_groups": [],
+      "shape_count": 17,
+      "sha256": "a3e3041454a90722e3ee967a92c150b8af9bc11707dd83ab1f88d6f70783be9c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_06.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 598,
+      "height": 260,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.8625,
+        0.415,
+        0.9825,
+        0.605
+      ],
+      "source_groups": [],
+      "shape_count": 29,
+      "sha256": "07c8f10481785b3cf49556aedd8bb82b0f9c713fcd202dddb4fafa0de1e35759",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_07.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 608,
+      "height": 224,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.744414,
+        0.594917,
+        0.862568,
+        0.785437
+      ],
+      "source_groups": [],
+      "shape_count": 26,
+      "sha256": "fa3a2a9b5932cc451522331d495ae9f6b4cc99950137d84af410ee670f628f73",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_08.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 598,
+      "height": 259,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.8625,
+        0.595,
+        0.9825,
+        0.785
+      ],
+      "source_groups": [],
+      "shape_count": 29,
+      "sha256": "12edcb64e67d6965458c64096ab2ffee3c5da54e0bbea1cd893f9e242ae4ec3d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_09.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 608,
+      "height": 224,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.744414,
+        0.77499,
+        0.862568,
+        0.985177
+      ],
+      "source_groups": [],
+      "shape_count": 18,
+      "sha256": "570f4ea848ad14fcb88fb6d7e7cea1d6f25414ebc97ae44992d135011b0f9d6b",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS16_Button_10.png",
+      "source_number": 16,
+      "source_name": "源文件 (16).eps",
+      "width": 598,
+      "height": 258,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.8625,
+        0.775,
+        0.9825,
+        0.985
+      ],
+      "source_groups": [],
+      "shape_count": 24,
+      "sha256": "a374f6caf7454639149b64b8fa3fc3438a54c6a8484fbe58767d58c7d142ccaf",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS17_Panel_01.png",
+      "source_number": 17,
+      "source_name": "源文件 (17).eps",
+      "width": 1012,
+      "height": 584,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.116327,
+        0.099483,
+        0.655854,
+        0.572424
+      ],
+      "source_groups": [],
+      "shape_count": 12,
+      "sha256": "74dff69d352184e400340b3acb4b2dbcfe01f81a100d80cda7b0759005668971",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS17_Panel_02.png",
+      "source_number": 17,
+      "source_name": "源文件 (17).eps",
+      "width": 645,
+      "height": 995,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.692209,
+        0.099917,
+        0.898797,
+        0.571878
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "2259d2023b9e3b20cdd0f0c99bd6d75db6a8813208de18e8d8ebb89b0ecab2a0",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS17_Panel_03.png",
+      "source_number": 17,
+      "source_name": "源文件 (17).eps",
+      "width": 957,
+      "height": 256,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.24126,
+        0.745928,
+        0.511523,
+        0.87605
+      ],
+      "source_groups": [],
+      "shape_count": 8,
+      "sha256": "34e985d0d76b9d7eb3629491c93c4fb6c151c0a362003e2e534a9726f6631810",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS17_Panel_04.png",
+      "source_number": 17,
+      "source_name": "源文件 (17).eps",
+      "width": 944,
+      "height": 253,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.519369,
+        0.746142,
+        0.793637,
+        0.875783
+      ],
+      "source_groups": [],
+      "shape_count": 8,
+      "sha256": "48d5480ea05fbdd51994b4890ab780f6ce48648b5327d6d347ab5e8797e3b6dd",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS17_Button_01.png",
+      "source_number": 17,
+      "source_name": "源文件 (17).eps",
+      "width": 725,
+      "height": 203,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.116283,
+        0.604014,
+        0.381628,
+        0.726162
+      ],
+      "source_groups": [],
+      "shape_count": 41,
+      "sha256": "06fec4cd1b964b3f1be6640ecefe8ab54794d28cf6fdbd832ce21024d071f5f3",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS17_Button_02.png",
+      "source_number": 17,
+      "source_name": "源文件 (17).eps",
+      "width": 732,
+      "height": 205,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.38046,
+        0.604078,
+        0.643802,
+        0.725818
+      ],
+      "source_groups": [],
+      "shape_count": 41,
+      "sha256": "8930a416f69d57c04cdb1a71d6ef48b2bd2a94150f0dc5bed3422715cbc5e48d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS17_Button_03.png",
+      "source_number": 17,
+      "source_name": "源文件 (17).eps",
+      "width": 723,
+      "height": 202,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.645258,
+        0.604215,
+        0.911604,
+        0.725785
+      ],
+      "source_groups": [],
+      "shape_count": 41,
+      "sha256": "449a97122c7414858ad1436bd97782da96f390120625fac7cf1751e8d79cf5d9",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS18_Panel_01.png",
+      "source_number": 18,
+      "source_name": "源文件 (18).eps",
+      "width": 1013,
+      "height": 575,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.042137,
+        0.12389,
+        0.686766,
+        0.68376
+      ],
+      "source_groups": [],
+      "shape_count": 51,
+      "sha256": "060dc1ef92f20d3f3f73a980246516d31156d3a7fbbf8af4461f2998f1d413f0",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS18_Panel_02.png",
+      "source_number": 18,
+      "source_name": "源文件 (18).eps",
+      "width": 954,
+      "height": 509,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.697464,
+        0.104165,
+        0.954715,
+        0.317779
+      ],
+      "source_groups": [],
+      "shape_count": 6,
+      "sha256": "ebdb6ec717c098d143d0616baa2ab1b83c803fee3de4f11a700bb5e0fa06748c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS18_Panel_03.png",
+      "source_number": 18,
+      "source_name": "源文件 (18).eps",
+      "width": 974,
+      "height": 970,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.694331,
+        0.333897,
+        0.95959,
+        0.725778
+      ],
+      "source_groups": [],
+      "shape_count": 15,
+      "sha256": "a4c3806df6008d97a0e8d0db2e569bf75c3f616c5935b9d7f4d87413e32a4a7a",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS18_Panel_04.png",
+      "source_number": 18,
+      "source_name": "源文件 (18).eps",
+      "width": 980,
+      "height": 309,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.05542,
+        0.732045,
+        0.282642,
+        0.856052
+      ],
+      "source_groups": [],
+      "shape_count": 7,
+      "sha256": "74cf87724a4127ee74b9bbb88bc79c18f86adcd470e24c30fb5efed1d2672d7c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS18_Panel_05.png",
+      "source_number": 18,
+      "source_name": "源文件 (18).eps",
+      "width": 989,
+      "height": 311,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.291357,
+        0.732203,
+        0.516577,
+        0.855779
+      ],
+      "source_groups": [],
+      "shape_count": 7,
+      "sha256": "5b8e40c00d5dd5babc274028b2f85c8e877ba150381e030ebfc7daa6c76bb96d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS18_Panel_06.png",
+      "source_number": 18,
+      "source_name": "源文件 (18).eps",
+      "width": 976,
+      "height": 307,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.523465,
+        0.731921,
+        0.751688,
+        0.855806
+      ],
+      "source_groups": [],
+      "shape_count": 7,
+      "sha256": "e6b5a790291726297b6b561cc382cb00a6042891ec43b0f74a945b9039037cac",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS19_Icon_01.png",
+      "source_number": 19,
+      "source_name": "源文件 (19).eps",
+      "width": 337,
+      "height": 314,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.811195,
+        0.730196,
+        0.950557,
+        0.931911
+      ],
+      "source_groups": [],
+      "shape_count": 17,
+      "sha256": "5fce529d7b3e005bf611d2f4b321d24b9ff022bfe887fa550002c1a6b987b64d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS19_Panel_01.png",
+      "source_number": 19,
+      "source_name": "源文件 (19).eps",
+      "width": 1014,
+      "height": 561,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.032921,
+        0.127984,
+        0.694566,
+        0.687429
+      ],
+      "source_groups": [],
+      "shape_count": 31,
+      "sha256": "2faf3a96ceef66f7ee128c26450f3dfd987de4e88b55b62ba3ebfd1ca8c5aa5c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS19_Panel_02.png",
+      "source_number": 19,
+      "source_name": "源文件 (19).eps",
+      "width": 983,
+      "height": 499,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.69731,
+        0.119977,
+        0.960566,
+        0.33794
+      ],
+      "source_groups": [],
+      "shape_count": 9,
+      "sha256": "9c75f0a27a074de7c886a027ce05a7215d529bfe34c90da87b0506aab3a7485f",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS19_Panel_03.png",
+      "source_number": 19,
+      "source_name": "源文件 (19).eps",
+      "width": 982,
+      "height": 939,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.694356,
+        0.334072,
+        0.961617,
+        0.726891
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "ae7d5a94d204073a11cb58be6e99337532a9d9fd6348ca75878df85530635c77",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS19_Panel_04.png",
+      "source_number": 19,
+      "source_name": "源文件 (19).eps",
+      "width": 946,
+      "height": 350,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.041361,
+        0.72492,
+        0.27559,
+        0.869766
+      ],
+      "source_groups": [],
+      "shape_count": 14,
+      "sha256": "1cd97f87c3a8221c45764c939140267af847445f25acd008971e6955f32509f8",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS19_Panel_05.png",
+      "source_number": 19,
+      "source_name": "源文件 (19).eps",
+      "width": 945,
+      "height": 348,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.291313,
+        0.725231,
+        0.527543,
+        0.869931
+      ],
+      "source_groups": [],
+      "shape_count": 15,
+      "sha256": "11b5108af7a6f88568365d1885c3e9d83c65a9ed18d37979612403d1a8a2ae57",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS19_Panel_06.png",
+      "source_number": 19,
+      "source_name": "源文件 (19).eps",
+      "width": 958,
+      "height": 355,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.542309,
+        0.725113,
+        0.773534,
+        0.869797
+      ],
+      "source_groups": [],
+      "shape_count": 12,
+      "sha256": "3857e5bde68a75c39a95bacda20e902493203383f55b05a710c6da516d2579e4",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS24_Icon_01.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 317,
+      "height": 124,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.691422,
+        0.763922,
+        0.74857,
+        0.891133
+      ],
+      "source_groups": [],
+      "shape_count": 8,
+      "sha256": "183b5909218b3e7c2c201174659547442d9c20ee44253592029c469b3bab9dbf",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS24_Icon_02.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 318,
+      "height": 113,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.747365,
+        0.763567,
+        0.7995,
+        0.891522
+      ],
+      "source_groups": [],
+      "shape_count": 10,
+      "sha256": "8d31fcb518d847fc6b62fa7953d2fac1df719a0ddb70650a2b43300c72af0482",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS24_Icon_03.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 257,
+      "height": 114,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.7995,
+        0.763613,
+        0.847625,
+        0.891065
+      ],
+      "source_groups": [],
+      "shape_count": 12,
+      "sha256": "ef6f616c0de5cab0ef819002ecf8290750e23fe736ccd95a5721c05e3308574d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS24_Icon_04.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 282,
+      "height": 137,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.842495,
+        0.76391,
+        0.888615,
+        0.891316
+      ],
+      "source_groups": [],
+      "shape_count": 19,
+      "sha256": "b8e8cb129ac64d971cd824c22bf29768975f873cbad0c4bf82a691a493f75c4e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS24_Icon_05.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 288,
+      "height": 108,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.883437,
+        0.763556,
+        0.938581,
+        0.891339
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "0b44939b944a8a5fbffeec286a8b75925a400ec5ad332958b3d2cea122439e0d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "图标/EPS24_Icon_06.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 288,
+      "height": 139,
+      "category": "图标",
+      "source_rect_normalized": [
+        0.933398,
+        0.763784,
+        0.978516,
+        0.890996
+      ],
+      "source_groups": [],
+      "shape_count": 16,
+      "sha256": "923dd935c8e7018ae3003c48a2221107de569d7f45b4fcfc9a11d9c2b1c1afdb",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS24_Panel_01.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 994,
+      "height": 668,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.015336,
+        0.068696,
+        0.317631,
+        0.97989
+      ],
+      "source_groups": [],
+      "shape_count": 177,
+      "sha256": "af0672024f6f2c17c6278e059b5faf15268efd1c6d386f6a481fcbc41eb3d2a9",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS24_Panel_02.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 987,
+      "height": 540,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.320327,
+        0.096452,
+        0.547549,
+        0.673213
+      ],
+      "source_groups": [],
+      "shape_count": 7,
+      "sha256": "7381d22cef9bd2c04b50d49c65a6c4bac52a571a33ffb9fef40b0df3fb57b77f",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS24_Panel_03.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 949,
+      "height": 902,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.551461,
+        0.096876,
+        0.68359,
+        0.662273
+      ],
+      "source_groups": [],
+      "shape_count": 15,
+      "sha256": "e593cfe187928204c4361740ed3fbd9874bfeebfaf5f4d57aa1344e460c75f25",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS24_Panel_04.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 880,
+      "height": 486,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.689417,
+        0.117748,
+        0.782508,
+        0.365218
+      ],
+      "source_groups": [],
+      "shape_count": 32,
+      "sha256": "31610ff79d621197443f53f6052aed0b3071b663db0c35ea508066fc39328cc4",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS24_Panel_05.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 880,
+      "height": 486,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.786413,
+        0.117748,
+        0.879504,
+        0.365218
+      ],
+      "source_groups": [],
+      "shape_count": 33,
+      "sha256": "a2d973f7abe9fee5befa8bed118f2740750ea650d3c01dd1a3a95f234bd28553",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS24_Panel_06.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 880,
+      "height": 486,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.8835,
+        0.117748,
+        0.9765,
+        0.365218
+      ],
+      "source_groups": [],
+      "shape_count": 41,
+      "sha256": "d4b50b47a8eb2e7e8e7ce9cf4355843c1913f4017c14ea3ecf7a228b8a354c07",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_01.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 727,
+      "height": 142,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.323367,
+        0.698685,
+        0.512613,
+        0.902018
+      ],
+      "source_groups": [],
+      "shape_count": 29,
+      "sha256": "9382ba8abab40454da3fc691a3b06ebb74968bf05794517697340081699fc788",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_02.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 682,
+      "height": 144,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.512482,
+        0.688705,
+        0.59559,
+        0.801273
+      ],
+      "source_groups": [],
+      "shape_count": 13,
+      "sha256": "1128ec95cc6d8c5c347cd88aaa21289b65c8276639b84777d54e389df917bdf3",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_03.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 674,
+      "height": 141,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.595438,
+        0.688831,
+        0.679547,
+        0.801313
+      ],
+      "source_groups": [],
+      "shape_count": 14,
+      "sha256": "76a45e895053bf90f73d4148ead23d870a53cd26e06225014eb55f0b6303dd48",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_04.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 682,
+      "height": 143,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.512482,
+        0.785599,
+        0.59559,
+        0.891042
+      ],
+      "source_groups": [],
+      "shape_count": 14,
+      "sha256": "b41c7df98a1ad569605ee197036e0b0854a96559529c84a818fc7f20de35ee5b",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_05.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 674,
+      "height": 141,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.595438,
+        0.785931,
+        0.679547,
+        0.891202
+      ],
+      "source_groups": [],
+      "shape_count": 19,
+      "sha256": "ab60191578d907c4f8cf9c1a17f5b7a7cdb16fefe0fdc89737af4b57440e7bf1",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_06.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 684,
+      "height": 171,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.691482,
+        0.418453,
+        0.792613,
+        0.563525
+      ],
+      "source_groups": [],
+      "shape_count": 28,
+      "sha256": "c95f9e7f17561a02e6164793cea14d7a0069e8448d1acbf7a7862f8aac4e68af",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_07.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 683,
+      "height": 171,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.787484,
+        0.418453,
+        0.888616,
+        0.563525
+      ],
+      "source_groups": [],
+      "shape_count": 26,
+      "sha256": "d09bf3c77e2c9ac9db63b37207b267a40276dfa7f0871619b9927e4c4461504a",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_08.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 677,
+      "height": 171,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.883487,
+        0.418453,
+        0.984618,
+        0.563525
+      ],
+      "source_groups": [],
+      "shape_count": 30,
+      "sha256": "faa7b35048cd0d21bbdb20ee42f4b12a2f9cba064c6628f018b93deb480e3df9",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_09.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 684,
+      "height": 171,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.691482,
+        0.543874,
+        0.792613,
+        0.690101
+      ],
+      "source_groups": [],
+      "shape_count": 32,
+      "sha256": "5a8ba8aff84f603a6d0e64bc294fdd0f812aabf85aba695348accadc0dd9d063",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_10.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 683,
+      "height": 171,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.787484,
+        0.543874,
+        0.888616,
+        0.690101
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "dc1c9d8767e83846f1efcb2d3afb411194b95dba417ce265efd0176e4a28ab70",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS24_Button_11.png",
+      "source_number": 24,
+      "source_name": "源文件 (24).eps",
+      "width": 677,
+      "height": 171,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.883487,
+        0.543874,
+        0.984618,
+        0.690101
+      ],
+      "source_groups": [],
+      "shape_count": 27,
+      "sha256": "1f5d4fd7345a46cc00a80dd478b9af1895ddd4f6064d9c5a9202209e85da50bb",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS25_Panel_01.png",
+      "source_number": 25,
+      "source_name": "源文件 (25).eps",
+      "width": 987,
+      "height": 590,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.132031,
+        0.030694,
+        0.652539,
+        0.60125
+      ],
+      "source_groups": [],
+      "shape_count": 63,
+      "sha256": "500d72ae6eabefcbf5927c96c3a4bda16f0a7f366afa278a32416046b8ad6799",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS25_Panel_02.png",
+      "source_number": 25,
+      "source_name": "源文件 (25).eps",
+      "width": 650,
+      "height": 952,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.657252,
+        0.044452,
+        0.87068,
+        0.58687
+      ],
+      "source_groups": [],
+      "shape_count": 50,
+      "sha256": "63cc10efade3aae197d72ec19e2d57980c63a5d5f635c22a9a59c7d4509929b6",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS25_Panel_03.png",
+      "source_number": 25,
+      "source_name": "源文件 (25).eps",
+      "width": 917,
+      "height": 240,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.249388,
+        0.773476,
+        0.512645,
+        0.928719
+      ],
+      "source_groups": [],
+      "shape_count": 49,
+      "sha256": "b377560085edd461049252c9ab37f8bf030a6dfffce1103b9b55b6fb44f09f22",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS25_Panel_04.png",
+      "source_number": 25,
+      "source_name": "源文件 (25).eps",
+      "width": 897,
+      "height": 234,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.492291,
+        0.773375,
+        0.761554,
+        0.928891
+      ],
+      "source_groups": [],
+      "shape_count": 45,
+      "sha256": "ce00404db969064f0ecf937eec055ecc652a01a896e2421341affbead3b4cbcf",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS25_Button_01.png",
+      "source_number": 25,
+      "source_name": "源文件 (25).eps",
+      "width": 707,
+      "height": 231,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.149375,
+        0.617417,
+        0.388686,
+        0.781729
+      ],
+      "source_groups": [],
+      "shape_count": 29,
+      "sha256": "8f96ef026c438fbd96896a0deb52a96b4f5ce95e178714ea4ebf968c769316be",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS25_Button_02.png",
+      "source_number": 25,
+      "source_name": "源文件 (25).eps",
+      "width": 720,
+      "height": 235,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.379427,
+        0.617419,
+        0.614733,
+        0.781701
+      ],
+      "source_groups": [],
+      "shape_count": 24,
+      "sha256": "f22a14212f186f8b9bc00d92854cb9c95b04d354d81fe333db9b60432465b8c8",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS25_Button_03.png",
+      "source_number": 25,
+      "source_name": "源文件 (25).eps",
+      "width": 691,
+      "height": 226,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.60931,
+        0.617037,
+        0.854629,
+        0.781505
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "38eb5d43a7d9d73ae0129af371e12e56906271932f5fab2a561c80db660b00e8",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS28_Panel_01.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 1016,
+      "height": 616,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.082104,
+        0.220865,
+        0.557568,
+        0.646014
+      ],
+      "source_groups": [],
+      "shape_count": 55,
+      "sha256": "961575ff43faec226aefabf19bb4232b967edd36161fbeb71a581cbe953661c2",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS28_Panel_02.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 1003,
+      "height": 815,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.563221,
+        0.219951,
+        0.92157,
+        0.645855
+      ],
+      "source_groups": [],
+      "shape_count": 53,
+      "sha256": "533306707afc384d170ed321c504646357e1a863ba2a9247e63c3d660f5a1d98",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS28_Panel_03.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 999,
+      "height": 307,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.081471,
+        0.743349,
+        0.494874,
+        0.930772
+      ],
+      "source_groups": [],
+      "shape_count": 100,
+      "sha256": "0d7c6757333f860949bd93ff3c559da4202e921672754b4ae4bec5b80d5e9bf3",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS28_Panel_04.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 997,
+      "height": 306,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.505371,
+        0.743414,
+        0.919775,
+        0.930713
+      ],
+      "source_groups": [],
+      "shape_count": 96,
+      "sha256": "08cb32f5a2a135d27b36999540182e8d9007023f5eeb91d6301e722350c33259",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS28_Button_01.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 732,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.081281,
+        0.641108,
+        0.285547,
+        0.736818
+      ],
+      "source_groups": [],
+      "shape_count": 83,
+      "sha256": "10a5450b48fa6e8825eb9c6b62abf5599ee04e9dff9a5f5e3d4f009e486593ba",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS28_Button_02.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 732,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.292453,
+        0.641108,
+        0.496719,
+        0.736818
+      ],
+      "source_groups": [],
+      "shape_count": 80,
+      "sha256": "695604eb338f7942d74a30bd8c496a274b5c5185a098458232c477cf5fafd710",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS28_Button_03.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 728,
+      "height": 204,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.503424,
+        0.641197,
+        0.708691,
+        0.736613
+      ],
+      "source_groups": [],
+      "shape_count": 87,
+      "sha256": "12e78d14f6f31ca38f08cd680e6ff1a535ab42de9a1c52119418728e55c017e6",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS28_Button_04.png",
+      "source_number": 28,
+      "source_name": "源文件 (28).eps",
+      "width": 729,
+      "height": 204,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.714297,
+        0.641197,
+        0.919564,
+        0.736613
+      ],
+      "source_groups": [],
+      "shape_count": 86,
+      "sha256": "52c23da00cb84d3eee3c306102f77fe63cc08b399e4f07c0aeb20227d809f429",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_01.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 989,
+      "height": 571,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.562477,
+        0.100184,
+        0.974879,
+        0.468328
+      ],
+      "source_groups": [],
+      "shape_count": 83,
+      "sha256": "beb9ba7e6eec30bcbde5ac7310d2ce048d822365c1a57af8006f4d8519408ec6",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_02.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 938,
+      "height": 695,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.598307,
+        0.521791,
+        0.935636,
+        0.888081
+      ],
+      "source_groups": [],
+      "shape_count": 54,
+      "sha256": "b7cfe2ddd462c3a79ecff782b71c2306eaf5a95b2cb7789e147ef110bc71771e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_03.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 942,
+      "height": 236,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.028421,
+        0.520181,
+        0.295682,
+        0.646901
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "a01a66aa9762e5b97b4e2ba78242f165aefe5cb136701d89d20ff7d4ce24346e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_04.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 939,
+      "height": 235,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.289461,
+        0.520166,
+        0.557723,
+        0.646969
+      ],
+      "source_groups": [],
+      "shape_count": 19,
+      "sha256": "9a3fb19a6cc1d7c7b2be577a12c5b9cc601af9f3308cc89d8c53c8c87173e7da",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_05.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 942,
+      "height": 235,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.028421,
+        0.644164,
+        0.295682,
+        0.772058
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "68e6a84eecbb03220aa30ec1fc5d9a99f54f4ca5928165f900921d7e5da3fa01",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_06.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 939,
+      "height": 235,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.289461,
+        0.644221,
+        0.557723,
+        0.771809
+      ],
+      "source_groups": [],
+      "shape_count": 19,
+      "sha256": "b014052ce56b18088203d9c989988f728835a59c5ed6c1b46b39193fbdaa6206",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_07.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 942,
+      "height": 236,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.028421,
+        0.768929,
+        0.295682,
+        0.897996
+      ],
+      "source_groups": [],
+      "shape_count": 19,
+      "sha256": "74f522406f309575a493ed14056f26dac42182e801bb23fb35c2b02a24ee1485",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS29_Panel_08.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 939,
+      "height": 234,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.289461,
+        0.769061,
+        0.557723,
+        0.897826
+      ],
+      "source_groups": [],
+      "shape_count": 19,
+      "sha256": "77d8f48e20fe34e2d462bfe965e265b64e43c44dc44ec1fd1be0eb269cbd744d",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS29_Button_01.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 709,
+      "height": 148,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.02816,
+        0.103775,
+        0.295508,
+        0.205986
+      ],
+      "source_groups": [],
+      "shape_count": 21,
+      "sha256": "fd5bf5b8c792491d11cb6f70e49efd34d64cf0fe08577abb35a544360ef7deeb",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS29_Button_02.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 706,
+      "height": 148,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.289286,
+        0.104164,
+        0.557635,
+        0.206234
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "c6613fe7ffa33f949a56ffa6df6a9c1903d2d7a1b69997aa3ea17f5ab6924518",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS29_Button_03.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 709,
+      "height": 148,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.02816,
+        0.193992,
+        0.295508,
+        0.297246
+      ],
+      "source_groups": [],
+      "shape_count": 17,
+      "sha256": "b98a2317fac87254b98df1485bb35e7296fa4bc5fa4c95405deba01ef82ba702",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS29_Button_04.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 706,
+      "height": 147,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.289286,
+        0.194195,
+        0.557635,
+        0.296789
+      ],
+      "source_groups": [],
+      "shape_count": 18,
+      "sha256": "d66dbf73560957a4a564b1e47a16b79378460a737adc292e05e1057c906966f6",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS29_Button_05.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 709,
+      "height": 148,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.02816,
+        0.28473,
+        0.295508,
+        0.394764
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "63e775378a63d79548437b793b917edd562cc84b8b231926db6b797e3b44809b",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS29_Button_06.png",
+      "source_number": 29,
+      "source_name": "源文件 (29).eps",
+      "width": 706,
+      "height": 148,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.289286,
+        0.28475,
+        0.557635,
+        0.395195
+      ],
+      "source_groups": [],
+      "shape_count": 23,
+      "sha256": "11fa3217e5637eb4286141c3d74fbfb89f04cf942b1eeef0e1a645bbdb5a1cec",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS30_Panel_01.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 1007,
+      "height": 602,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.064395,
+        0.104871,
+        0.693008,
+        0.678902
+      ],
+      "source_groups": [],
+      "shape_count": 41,
+      "sha256": "90f1129f7003d885eb33a0e022ec044beeec54909c659ff2e04577dac317b940",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS30_Panel_02.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 976,
+      "height": 493,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.699492,
+        0.106025,
+        0.934722,
+        0.297078
+      ],
+      "source_groups": [],
+      "shape_count": 4,
+      "sha256": "883799194468341540443309e07aa3121a08c48dda1f817ac80eb7eb52ceaaa1",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS30_Panel_03.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 901,
+      "height": 955,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.699258,
+        0.296213,
+        0.934585,
+        0.679087
+      ],
+      "source_groups": [],
+      "shape_count": 22,
+      "sha256": "cf5391ea6750edf7cff228e03570e2c548a7464c9d6aa0eb2e29b5b8a49e61a1",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS30_Panel_04.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 984,
+      "height": 152,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.064292,
+        0.675989,
+        0.3796,
+        0.782117
+      ],
+      "source_groups": [],
+      "shape_count": 17,
+      "sha256": "6ef4533578d9d1970c6716086c08b3df7541a7e4d0e50d13a8c90f04d7c2fb0e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS30_Panel_05.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 1019,
+      "height": 156,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.348234,
+        0.675984,
+        0.652531,
+        0.781969
+      ],
+      "source_groups": [],
+      "shape_count": 16,
+      "sha256": "dbae7894fe5ad4961ea4153a97c2c2d48630d8817f13b83a2603e7661117fafb",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS30_Panel_06.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 987,
+      "height": 152,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.62248,
+        0.676143,
+        0.936787,
+        0.781934
+      ],
+      "source_groups": [],
+      "shape_count": 22,
+      "sha256": "fce4bf05fd3eaad750dba12fd9432a9de4e15b2b925a584e590a61415609e9cb",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS30_Button_01.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 727,
+      "height": 163,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.065172,
+        0.779221,
+        0.356551,
+        0.905965
+      ],
+      "source_groups": [],
+      "shape_count": 22,
+      "sha256": "fc37664860ef7a1266048214a90d6ad492f2c04b4ba581c25cd8a9302ca99998",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS30_Button_02.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 720,
+      "height": 162,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.354484,
+        0.779215,
+        0.648867,
+        0.906117
+      ],
+      "source_groups": [],
+      "shape_count": 20,
+      "sha256": "c6566831f6e19d0dca4038d73226e7d308d4a1a1bc7978dab524ce05ad00f48c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS30_Button_03.png",
+      "source_number": 30,
+      "source_name": "源文件 (30).eps",
+      "width": 724,
+      "height": 163,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.644453,
+        0.779047,
+        0.936833,
+        0.906227
+      ],
+      "source_groups": [],
+      "shape_count": 25,
+      "sha256": "b91997177765d9bf5dc9d5f3cc08222006adc9061556083e26b9c77e69ad8408",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_01.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 959,
+      "height": 675,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.06648,
+        0.10517,
+        0.438844,
+        0.507867
+      ],
+      "source_groups": [],
+      "shape_count": 21,
+      "sha256": "fa08f38c31692976fd3321c68aefbe37526377977380ad92e72f01dc5f00506b",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_02.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 943,
+      "height": 755,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.104287,
+        0.5501,
+        0.399575,
+        0.917842
+      ],
+      "source_groups": [],
+      "shape_count": 21,
+      "sha256": "84091136f7749707b5c2f128164fe1ef4a592007fb7bc4854ea53a80c1c6f621",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_03.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 919,
+      "height": 232,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.741384,
+        0.128079,
+        0.94258,
+        0.228775
+      ],
+      "source_groups": [],
+      "shape_count": 5,
+      "sha256": "da04dd3cb60a79279c7e2ef5749b14646edfad616a6c2d2b1b3773a51e9659eb",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_04.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 919,
+      "height": 232,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.741384,
+        0.259985,
+        0.94258,
+        0.36392
+      ],
+      "source_groups": [],
+      "shape_count": 5,
+      "sha256": "ff11a65b525ed6f9b8a3d9bd5036b81c734d44be47597cc1d03d9fc7acacd12e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_05.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 919,
+      "height": 232,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.741384,
+        0.389241,
+        0.94258,
+        0.494943
+      ],
+      "source_groups": [],
+      "shape_count": 5,
+      "sha256": "d078b8edeb2266d763bd9bc3eccf5e522774421aefec788bbe7af5f6a869f7c9",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_06.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 919,
+      "height": 232,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.741384,
+        0.521147,
+        0.94258,
+        0.626849
+      ],
+      "source_groups": [],
+      "shape_count": 5,
+      "sha256": "071d8221063d3672924b3b6a04fa814c8307139a2b326ee037f77e3675e7c21c",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_07.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 919,
+      "height": 232,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.741384,
+        0.653054,
+        0.94258,
+        0.758755
+      ],
+      "source_groups": [],
+      "shape_count": 5,
+      "sha256": "089fa5eda54df193ca50fb71e1344595387bc9df96a2859c5b7b48e903d2b26f",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "文本框与数据面板/EPS31_Panel_08.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 919,
+      "height": 232,
+      "category": "文本框与数据面板",
+      "source_rect_normalized": [
+        0.741384,
+        0.781132,
+        0.94258,
+        0.886834
+      ],
+      "source_groups": [],
+      "shape_count": 5,
+      "sha256": "72fea7004ef2d86b060e2357b0f73209d94c064d3ffe106ee42245e89784d6c9",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS31_Button_01.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 681,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.490388,
+        0.11593,
+        0.69966,
+        0.233084
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "7f804aeb422fb9a5284784e466659480b4cd49bb6204ab3a7a988b02b796953e",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS31_Button_02.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 681,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.490388,
+        0.249004,
+        0.69966,
+        0.366975
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "564bb8540b848d0cd8cc082804271234f33c062c02e26b907169380dcabd215f",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS31_Button_03.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 681,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.490388,
+        0.380854,
+        0.69966,
+        0.500049
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "a1a45f8cc80f0e23cc8d006c1113e4197077cd860f5016ef821e7d517b2fc5ce",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS31_Button_04.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 681,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.490388,
+        0.513928,
+        0.69966,
+        0.633939
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "9c4e699b116cae4d8a750e885b737ca6947de14a3e450dc3178da68b680bdd86",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS31_Button_05.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 681,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.490388,
+        0.64292,
+        0.69966,
+        0.76783
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "f9be905fc03c2235fa341ad758c8ba3b4d6c1a0aedeeb044bef38732944a3711",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    },
+    {
+      "path": "点击按钮/EPS31_Button_06.png",
+      "source_number": 31,
+      "source_name": "源文件 (31).eps",
+      "width": 681,
+      "height": 206,
+      "category": "点击按钮",
+      "source_rect_normalized": [
+        0.490388,
+        0.775178,
+        0.69966,
+        0.903762
+      ],
+      "source_groups": [],
+      "shape_count": 11,
+      "sha256": "a525ca32f7810d7d0d3c2f7b2827a0fc30ba3f678e56760a4baa2ca37f3d5e71",
+      "method": "native_outline_mask_original_render",
+      "note": ""
+    }
+  ]
+}

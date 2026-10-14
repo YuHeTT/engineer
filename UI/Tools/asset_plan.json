@@ -1,0 +1,1501 @@
+{
+  "7": [
+    {
+      "category": "panel",
+      "ids": [
+        1
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        23
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        26
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        27
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        28
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        31
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        32
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        33
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        34
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.42,
+        0.052,
+        0.508,
+        0.185
+      ],
+      "ids": [
+        5,
+        8
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        21
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        22
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        30
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        35
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        29
+      ]
+    }
+  ],
+  "12": [
+    {
+      "category": "panel",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        27
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        30
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        32
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        35
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        38
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        28
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        31
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        26
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        29
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        40
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        33
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        34
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        36
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        37
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        39
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        41
+      ]
+    }
+  ],
+  "9": [
+    {
+      "category": "button",
+      "rect": [
+        0.03,
+        0.2,
+        0.255,
+        0.49
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.267,
+        0.2,
+        0.49,
+        0.49
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.507,
+        0.2,
+        0.735,
+        0.49
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.748,
+        0.2,
+        0.978,
+        0.49
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.03,
+        0.54,
+        0.255,
+        0.81
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.267,
+        0.54,
+        0.49,
+        0.81
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.507,
+        0.54,
+        0.735,
+        0.81
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.748,
+        0.54,
+        0.978,
+        0.81
+      ]
+    }
+  ],
+  "11": [
+    {
+      "category": "panel",
+      "rect": [
+        0.065,
+        0.07,
+        0.69,
+        0.636
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.701,
+        0.07,
+        0.935,
+        0.256
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.701,
+        0.272,
+        0.931,
+        0.638
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.067,
+        0.64,
+        0.35,
+        0.751
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.359,
+        0.64,
+        0.64,
+        0.751
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.649,
+        0.64,
+        0.931,
+        0.751
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.068,
+        0.758,
+        0.379,
+        0.837
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.383,
+        0.758,
+        0.692,
+        0.837
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.382,
+        0.847,
+        0.692,
+        0.93
+      ]
+    }
+  ],
+  "16": [
+    {
+      "category": "panel",
+      "rect": [
+        0.025,
+        0.1,
+        0.335,
+        0.91
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.342,
+        0.1,
+        0.588,
+        0.91
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.6,
+        0.2,
+        0.73,
+        0.47
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.6,
+        0.52,
+        0.73,
+        0.8
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.747,
+        0.045,
+        0.86,
+        0.24
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.865,
+        0.045,
+        0.98,
+        0.24
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.747,
+        0.245,
+        0.86,
+        0.415
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.865,
+        0.245,
+        0.98,
+        0.415
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.747,
+        0.425,
+        0.86,
+        0.595
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.865,
+        0.425,
+        0.98,
+        0.595
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.747,
+        0.605,
+        0.86,
+        0.775
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.865,
+        0.605,
+        0.98,
+        0.775
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.747,
+        0.785,
+        0.86,
+        0.975
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.865,
+        0.785,
+        0.98,
+        0.975
+      ]
+    }
+  ],
+  "17": [
+    {
+      "category": "panel",
+      "rect": [
+        0.119,
+        0.104,
+        0.653,
+        0.568
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.695,
+        0.104,
+        0.896,
+        0.568
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.244,
+        0.75,
+        0.509,
+        0.872
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.522,
+        0.75,
+        0.791,
+        0.872
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.119,
+        0.608,
+        0.379,
+        0.722
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.383,
+        0.608,
+        0.641,
+        0.722
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.648,
+        0.608,
+        0.909,
+        0.722
+      ]
+    }
+  ],
+  "18": [
+    {
+      "category": "panel",
+      "rect": [
+        0.045,
+        0.128,
+        0.684,
+        0.68
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7,
+        0.108,
+        0.952,
+        0.314
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.697,
+        0.338,
+        0.957,
+        0.722
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.058,
+        0.736,
+        0.28,
+        0.852
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.294,
+        0.736,
+        0.514,
+        0.852
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.526,
+        0.736,
+        0.749,
+        0.852
+      ]
+    }
+  ],
+  "19": [
+    {
+      "category": "panel",
+      "rect": [
+        0.036,
+        0.132,
+        0.692,
+        0.683
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7,
+        0.124,
+        0.958,
+        0.334
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.697,
+        0.338,
+        0.959,
+        0.723
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.044,
+        0.729,
+        0.273,
+        0.866
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.294,
+        0.729,
+        0.525,
+        0.866
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.545,
+        0.729,
+        0.771,
+        0.866
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.814,
+        0.734,
+        0.948,
+        0.928
+      ]
+    }
+  ],
+  "24": [
+    {
+      "category": "panel",
+      "rect": [
+        0.018,
+        0.08,
+        0.315,
+        0.968
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.323,
+        0.108,
+        0.545,
+        0.662
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.554,
+        0.108,
+        0.681,
+        0.651
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.692,
+        0.129,
+        0.78,
+        0.354
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.789,
+        0.129,
+        0.877,
+        0.354
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.886,
+        0.129,
+        0.974,
+        0.354
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.326,
+        0.71,
+        0.51,
+        0.89
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.515,
+        0.7,
+        0.593,
+        0.79
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.598,
+        0.7,
+        0.677,
+        0.79
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.515,
+        0.797,
+        0.593,
+        0.88
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.598,
+        0.797,
+        0.677,
+        0.88
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.694,
+        0.43,
+        0.79,
+        0.552
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.79,
+        0.43,
+        0.886,
+        0.552
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.886,
+        0.43,
+        0.982,
+        0.552
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.694,
+        0.555,
+        0.79,
+        0.679
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.79,
+        0.555,
+        0.886,
+        0.679
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.886,
+        0.555,
+        0.982,
+        0.679
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.694,
+        0.775,
+        0.746,
+        0.88
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.75,
+        0.775,
+        0.797,
+        0.88
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.802,
+        0.775,
+        0.845,
+        0.88
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.845,
+        0.775,
+        0.886,
+        0.88
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.886,
+        0.775,
+        0.936,
+        0.88
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.936,
+        0.775,
+        0.976,
+        0.88
+      ]
+    }
+  ],
+  "25": [
+    {
+      "category": "panel",
+      "rect": [
+        0.135,
+        0.036,
+        0.65,
+        0.596
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.66,
+        0.049,
+        0.868,
+        0.582
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.252,
+        0.778,
+        0.51,
+        0.924
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.495,
+        0.778,
+        0.759,
+        0.924
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.152,
+        0.622,
+        0.386,
+        0.777
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.382,
+        0.622,
+        0.612,
+        0.777
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.612,
+        0.622,
+        0.852,
+        0.777
+      ]
+    }
+  ],
+  "28": [
+    {
+      "category": "panel",
+      "rect": [
+        0.085,
+        0.225,
+        0.555,
+        0.642
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.566,
+        0.224,
+        0.919,
+        0.642
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.084,
+        0.747,
+        0.492,
+        0.927
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.508,
+        0.747,
+        0.917,
+        0.927
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.084,
+        0.645,
+        0.283,
+        0.733
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.295,
+        0.645,
+        0.494,
+        0.733
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.506,
+        0.645,
+        0.706,
+        0.733
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.717,
+        0.645,
+        0.917,
+        0.733
+      ]
+    }
+  ],
+  "29": [
+    {
+      "category": "panel",
+      "rect": [
+        0.565,
+        0.104,
+        0.972,
+        0.464
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.601,
+        0.526,
+        0.933,
+        0.884
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.031,
+        0.108,
+        0.293,
+        0.202
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.292,
+        0.108,
+        0.555,
+        0.202
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.031,
+        0.198,
+        0.293,
+        0.293
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.292,
+        0.198,
+        0.555,
+        0.293
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.031,
+        0.289,
+        0.293,
+        0.391
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.292,
+        0.289,
+        0.555,
+        0.391
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.031,
+        0.524,
+        0.293,
+        0.643
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.292,
+        0.524,
+        0.555,
+        0.643
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.031,
+        0.648,
+        0.293,
+        0.768
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.292,
+        0.648,
+        0.555,
+        0.768
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.031,
+        0.773,
+        0.293,
+        0.894
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.292,
+        0.773,
+        0.555,
+        0.894
+      ]
+    }
+  ],
+  "30": [
+    {
+      "category": "panel",
+      "rect": [
+        0.067,
+        0.109,
+        0.69,
+        0.675
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.702,
+        0.11,
+        0.932,
+        0.293
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.702,
+        0.3,
+        0.932,
+        0.675
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.067,
+        0.68,
+        0.377,
+        0.778
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.351,
+        0.68,
+        0.65,
+        0.778
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.625,
+        0.68,
+        0.934,
+        0.778
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.068,
+        0.783,
+        0.354,
+        0.902
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.357,
+        0.783,
+        0.646,
+        0.902
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.647,
+        0.783,
+        0.934,
+        0.902
+      ]
+    }
+  ],
+  "31": [
+    {
+      "category": "panel",
+      "rect": [
+        0.069,
+        0.109,
+        0.436,
+        0.504
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.107,
+        0.554,
+        0.397,
+        0.914
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.493,
+        0.12,
+        0.697,
+        0.229
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.493,
+        0.253,
+        0.697,
+        0.363
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.493,
+        0.385,
+        0.697,
+        0.496
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.493,
+        0.518,
+        0.697,
+        0.63
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.493,
+        0.647,
+        0.697,
+        0.764
+      ]
+    },
+    {
+      "category": "button",
+      "rect": [
+        0.493,
+        0.779,
+        0.697,
+        0.9
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.744,
+        0.132,
+        0.94,
+        0.225
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.744,
+        0.264,
+        0.94,
+        0.36
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.744,
+        0.393,
+        0.94,
+        0.491
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.744,
+        0.525,
+        0.94,
+        0.623
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.744,
+        0.657,
+        0.94,
+        0.755
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.744,
+        0.785,
+        0.94,
+        0.883
+      ]
+    }
+  ]
+}
