@@ -42,6 +42,7 @@ namespace Engineer.UI
         private readonly Stack<GameState> history = new Stack<GameState>();
         private GameContext context = new GameContext();
         private GameSession session;
+        private readonly FarmProbeState probe = new FarmProbeState();
         private PlaceholderScreen current;
 
         /// <summary>跨屏共享数据。</summary>
@@ -54,6 +55,21 @@ namespace Engineer.UI
         public GameSession Session
         {
             get { return session; }
+        }
+
+        /// <summary>
+        /// 探测状态（巡航得到的数据）。
+        ///
+        /// 【为什么放在这里】它是**农场场景**（巡航小车）和 **UI 场景**（巡航/分析界面）
+        /// 都要用的共享数据。放在 GameFlowController 上，
+        /// 两边都通过 FindObjectOfType 拿到同一个实例。
+        ///
+        /// 注意它**不写回数值内核** —— 内核里的土壤是权威数据，
+        /// 探测值只影响界面显示和推荐用的输入。
+        /// </summary>
+        public FarmProbeState Probe
+        {
+            get { return probe; }
         }
 
         /// <summary>当前状态。</summary>

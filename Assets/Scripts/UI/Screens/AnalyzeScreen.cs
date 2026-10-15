@@ -90,6 +90,55 @@ namespace Engineer.UI
             RefreshSuggestions(session);
         }
 
+        /// <summary>
+        /// 报告"探测值"与"内核真值"的差距。
+        ///
+        /// 【为什么要有这个方法 —— 说明一个设计选择】
+        ///   推荐方案（<see cref="GameSession.Recommend"/>）与适宜度（Fit）用的是
+        ///   **内核里的真实土壤**，而不是带误差的探测值。
+        ///   这是有意的：内核是权威数据，只由水肥演算推进；
+        ///   如果让带误差的探测值去驱动推荐，误差会累积进数值链路，
+        ///   最后收益算出来就不可信了。
+        ///
+        ///   所以本屏的分工是：
+        ///     · 适宜度 / 推荐 → 用真值（保证数值链路的正确性）
+        ///     · 巡航界面的"探测数据"列 → 显示带误差的值（体现"探测"这件事）
+        ///   这里把这个差距打出来，方便对比两者，也提醒策划：
+        ///   如果希望"误差影响决策"，那是另一套玩法，需要单独设计。
+        /// </summary>
+        private void ReportProbeGap(GameSession session)
+        {
+            if (!logSuggestionRefresh) return;
+            if (session == null || !session.IsStarted) return;
+
+            var probe = Flow != null ? Flow.Probe : null;
+            if (probe == null || !probe.IsActive) return;
+
+            var sb = new System.Text.StringBuilder();
+            sb.AppendFormat("[Analyze] 探测值 vs 真值（覆盖率 {0:0.0}%，误差幅度 {1:0.#}%~{2:0.#}%）：\n",
+                probe.Coverage * 100f,
+                Engineer.UI.FarmProbeState.MinError * 100f,
+                Engineer.UI.FarmProbeState.MaxError * 100f);
+
+            for (var i = 0; i < SoilIndicators.Count; i++)
+            {
+                var truth = session.GetIndicator(i, 0f);
+                if (!probe.IsRevealed(i))
+                {
+                    sb.AppendFormat("    {0,-12} 真值 {1,-10} 未探测\n",
+                        SoilIndicators.Names[i], SoilIndicators.Format(i, truth));
+                    continue;
+                }
+                var pv = probe.GetProbe(i);
+                var diff = truth != 0f ? (pv - truth) / truth * 100f : 0f;
+                sb.AppendFormat("    {0,-12} 真值 {1,-10} 探测 {2,-10} 偏差 {3,6:0.0}%\n",
+                    SoilIndicators.Names[i], SoilIndicators.Format(i, truth),
+                    SoilIndicators.Format(i, pv), diff);
+            }
+
+            Debug.Log(sb.ToString(), this);
+        }
+
         /// <summary>按节点名补齐未绑定的字段。万一场景重建导致引用丢失，本屏仍能工作。</summary>
         public void EnsureResolved()
         {
@@ -198,6 +247,9 @@ namespace Engineer.UI
         {
             // 适宜度是独立的一组文本，先刷新它
             RefreshSuitability(session);
+
+            // 探测值 vs 内核真值的差距（见方法说明）
+            ReportProbeGap(session);
 
             if (suggestionValues == null) return;
 
