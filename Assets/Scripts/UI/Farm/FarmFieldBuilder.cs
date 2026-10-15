@@ -119,21 +119,24 @@ namespace Engineer.UI
             lastConfigSignature = ConfigSignature();
         }
 
+        [Header("日志")]
+        [Tooltip("是否打印生成/合并日志。建议排查时开、平时关。")]
+        [SerializeField] private bool verboseLogs = true;
+
         private void Update()
         {
-            // 在 Inspector 里改 Config（比如把 PlantDensityScale 设成 0.1）时
-            // 自动重建。
+            // 在 Inspector 里改 Config 时自动重建。
             //
-            // 【为什么需要这个】之前改参数没反应，是因为场景是**编辑期烘焙**好的：
-            //   · 编辑期点菜单 → Build() 把田和玉米生成并存进 Farm.unity
-            //   · Play 时 Awake → Build() 又按**存好的 config**生成一遍
-            //   · 你在 Inspector 改的值属于运行时改动，Build 已经跑完了，所以看不到效果
-            // 有了这个轮询，Play 中改参数就会立刻重建。
+            // 【注意两个坑】
+            //   ① 必须记录"上次已经重建过的签名"，而不是每帧跟 Build() 时的值比 ——
+            //      否则 Build() 之后签名对不上就会**每帧重建**，直接卡死。
+            //   ② 重建是重活（几百个 Instantiate），所以只在签名真的变了才做。
             var sig = ConfigSignature();
             if (sig == lastConfigSignature) return;
 
             lastConfigSignature = sig;
-            Debug.Log("[农场] 检测到 Config 改动，重建田块与玉米…", this);
+            if (verboseLogs)
+                Debug.Log("[农场] 检测到 Config 改动，重建田块与玉米…", this);
             Build();
         }
 

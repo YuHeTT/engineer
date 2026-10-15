@@ -302,6 +302,10 @@ MonoBehaviour:
   minDistance: 3
   maxDistance: 60
   smoothTime: 0.12
+  followRoverWhileCruising: 1
+  cruiseFollowHeight: 4.5
+  cruiseFollowBack: 6
+  cruiseFollowPitch: 32
 --- !u!81 &1447736214
 AudioListener:
   m_ObjectHideFlags: 0
@@ -489,13 +493,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roverPrefab: {fileID: 919132149155446097, guid: e691f3190f71f9a4aa0c4a338b6d81dc, type: 3}
   roverGroundOffset: 0
-  roverYawOffset: 0
+  roverYawOffset: 90
   scanRadius: 3
   probeStepDistance: 0.8
-  moveSpeed: 5
-  turnSpeed: 120
-  waypointTolerance: 0.8
-  autoSpeed: 4
+  moveSpeed: 8
+  turnSpeed: 150
+  waypointTolerance: 1
+  autoSpeed: 15
+  cleanStudioProps: 1
+  roverScale: 0.25
+  autoSpeedMultiplier: 1
+  yawPlusKey: 122
+  yawMinusKey: 120
+  fastForwardKey: 102
+  finishNowKey: 103
   grid: {fileID: 0}
   mode: 0
   waypointIndex: 0
@@ -519,7 +530,7 @@ MonoBehaviour:
   coveredCells: 0
   showUncoveredMask: 1
   maskOnlyInPlayMode: 1
-  maskColor: {r: 0.05, g: 0.08, b: 0.12, a: 0.38}
+  maskColor: {r: 0.05, g: 0.08, b: 0.12, a: 0.15}
   maskHeight: 0.3
 --- !u!114 &1787454902
 MonoBehaviour:
@@ -569,7 +580,8 @@ MonoBehaviour:
   field: {fileID: 0}
   debugLabel: {fileID: 0}
   idleStage: 3
-  logSync: 1
+  logSync: 0
+  applyLandAreaAsBlockCount: 1
 --- !u!114 &1787454905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,7 +632,8 @@ MonoBehaviour:
   visiblePlantCount: 0
   currentStage: 3
   currentGrowth: 1
-  optimizeMeshes: 0
+  verboseLogs: 1
+  optimizeMeshes: 1
   optimizeInstancing: 1
 --- !u!4 &1787454906
 Transform:

@@ -112,7 +112,25 @@ namespace Engineer.UI
             if (session == null || !session.IsStarted) return;
 
             var probe = Flow != null ? Flow.Probe : null;
-            if (probe == null || !probe.IsActive) return;
+
+            // 【诊断】以前这里是静默 return，导致"为什么没有探测值"无从判断。
+            //   现在每种跳过原因都打一行说明。
+            if (probe == null)
+            {
+                Debug.LogWarning("[Analyze] 没有 FarmProbeState（GameFlowController 上缺 Probe）。" +
+                                 "探测值对比无法输出。", this);
+                return;
+            }
+            if (!probe.IsActive)
+            {
+                Debug.LogWarning("[Analyze] 探测未激活（probe.IsActive = false）—— " +
+                                 "说明本阶段没有走过「巡航」界面。\n" +
+                                 "  路径应该是：农场主界面 → 点「巡航」→ RobotCruiseScreen.OnEnter " +
+                                 "会调 probe.Begin()。\n" +
+                                 "  如果跳过巡航直接点「分析」，就没有探测值（这是符合设计的）。\n" +
+                                 "  想快速验证：Play 时在巡航界面按 G 立刻结束巡航，再进分析。", this);
+                return;
+            }
 
             var sb = new System.Text.StringBuilder();
             sb.AppendFormat("[Analyze] 探测值 vs 真值（覆盖率 {0:0.0}%，误差幅度 {1:0.#}%~{2:0.#}%）：\n",

@@ -43,11 +43,15 @@ namespace Engineer.UI
                  "★ 玩家选的亩数 = 田块数（1 块 = 1 亩），会拆成接近 16:10 的行列布局。")]
         [SerializeField] private bool applyLandAreaAsBlockCount = true;
 
-        [Tooltip("是否在 Console 打印每次同步。")]
-        [SerializeField] private bool logSync = true;
+        [Tooltip("是否在 Console 打印每次同步。\n" +
+                 "★ 排查阶段开，稳定后建议关掉 —— 之前日志太多导致没法排查。")]
+        [SerializeField] private bool logSync = false;
 
         /// <summary>上一次已经应用到田块布局的亩数（-1 = 还没应用过）。</summary>
         private float appliedArea = -1f;
+
+        /// <summary>上一次同步时的 UI 阶段，用来检测"进入新阶段"。</summary>
+        private int lastStageForReset = -1;
 
         /// <summary>
         /// 上一次同步到的状态，用来判断"变了才动"。
@@ -169,8 +173,19 @@ namespace Engineer.UI
             var grid = FindObjectOfType<FarmFieldGrid>();
             if (grid != null) grid.Build();
 
+            // 【注意】**不要**在这里调 cruise.ResetToStart()。
+            //
+            //   踩过的坑：ResetToStart() 会把 CruiseController.Mode 打回 Idle。
+            //   而调用链是：
+            //     点「手动巡航」→ StartManual()（mode = Manual）
+            //       → 切到农场场景 → FarmGrowthBinder 同步 → ApplyLandArea()
+            //       → ResetToStart() → **mode 被打回 Idle，巡航当场结束**
+            //   现象就是"点了巡航却看不到车在动"。
+            //
+            //   田块尺寸变了的时候小车可能站在田外，所以只需要把它夹回田内，
+            //   而不是整个重置（模式与覆盖率都要保留）。
             var cruise = FindObjectOfType<FarmCruiseController>();
-            if (cruise != null) cruise.ResetToStart();
+            if (cruise != null) cruise.ClampInsideField();
 
             // 相机重新取景
             var rig = FindObjectOfType<FarmCameraRig>();
@@ -206,6 +221,29 @@ namespace Engineer.UI
 
             // ★ 亩数变了就重排田块（1 块 = 1 亩）
             if (!isIdle && applyLandAreaAsBlockCount) ApplyLandArea();
+
+            // ★ 进入新阶段就清空巡航覆盖率 —— 按策划确认的"每阶段重新巡航"。
+            //   每个生育期的土壤状况会变，所以每一阶段都要重新下地探测。
+            if (!isIdle && uiStage.Value != lastStageForReset)
+            {
+                lastStageForReset = uiStage.Value;
+                var grid = FindObjectOfType<FarmFieldGrid>();
+                if (grid != null)
+                {
+                    grid.ClearCoverage();
+                    grid.EndCruise();      // 撤掉遮罩，等玩家重新开始巡航
+                }
+
+                // 探测状态也一起重置：上一阶段的探测值不该带到这一阶段
+                var probe = flow != null ? flow.Probe : null;
+                if (probe != null) probe.Reset();
+
+                if (logSync)
+                {
+                    Debug.Log(string.Format("[农场] 进入 S{0}，巡航覆盖率与探测数据已清零（每阶段需重新探测）。",
+                        uiStage.Value), this);
+                }
+            }
 
             var stage = isIdle
                 ? idleStage

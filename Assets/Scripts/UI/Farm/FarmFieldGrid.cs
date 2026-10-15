@@ -304,8 +304,29 @@ namespace Engineer.UI
                  "在 Scene 视图里根本看不出田和玉米长什么样。")]
         [SerializeField] private bool maskOnlyInPlayMode = true;
 
-        [Tooltip("遮罩颜色。alpha 决定浓度 —— 太大会把土壤和玉米都盖住。")]
-        [SerializeField] private Color maskColor = new Color(0.05f, 0.08f, 0.12f, 0.38f);
+        /// <summary>
+        /// 巡航是否已经开始。**只有开始巡航后才显示未覆盖遮罩**。
+        /// 【为什么】否则一进农场就是一片深色遮罩，田和玉米都看不清。
+        /// </summary>
+        private bool cruiseActive;
+
+        /// <summary>开始巡航：允许显示未覆盖遮罩。</summary>
+        public void BeginCruise()
+        {
+            cruiseActive = true;
+            RefreshMask();
+        }
+
+        /// <summary>结束巡航：撤掉遮罩（探测完了就不该再挡着）。</summary>
+        public void EndCruise()
+        {
+            cruiseActive = false;
+            RefreshMask();
+        }
+
+        [Tooltip("★ alpha 别设太大：0.38 在灰蓝色下会让整片田看起来发灰、看不清土壤。" +
+                 "0.12~0.18 才是「能看出范围、又不挡住田地」的量。")]
+        [SerializeField] private Color maskColor = new Color(0.05f, 0.08f, 0.12f, 0.15f);
 
         [Tooltip("遮罩离地高度（米）。\n" +
                  "★ 不要设太高：幼苗只有 0.36 m 高，遮罩设在 1.6 m 会从上面盖住它，\n" +
@@ -321,8 +342,17 @@ namespace Engineer.UI
         {
             if (!built || cells == null) return;
 
-            // ★ 编辑器里不生成遮罩：它铺满整片田，会把场景盖成一片黑，
-            //   在 Scene 视图里完全看不出田和玉米的样子。
+            // ★ 巡航还没开始时**不显示遮罩**。
+            //   否则一进农场就是一片深色，看不出田和玉米 ——
+            //   这也正是之前"场景一片黑"的原因。
+            if (!cruiseActive)
+            {
+                if (maskRoot != null) maskRoot.gameObject.SetActive(false);
+                return;
+            }
+
+            // 编辑器里不生成遮罩：它铺满整片田，会把场景盖成一片黑，
+            // 在 Scene 视图里完全看不出田和玉米的样子。
             if (!showUncoveredMask || (maskOnlyInPlayMode && !Application.isPlaying))
             {
                 if (maskRoot != null) maskRoot.gameObject.SetActive(false);

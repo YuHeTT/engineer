@@ -120,6 +120,11 @@ namespace Engineer.UI
         {
             // Awake 里已经把起始屏打开了，这里只补一次 OnEnter，保证屏的进入逻辑一定被调用。
             if (current != null) current.OnEnter(null);
+
+            // ★ 启动时也要应用一次输入策略 ——
+            //   Awake 走的是"直接打开起始屏"，没经过 GoTo，
+            //   不补这一下的话起始界面时相机仍然在抢键盘。
+            ApplyInputPolicy(Current);
         }
 
         /// <summary>收集场景里的屏，重复状态以最后一个为准并给出警告。</summary>
@@ -158,8 +163,34 @@ namespace Engineer.UI
 
             current = next;
             current.OnEnter(null);
+            ApplyInputPolicy(state);
 
             if (logTransitions) Debug.Log("[UI] → " + GameStateInfo.DisplayName(state));
+        }
+
+        /// <summary>
+        /// 按当前界面决定"键盘归谁"。
+        ///
+        /// 【为什么需要】之前相机在任何界面都抢 WASD / QE / 滚轮，
+        /// 导致"进入农场操作界面后其他按键无法使用"。
+        /// 现在集中在这里判定，只有确实在看 3D 农场时才把键盘给相机。
+        ///
+        /// 农场主界面 / 机器人巡航界面 = 有 3D 农场 → 相机可用
+        /// 其它界面（欢迎、选地、分析、收益…）→ 相机完全不读输入，键盘交还 UI
+        /// </summary>
+        private void ApplyInputPolicy(GameState state)
+        {
+            var cameraHasInput = state == GameState.FarmStage || state == GameState.RobotCruise;
+
+            var rig = FindObjectOfType<FarmCameraRig>();
+            if (rig != null) rig.SetInputEnabled(cameraHasInput);
+
+            if (logTransitions && cameraHasInput)
+            {
+                Debug.Log(string.Format(
+                    "[UI] 键盘交给农场相机（{0}）。Tab 切视角、C 切档位、V 切天空、QE 旋转、滚轮缩放。",
+                    GameStateInfo.DisplayName(state)));
+            }
         }
 
         /// <summary>返回上一步。</summary>
@@ -170,7 +201,6 @@ namespace Engineer.UI
                 Debug.Log("[UI] 已在起始界面，没有可返回的上一步。");
                 return;
             }
-
             var previous = history.Pop();
             var target = Find(previous);
             if (target == null)
