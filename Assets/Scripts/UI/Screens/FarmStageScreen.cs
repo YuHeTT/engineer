@@ -70,6 +70,15 @@ namespace Engineer.UI
                 primaryButton.onClick.AddListener(OnPrimaryClicked);
             }
 
+            foreach (var value in indicatorValueTexts)
+            {
+                if (value == null) continue;
+                value.enableWordWrapping = false;
+                value.enableAutoSizing = true;
+                value.fontSizeMin = 10f;
+                value.fontSizeMax = 18f;
+                value.alignment = TextAlignmentOptions.MidlineRight;
+            }
             RefreshFromContext();
         }
 
