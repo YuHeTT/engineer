@@ -236,7 +236,8 @@ namespace Engineer.Core
 
             // ---------- 10. 长势与产量 ----------
             c.Growth = new GrowthRule { GoodAllAbove = 0.6f, BadAllBelow = 0.6f };
-            c.Yield  = new YieldConfig { YmaxGeo = 1000f, UseWeightedWater = false, SStatic = 1f };
+            // Ymax,geo = 733（文档：平川台+玉米），水分系数走 Jensen 加权（α3=0.4）
+            c.Yield  = new YieldConfig { YmaxGeo = 733f, UseWeightedWater = true, SStatic = 1f };
             c.Inputs = new InputLimits();      // 下限 0 / 上限=建议量×5，具体见 InputLimits 注释
 
             return c;

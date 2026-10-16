@@ -274,20 +274,32 @@ namespace Engineer.Core
     public sealed class YieldConfig
     {
         /// <summary>
-        /// 单位面积理论最大产量 Ymax,geo。
-        /// 【占位值 1000】策划暂定，后续确定后只改这里。
+        /// 单位面积理论最大产量 Ymax,geo（kg/亩）。
+        ///
+        /// 【数值来源】策划方案文档（2026-10-16 版）明确：
+        ///   平川台 + 玉米 Ymax,geo = **733 kg/亩**。
+        ///   原文：「暂时平川台玉米 Ymax,geo=733kg/亩」。
+        /// 旧值 1000 是占位，已按文档替换。
         /// </summary>
-        public float YmaxGeo = 1000f;
+        public float YmaxGeo = 733f;
 
         /// <summary>
-        /// 水分系数是否用加权平均（文档写 Fwater=(α1·Fw,s1+…+α4·Fw,s4)/4）。
-        /// v1：系统总给最优灌溉，Fwater 恒为 1，此开关不用。
-        /// 保留字段是为了后续接"水分胁迫"时不用改函数签名。
+        /// 水分系数是否用加权平均（Jensen 乘法水分生产函数）。
+        ///
+        /// 【默认 true】文档给了阶段敏感权重 α=[0.2,0.2,0.4,0.2] 并引用 Jensen 模型；
+        /// 若不用权重，这个 α 就形同虚设。
         /// </summary>
-        public bool UseWeightedWater;
+        public bool UseWeightedWater = true;
 
-        /// <summary>四个阶段的水分权重 α1..α4。文档未给具体值，先均分。</summary>
-        public float[] Alpha = { 0.25f, 0.25f, 0.25f, 0.25f };
+        /// <summary>
+        /// 四个阶段的水分敏感权重 α1..α4。
+        ///
+        /// 【文档原值】α1=0.2, α2=0.2, **α3=0.4**, α4=0.2。
+        /// S3（生殖关键期）权重是其它阶段的两倍 —— 文档原文：
+        /// 「全生育胁迫最敏感阶段」「缺水缺肥会造成不可逆减产」。
+        /// 旧值 0.25 均分是占位，已按文档替换。
+        /// </summary>
+        public float[] Alpha = { 0.2f, 0.2f, 0.4f, 0.2f };
 
         /// <summary>静态因素系数 Sstatic。文档：恒为 1。</summary>
         public float SStatic = 1f;

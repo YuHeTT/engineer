@@ -84,8 +84,11 @@ namespace Engineer.Core
         public static float YieldFromStages(float[] stageFertility, YieldConfig cfg)
         {
             float fert = OverallFertility(stageFertility);
-            float water = 1f;                                  // v1：Fwater = 1
-            float stat = cfg != null ? cfg.SStatic : 1f;       // v1：Sstatic = 1
+            // Fwater 暂时仍取常量 1 —— 因为"由灌溉量算 Fw 阶段值"的具体规则尚未敲定
+            // （见待办 C1）。但 Alpha=[0.2,0.2,0.4,0.2] 与 UseWeightedWater 已按文档就位，
+            // 规则一旦确定，只需把这里换成按灌溉量计算的实现。
+            float water = 1f;
+            float stat = cfg != null ? cfg.SStatic : 1f;       // 文档：暂定不参与产量
             return Yield(fert, water, stat, cfg);
         }
     }
