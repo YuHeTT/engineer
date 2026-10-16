@@ -182,7 +182,12 @@ namespace Engineer.UI.EditorTools
         private static PlaceholderScreen BuildLandParams(Transform parent)
         {
             RectTransform body, footer;
-            var screen = NewScreen(parent, GameState.LandParams, "土地基础数据设置",
+            // 挂专用脚本 LandParamsScreen：全工程只有它会读这六个输入框，并调
+            // GameFlowController.BeginSimulation() 启动数值内核。
+            // 挂成通用 PlaceholderScreen 的话，玩家填的数根本进不了 GameContext
+            //（症状：确认页、农场页显示的还是默认值），而且不报错、看不出原因。
+
+            var screen = NewScreen<LandParamsScreen>(parent, GameState.LandParams, "土地基础数据设置",
                 "六项基础数值：土地面积与五项动态指标由玩家输入，四项静态指标在第一阶段随机生成。",
                 false, out body, out footer);
 
@@ -218,7 +223,12 @@ namespace Engineer.UI.EditorTools
         private static PlaceholderScreen BuildConfirm(Transform parent)
         {
             RectTransform body, footer;
-            var screen = NewScreen(parent, GameState.Confirm, UiContent.ConfirmTitle, UiContent.ConfirmNote,
+            // 挂专用脚本 ConfirmScreen：它会把「本局配置一览」12 行刷新成
+            // GameContext / 数值内核里的真实数据（四项静态指标为内核随机值）。
+            // 挂通用 PlaceholderScreen 时，这里永远显示下面写死的占位值 ——
+            // 玩家看到的就是"和我在上一页填的不一样"，而且不报错。
+
+            var screen = NewScreen<ConfirmScreen>(parent, GameState.Confirm, UiContent.ConfirmTitle, UiContent.ConfirmNote,
                 false, out body, out footer);
 
             var panel = UiFactory.MakePanel(body, "SummaryPanel", UiTheme.PanelBg);
@@ -251,7 +261,7 @@ namespace Engineer.UI.EditorTools
             }
 
             var note = UiFactory.MakeText(body, "Note",
-                "占位数值：接入 GameContext / 数值内核后，这里会自动显示玩家实际填写的值。",
+                "上面是建屏时的占位数值；若运行中仍是这些数，说明本屏没有挂 ConfirmScreen 脚本。",
                 UiTheme.FontSmall, UiTheme.TextMuted, TextAlignmentOptions.Center);
             UiLayout.Center(note.rectTransform, 0f, -300f, 1180f, 40f);
 

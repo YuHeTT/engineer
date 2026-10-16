@@ -14,6 +14,19 @@ namespace Engineer.Core
     /// <summary>纯 C# 数学工具。等价于 Mathf 里我们真正用到的那部分。</summary>
     public static class MathX
     {
+        /// <summary>拒绝 NaN/无穷值，避免污染后续阶段。</summary>
+        public static bool IsFinite(float value) => !float.IsNaN(value) && !float.IsInfinity(value);
+
+        /// <summary>统一输入解析：支持全角数字/小数点，不接受分组逗号或特殊浮点值。</summary>
+        public static bool TryParseInput(string text, out float value)
+        {
+            value = 0f;
+            if (string.IsNullOrWhiteSpace(text)) return false;
+            var normalized = text.Trim().Normalize(System.Text.NormalizationForm.FormKC);
+            return float.TryParse(normalized, System.Globalization.NumberStyles.Float,
+                System.Globalization.CultureInfo.InvariantCulture, out value) && IsFinite(value);
+        }
+
         /// <summary>把 v 限制到 [min, max]。</summary>
         public static float Clamp(float v, float min, float max)
         {

@@ -55,6 +55,8 @@ namespace Engineer.UI
 
         private bool resolved;
 
+        protected override bool OwnsButton(Button button) => button != null && button == plantSelectButton;
+
         public override void OnEnter(object args)
         {
             base.OnEnter(args);
@@ -95,17 +97,11 @@ namespace Engineer.UI
                 return;
             }
 
-            if (!ApplyInputsToContext(context))
+            if (!ApplyInputsToContext(context)) return;
+            if (!flow.BeginSimulation())
             {
-                Debug.LogWarning("[LandParams] 没有读到任何输入框，跳过启动数值内核。");
-            }
-            else
-            {
-                // 启动数值内核：静态四项由内核按 SimConfig.StaticRanges 随机生成
-                if (!flow.BeginSimulation())
-                {
-                    Debug.LogWarning("[LandParams] 数值内核启动失败，后续界面会走白盒占位逻辑。");
-                }
+                Debug.LogWarning("[LandParams] 模拟启动失败，请检查数值内核接线。", this);
+                return;
             }
 
             flow.GoTo(GameState.PlantSelect);
@@ -113,24 +109,33 @@ namespace Engineer.UI
 
         /// <summary>
         /// 读六个输入框写回 <see cref="GameContext"/>。
-        /// 返回是否至少成功读到一个输入框。
+        /// 六项全部有效才写入；任何一项无效则保持原状态。
         /// </summary>
         public bool ApplyInputsToContext(GameContext context)
         {
             if (context == null) return false;
 
             var session = context.Session;
-            var readAny = false;
-
-            context.LandAreaMu = ReadInput(0, context.LandAreaMu, ref readAny);
-            context.Ph = ReadInput(1, context.Ph, ref readAny);
-            context.OrganicMatter = ReadInput(2, context.OrganicMatter, ref readAny);
-            context.AvailableNitrogen = ReadInput(3, context.AvailableNitrogen, ref readAny);
-            context.LabilePhosphorus = ReadInput(4, context.LabilePhosphorus, ref readAny);
-            context.Potassium = ReadInput(5, context.Potassium, ref readAny);
-
-            // 面积不能为 0 或负数，否则"未覆盖面积"之类的计算会出问题
-            if (context.LandAreaMu <= 0f) context.LandAreaMu = 1f;
+            // 全部通过后再写 context，避免一半新值、一半旧值。
+            var values = new float[ParamCount];
+            for (int i = 0; i < ParamCount; i++)
+            {
+                var input = paramInputs != null && i < paramInputs.Length ? paramInputs[i] : null;
+                if (input == null || !MathX.TryParseInput(input.text, out values[i]) || (i == 0 && values[i] <= 0f))
+                {
+                    if (paramLabels != null && i < paramLabels.Length && paramLabels[i] != null)
+                        paramLabels[i].text = ParamLabel(i) + (i == 0 ? "：请输入大于 0 的有限数字" : "：请输入有效数字");
+                    if (input != null) input.Select();
+                    Debug.LogWarning("[LandParams] 第 " + (i + 1) + " 项无效，未启动模拟。", this);
+                    return false;
+                }
+            }
+            context.LandAreaMu = values[0];
+            context.Ph = values[1];
+            context.OrganicMatter = values[2];
+            context.AvailableNitrogen = values[3];
+            context.LabilePhosphorus = values[4];
+            context.Potassium = values[5];
 
             if (clampToConfigRange && session != null)
             {
@@ -150,7 +155,8 @@ namespace Engineer.UI
                 SetInput(0, context.LandAreaMu);
             }
 
-            return readAny;
+            RefreshRangeHints();
+            return true;
         }
 
         // ------------------------------------------------------------------
@@ -226,25 +232,6 @@ namespace Engineer.UI
             if (paramInputs == null || index < 0 || index >= paramInputs.Length) return;
             if (paramInputs[index] == null) return;
             paramInputs[index].SetTextWithoutNotify(value.ToString("0.##", CultureInfo.InvariantCulture));
-        }
-
-        private float ReadInput(int index, float fallback, ref bool readAny)
-        {
-            if (paramInputs == null || index < 0 || index >= paramInputs.Length) return fallback;
-            var input = paramInputs[index];
-            if (input == null) return fallback;
-
-            readAny = true;
-            float value;
-            if (float.TryParse(input.text, NumberStyles.Float, CultureInfo.InvariantCulture, out value))
-                return value;
-
-            // 也接受本地化写法（比如中文逗号、全角数字）
-            if (float.TryParse(input.text, NumberStyles.Float, CultureInfo.CurrentCulture, out value))
-                return value;
-
-            Debug.LogWarning("[LandParams] 第 " + (index + 1) + " 项无法解析为数字：「" + input.text + "」，沿用 " + fallback);
-            return fallback;
         }
 
         // ------------------------------------------------------------------

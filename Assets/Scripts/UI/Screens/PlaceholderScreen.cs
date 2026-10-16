@@ -178,8 +178,12 @@ namespace Engineer.UI
             }
         }
 
+        /// <summary>业务屏可接管按钮，防止旧白盒动作绕过输入校验。</summary>
+        protected virtual bool OwnsButton(Button button) => false;
+
         private void Handle(ScreenAction action)
         {
+            if (OwnsButton(action.button)) return;
             if (logActionDispatch)
             {
                 var buttonName = action.button != null ? action.button.name : "(null)";

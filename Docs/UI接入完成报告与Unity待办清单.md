@@ -1,5 +1,8 @@
 # UI 接入完成报告与 Unity 内待办清单
 
+> **2026-10-16 最新补完状态**：输入校验、失败不推进、累计实际水肥投入、总产量单位与面积语义、收益中间态及三屏脚本挂载已修正；新增本轮数值回归 **60/60 通过**。房车巡航开合已接线，实际动画、排版和 A1–A6 仍待 Unity Play 验收。挂起项 D1/D2 与经济参数保持待定。详见[输入输出与收益补完记录](输入输出与收益补完记录-20261016.md)；下文旧轮次“全部完成”或 1000 占位描述不能代表本轮状态，当前默认 YmaxGeo=733。
+
+
 > 本轮已完成：**asmdef 分层 + 桥接层 + 五个屏接入 + 60 项集成测试**。
 > 本文说明：做完了什么、**你必须在 Unity 里手动做什么**、以及**我做不到的事**。
 >
@@ -87,13 +90,15 @@ Unity 首次导入时会自动生成，**这是正常的，不用管**。
 
 ### 2.2 无法替换场景里的组件（3 处）
 
-场景里两个屏挂的还是通用 `PlaceholderScreen`，需要换成专用脚本。
+场景里有三个屏挂的还是通用 `PlaceholderScreen`，需要换成专用脚本。
 `.unity` 是 5 万行的 YAML，手工改引用容易写坏，**建议你在 Inspector 里操作**：
 
 | 场景对象 | 现在挂的 | 要换成 |
 |---|---|---|
 | `UI_Root/Screen_Canvas/Screens/Screen_Revenue` | `PlaceholderScreen` | **`RevenueScreen`** |
 | `UI_Root/Screen_Canvas/Screens/Screen_LandParams` | `PlaceholderScreen` | **`LandParamsScreen`** |
+| `UI_Root/Screen_Canvas/Screens/Screen_Confirm` | `PlaceholderScreen` | **`ConfirmScreen`**（修「本局配置一览」12 行永远是占位值的问题） |
+
 
 **操作步骤**（Inspector 里）：
 
@@ -112,6 +117,13 @@ Unity 首次导入时会自动生成，**这是正常的，不用管**。
 > **更省事的办法**：`RevenueScreen` 与 `LandParamsScreen` 都写了
 > `EnsureResolved()`，会在运行时按节点路径自动找文本与按钮。
 > 所以理论上**添加组件后什么都不填也能跑**。先这样试，缺什么再补。
+
+> **【2026-10-16 更新】这三屏不用再手工删/加组件了 —— 有一键工具：**
+> `Tools ▸ UI ▸ 修复屏脚本挂载（确认/土地参数/收益）`
+> 会把 `PlaceholderScreen` 换成对应专用脚本，**保留按钮接线**（`actions`）并同步改
+> `GameFlowController.screens` 列表；动手前自动把 `UI.unity` 备份到 `Temp/UI.unity.bak_screens_*`。
+> 命令行：`-executeMethod Engineer.UI.EditorTools.ScreenScriptFixer.Run`。
+> 另外 `UiWhiteboxBuilder` 现在**直接产出**这三个专用脚本，重建场景不会再退回 `PlaceholderScreen`。
 
 ### 2.3 无法给卡片加 `OptionCardButton`（需在场景里挂）
 
@@ -165,17 +177,17 @@ Unity 首次导入时会自动生成，**这是正常的，不用管**。
 | **组件替换后是否报错** | 换 `RevenueScreen` / `LandParamsScreen` 之后 Console 有没有红字 |
 | **实际跑一遍** | Play → 走完整流程，见下面的自测清单 |
 
-### 2.6 ⚠️ 绝对不要做的一件事
+### 2.6 ⚠️ 重建场景前必须知道的事
 
-**接入内核期间不要跑 `UiWhiteboxBuilder`（UI 白盒构建器）。**
+**重建 `UI.unity`（白盒构建器）前，先看清楚"什么会被覆盖"。**
 
 它会重新生成整个 `UI.unity`，后果：
-- `Screen_Revenue` 会被改回 `PlaceholderScreen`（你刚换的 `RevenueScreen` 没了）
-- `Screen_LandParams` 同上
+- ~~`Screen_Revenue` 会被改回 `PlaceholderScreen`（你刚换的 `RevenueScreen` 没了）~~ ✅ **已修**：构建器现在直接产出 `RevenueScreen` / `LandParamsScreen` / `ConfirmScreen`
+- 已经手工换过组件的旧场景，可以先用 `Tools ▸ UI ▸ 修复屏脚本挂载` 一键修回来，不必整场重建
 - 卡片上挂的 `OptionCardButton` 全丢
 - `GameFlowController.configAsset` 引用丢失
 
-等界面稳定之后，再决定要不要**更新构建器**让它产出新组件。
+构建器已按上面更新；重建后仍然要手动补的是 `OptionCardButton` 与 `GameFlowController.configAsset`。
 
 ---
 

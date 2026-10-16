@@ -263,6 +263,7 @@ namespace Engineer.UI
             if (session == null || !session.IsStarted) return null;
 
             var result = session.CommitFromDosage(context.StageDosage);
+            if (result == null) return null;
             context.SyncStageFromSession();
             ClearStageDosage();
             return result;

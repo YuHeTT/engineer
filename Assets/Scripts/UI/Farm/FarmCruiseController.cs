@@ -309,6 +309,8 @@ namespace Engineer.UI
             if (grid == null) return;
             mode = CruiseMode.Manual;
             grid.BeginCruise();
+            var equipment = FindObjectOfType<FarmEquipment>();
+            if (equipment != null) equipment.ToggleOpen();
             LogFacingDiagnostics();
             Debug.Log("[农场] 进入手动巡航：Q/E 转向，W/S 前进后退（也能用方向键）。\n" +
                       "  朝向不对就按 Z / X 每次转 90°，转对了把 Console 里的数值抄到 roverYawOffset。\n" +
@@ -325,6 +327,8 @@ namespace Engineer.UI
             waypointIndex = 0;
             mode = waypoints.Count > 0 ? CruiseMode.Auto : CruiseMode.Finished;
             grid.BeginCruise();
+            var equipment = FindObjectOfType<FarmEquipment>();
+            if (equipment != null) equipment.ToggleOpen();
             LogFacingDiagnostics();
 
             Debug.Log(string.Format("[农场] 进入自动巡航：{0} 个路点，预计 {1:0} 秒走完。\n" +

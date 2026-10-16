@@ -154,7 +154,12 @@ namespace Engineer.UI
         /// <summary>触发开合动画（默认就是第 0 个片段）。</summary>
         public void ToggleOpen()
         {
-            if (clips.Count == 0) return;
+            if (rv == null) Build();
+            if (clips.Count == 0)
+            {
+                Debug.LogWarning("[农场] 房车没有可播放的开合片段，请检查动画导入设置。", this);
+                return;
+            }
             PlayClip(0);
         }
     }

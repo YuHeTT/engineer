@@ -208,6 +208,7 @@ namespace Engineer.UI
                 stageRoots[s] = CreateChild(plantRoot, "Stage_" + s);
 
             BuildSoil();
+            ApplyGeneratedShadows(soilRoot, false);
             EnsureGroundPad(config.FieldSize);
 
             // 土壤块是 36 个重复实例。合并是在 GetRenderPrefab 里按**单个预制体**做的
@@ -282,6 +283,9 @@ namespace Engineer.UI
             for (var i = parent.childCount - 1; i >= 0; i--)
             {
                 var child = parent.GetChild(i).gameObject;
+                // 同帧重建不能继续复用待删除的 Stage 容器。
+                child.SetActive(false);
+                child.transform.SetParent(null, false);
                 if (Application.isPlaying) Destroy(child); else DestroyImmediate(child);
             }
         }
@@ -322,6 +326,7 @@ namespace Engineer.UI
                             go.name = string.Format("Soil_B{0}_{1}_{2}_{3}", bx, by, tx, tz);
                             go.transform.localPosition = local;
                             go.transform.localRotation = Quaternion.identity;
+                            go.SetActive(true); // 缓存模板保持 inactive，实际土壤需要显式启用。
                             soilPieces.Add(go.transform);
                             soilPieceCount++;
                         }
@@ -564,7 +569,15 @@ namespace Engineer.UI
             if (stageRoots[s] != null && optimizeInstancing)
                 FarmGpuInstancing.Enable(stageRoots[s].gameObject);
 
+            ApplyGeneratedShadows(stageRoots[s], true);
             stageReady[s] = true;
+        }
+
+        private void ApplyGeneratedShadows(Transform generated, bool corn)
+        {
+            var optimizer = GetComponent<FarmOptimizer>();
+            if (optimizer != null && generated != null)
+                optimizer.ApplyGeneratedShadows(generated.gameObject, corn);
         }
 
         private void DestroyStageInstances(int s)
@@ -625,6 +638,13 @@ namespace Engineer.UI
             foreach (var kv in combinedCache)
             {
                 if (kv.Value == null) continue;
+                // 合并网格由代码 new 出，销毁 GameObject 不会释放这些原生 Mesh。
+                foreach (var filter in kv.Value.GetComponentsInChildren<MeshFilter>(true))
+                {
+                    var mesh = filter.sharedMesh;
+                    if (mesh == null || !mesh.name.StartsWith("Combined_")) continue;
+                    if (Application.isPlaying) Destroy(mesh); else DestroyImmediate(mesh);
+                }
                 if (Application.isPlaying) Destroy(kv.Value); else DestroyImmediate(kv.Value);
             }
             combinedCache.Clear();

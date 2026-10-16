@@ -54,6 +54,8 @@ namespace Engineer.UI
         /// <summary>没有接上内核时的兜底文案（理论上不该出现）。</summary>
         private const string NotConnected = "未接入数值内核";
 
+        protected override bool OwnsButton(Button button) => button != null && button == confirmButton;
+
         public override void OnEnter(object args)
         {
             base.OnEnter(args);
@@ -230,7 +232,7 @@ namespace Engineer.UI
             }
 
             // 1) 读输入框 → GameContext.StageDosage（顺序：灌溉 / 有机肥 / 钾 / 氮 / 磷）
-            ReadDosageInputs(context);
+            if (flow.Current != GameState.Analyze || !ReadDosageInputs(context)) return;
 
             // 2) 交给内核演算并推进。
             //    注意：CommitStageDosage 内部会同步 StageIndex 并清空输入槽。
@@ -238,17 +240,8 @@ namespace Engineer.UI
 
             if (result == null)
             {
-                // 没接内核（纯白盒走查）或已经结束：退回旧的推进方式，保证流程不断
-                Debug.LogWarning("[Analyze] 数值内核未提交成功，改用纯 UI 推进。"
-                                 + "检查 GameFlowController 是否成功创建了 GameSession。");
-                if (context.IsLastStage)
-                {
-                    flow.GoTo(GameState.Revenue);
-                    return;
-                }
-
-                flow.AdvanceStage();
-                flow.GoTo(GameState.FarmStage);
+                if (stageTitleText != null) stageTitleText.text = "提交失败，请检查模拟是否已启动";
+                Debug.LogWarning("[Analyze] 未结算成功，保留本阶段和输入，不推进 UI。", this);
                 return;
             }
 
@@ -384,17 +377,21 @@ namespace Engineer.UI
         }
 
         /// <summary>读 5 个输入框写回 GameContext.StageDosage。</summary>
-        private void ReadDosageInputs(GameContext context)
+        private bool ReadDosageInputs(GameContext context)
         {
-            for (var i = 0; i < dosageInputs.Length && i < context.StageDosage.Length; i++)
+            var values = new float[5];
+            for (var i = 0; i < values.Length; i++)
             {
-                var input = dosageInputs[i];
-                if (input == null) continue;
-
-                float value;
-                context.StageDosage[i] = float.TryParse(input.text, NumberStyles.Float,
-                    CultureInfo.InvariantCulture, out value) ? value : 0f;
+                var input = dosageInputs != null && i < dosageInputs.Length ? dosageInputs[i] : null;
+                if (input == null || !MathX.TryParseInput(input.text, out values[i]) || values[i] < 0f)
+                {
+                    if (stageTitleText != null) stageTitleText.text = "第 " + (i + 1) + " 项：请输入非负的有效数字";
+                    if (input != null) input.Select();
+                    return false;
+                }
             }
+            System.Array.Copy(values, context.StageDosage, values.Length);
+            return true;
         }
 
         /// <summary>把四项肥料用量拼成一行可读文案。</summary>

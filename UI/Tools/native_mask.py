@@ -24,6 +24,12 @@ def paths_for_item(data,item):
     for p in data['paths']:
         b=p['visible_bbox'];chain=set(ancestors(p['parent_id']))
         if b is None or not p['painted'] or excluded & chain:continue
+        # Illustrator meshes can carry a per-node opacity mask.  The geometry
+        # cache only stores their outer bounds, so rendering that box as an
+        # opaque path creates dark rectangles around otherwise transparent
+        # HUD glows.  Callers may omit meshes when the source uses them only
+        # for soft effects; the ordinary vector paths still define the widget.
+        if item.get('exclude_mesh') and p.get('is_mesh'):continue
         if p['possible_background'] or box_area(b)>canvas*.6:continue
         if chosen:
             if not chosen & chain:continue

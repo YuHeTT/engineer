@@ -1,4 +1,817 @@
 {
+  "1": [
+    {
+      "category": "decoration",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        43
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        21
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        28
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        44
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        27
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        36
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        45
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        46
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        47
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        48
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.708,
+        0.255,
+        0.925,
+        0.405
+      ],
+      "ids": [
+        10,
+        11,
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.708,
+        0.411,
+        0.925,
+        0.626
+      ],
+      "ids": [
+        29,
+        30,
+        31,
+        34,
+        35,
+        42
+      ]
+    }
+  ],
+  "2": [
+    {
+      "category": "decoration",
+      "ids": [
+        1
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        36
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        37
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        44
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        45
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        21
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        27
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        29
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        32
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        35
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        41
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        42
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        23
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        38
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        40
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        22
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        33
+      ]
+    }
+  ],
+  "3": [
+    {
+      "category": "panel",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        52
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        62
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        67
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        71
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        41
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        59
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        64
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        69
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        73
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        70
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        72
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        74
+      ]
+    }
+  ],
+  "4": [
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        28
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        33
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        38
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        39
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        40
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        47
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        49
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        51
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        52
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        55
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        56
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        60
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        27
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        35
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        43
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        23
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        30
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        41
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        44
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        50
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        53
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        54
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        58
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        59
+      ]
+    }
+  ],
+  "5": [
+    {
+      "category": "panel",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        13
+      ]
+    }
+  ],
+  "6": [
+    {
+      "category": "decoration",
+      "ids": [
+        1
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        8
+      ]
+    }
+  ],
+  "10": [
+    {
+      "category": "panel",
+      "ids": [
+        1
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        15
+      ]
+    }
+  ],
   "7": [
     {
       "category": "panel",
@@ -212,6 +1025,170 @@
       ]
     }
   ],
+  "8": [
+    {
+      "category": "panel",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        21
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        23
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.6965,
+        0.7209,
+        0.8492,
+        0.9627
+      ],
+      "group_suffixes": [
+        "3936"
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.8133,
+        0.6432,
+        0.9393,
+        0.7388
+      ],
+      "group_suffixes": [
+        "4717"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7567,
+        0.7407,
+        0.8983,
+        0.9841
+      ],
+      "group_suffixes": [
+        "5061"
+      ]
+    }
+  ],
   "12": [
     {
       "category": "panel",
@@ -337,6 +1314,606 @@
       "category": "decoration",
       "ids": [
         41
+      ]
+    }
+  ],
+  "13": [
+    {
+      "category": "decoration",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        26
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        21
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        22
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        23
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        27
+      ]
+    }
+  ],
+  "14": [
+    {
+      "category": "decoration",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        22
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        27
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        28
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        26
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.6613,
+        0.1902,
+        0.7419,
+        0.3775
+      ],
+      "group_suffixes": [
+        "5406"
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.7593,
+        0.1902,
+        0.8399,
+        0.3775
+      ],
+      "group_suffixes": [
+        "5421"
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.8577,
+        0.1915,
+        0.9375,
+        0.3767
+      ],
+      "group_suffixes": [
+        "5439"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.6614,
+        0.433,
+        0.7984,
+        0.5181
+      ],
+      "group_suffixes": [
+        "4662"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.8075,
+        0.4251,
+        0.9606,
+        0.5297
+      ],
+      "group_suffixes": [
+        "4749"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.6629,
+        0.5491,
+        0.721,
+        0.8873
+      ],
+      "group_suffixes": [
+        "4725"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7363,
+        0.5468,
+        0.8558,
+        0.6974
+      ],
+      "group_suffixes": [
+        "4681"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7405,
+        0.7342,
+        0.8609,
+        0.8785
+      ],
+      "group_suffixes": [
+        "4649"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.8781,
+        0.5654,
+        0.9557,
+        0.8816
+      ],
+      "group_suffixes": [
+        "4767"
+      ]
+    }
+  ],
+  "15": [
+    {
+      "category": "decoration",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.0572,
+        0.0515,
+        0.1643,
+        0.2104
+      ],
+      "group_suffixes": [
+        "4726"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.0574,
+        0.2508,
+        0.2375,
+        0.4755
+      ],
+      "group_suffixes": [
+        "4839"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.0404,
+        0.4294,
+        0.1195,
+        0.5766
+      ],
+      "group_suffixes": [
+        "5061"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.0716,
+        0.6068,
+        0.1794,
+        0.7726
+      ],
+      "group_suffixes": [
+        "4992"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.0457,
+        0.7619,
+        0.1874,
+        0.9217
+      ],
+      "group_suffixes": [
+        "5147"
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.6613,
+        0.1993,
+        0.7419,
+        0.3866
+      ],
+      "group_suffixes": [
+        "5777"
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.7548,
+        0.1993,
+        0.844,
+        0.3866
+      ],
+      "group_suffixes": [
+        "5795"
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.8615,
+        0.1993,
+        0.9422,
+        0.3866
+      ],
+      "group_suffixes": [
+        "5824"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.6653,
+        0.4212,
+        0.7323,
+        0.577
+      ],
+      "group_suffixes": [
+        "4686"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7427,
+        0.4194,
+        0.8685,
+        0.5525
+      ],
+      "group_suffixes": [
+        "4651"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.6652,
+        0.6029,
+        0.7322,
+        0.8623
+      ],
+      "group_suffixes": [
+        "4536"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7363,
+        0.5558,
+        0.8685,
+        0.7065
+      ],
+      "group_suffixes": [
+        "4582"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.746,
+        0.7339,
+        0.8686,
+        0.8679
+      ],
+      "group_suffixes": [
+        "4560"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.881,
+        0.43,
+        0.9563,
+        0.869
+      ],
+      "group_suffixes": [
+        "4611"
       ]
     }
   ],
@@ -811,6 +2388,595 @@
       ]
     }
   ],
+  "20": [
+    {
+      "category": "panel",
+      "rect": [
+        0.0291,
+        0.0752,
+        0.3911,
+        0.3887
+      ],
+      "group_suffixes": [
+        "0004",
+        "0092",
+        "7167",
+        "7654"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.3929,
+        0.0202,
+        0.7132,
+        0.3437
+      ],
+      "group_suffixes": [
+        "0021",
+        "0273",
+        "0798",
+        "7021",
+        "8353",
+        "7599"
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.6862,
+        0.0247,
+        0.9525,
+        0.3407
+      ],
+      "group_suffixes": [
+        "0023",
+        "0454",
+        "4754"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.0344,
+        0.6402,
+        0.3169,
+        0.9742
+      ],
+      "group_suffixes": [
+        "1918",
+        "2947",
+        "3128",
+        "3525",
+        "8035",
+        "6103"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.381,
+        0.6473,
+        0.7334,
+        0.9259
+      ],
+      "group_suffixes": [
+        "1920",
+        "2719",
+        "2932",
+        "4353",
+        "7715"
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.6909,
+        0.5832,
+        0.9525,
+        0.9405
+      ],
+      "group_suffixes": [
+        "1938",
+        "3181",
+        "7291"
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        17
+      ]
+    }
+  ],
+  "21": [
+    {
+      "category": "panel",
+      "ids": [
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.621,
+        0.0973,
+        0.8402,
+        0.406
+      ],
+      "group_suffixes": [
+        "7838"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.6787,
+        0.0284,
+        0.8317,
+        0.1081
+      ],
+      "group_suffixes": [
+        "7001"
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.7972,
+        0.0519,
+        0.9648,
+        0.1635
+      ],
+      "group_suffixes": [
+        "6336"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.8413,
+        0.2609,
+        0.9704,
+        0.401
+      ],
+      "group_suffixes": [
+        "6682"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.7155,
+        0.2222,
+        0.9692,
+        0.5015
+      ],
+      "group_suffixes": [
+        "6825"
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        6,
+        8,
+        9,
+        12,
+        15,
+        17,
+        18
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "gauge",
+      "rect": [
+        0.2941,
+        0.6361,
+        0.4627,
+        0.8913
+      ],
+      "group_suffixes": [
+        "1800"
+      ]
+    },
+    {
+      "category": "icon",
+      "rect": [
+        0.423,
+        0.554,
+        0.5621,
+        0.655
+      ],
+      "group_suffixes": [
+        "2581"
+      ]
+    },
+    {
+      "category": "panel",
+      "rect": [
+        0.3605,
+        0.657,
+        0.5168,
+        0.9139
+      ],
+      "group_suffixes": [
+        "2925"
+      ]
+    }
+  ],
+  "22": [
+    {
+      "category": "decoration",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        26
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        21
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        22
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        23
+      ]
+    }
+  ],
+  "23": [
+    {
+      "category": "decoration",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        26
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        19
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        21
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        22
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        23
+      ]
+    }
+  ],
   "24": [
     {
       "category": "panel",
@@ -1082,6 +3248,251 @@
         0.622,
         0.852,
         0.777
+      ]
+    }
+  ],
+  "26": [
+    {
+      "category": "decoration",
+      "ids": [
+        1
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        18
+      ]
+    }
+  ],
+  "27": [
+    {
+      "category": "decoration",
+      "ids": [
+        1
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "decoration",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        24
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "button",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        13,
+        15
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        20
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        23
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        25
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        26
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        29
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        30
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        33
       ]
     }
   ],
@@ -1495,6 +3906,122 @@
         0.785,
         0.94,
         0.883
+      ]
+    }
+  ],
+  "32": [
+    {
+      "category": "icon",
+      "ids": [
+        1
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        4
+      ]
+    },
+    {
+      "category": "icon",
+      "ids": [
+        14
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        2
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        6
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        7
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        10
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        15
+      ]
+    },
+    {
+      "category": "gauge",
+      "ids": [
+        16
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        3
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        5
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        8
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        9
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        11
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        12
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        13
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        17
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        18
+      ]
+    },
+    {
+      "category": "panel",
+      "ids": [
+        19
       ]
     }
   ]
