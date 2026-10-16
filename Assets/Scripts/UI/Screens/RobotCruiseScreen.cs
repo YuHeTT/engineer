@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Engineer.Core;
@@ -18,8 +18,8 @@ namespace Engineer.UI
     ///     · 探测数据 = 带误差的实测值，随覆盖率逐项揭示，未揭示显示「无」
     ///
     /// 【两个按钮做什么】
-    ///   手动巡航 → 切到农场场景，让玩家用 WASD 开小车
-    ///   自动巡航 → 切到农场场景，小车自己按弓字形走完
+    ///   手动巡航 → 停留在巡航进度页，让玩家驾驶小车
+    ///   自动巡航 → 停留在巡航进度页，小车自己走遍全田
     ///   巡航过程中本屏的覆盖率条会实时涨（因为读的是同一个 FarmFieldGrid）
     ///
     /// 【误差模型】见 <see cref="FarmProbeState"/>：幅度随覆盖率从 10% 收敛到 5%。
@@ -59,15 +59,14 @@ namespace Engineer.UI
 
         [Header("覆盖率阈值（与策划约定）")]
         [Tooltip("达到这个覆盖率就可以更新数据、进入分析。")]
-        [Range(0f, 1f)] public float analyzeThreshold = 0.8f;
+        [Range(0f, 1f)] public float analyzeThreshold = 1f;
 
         [Tooltip("达到这个覆盖率算「完整数据」，误差收敛到最小。")]
         [Range(0f, 1f)] public float completeThreshold = 1.0f;
 
         [Header("巡航请求")]
-        [Tooltip("点「手动巡航」时是否切到农场场景让玩家开车。\n" +
-                 "关掉的话就留在本屏，只靠「一键跑完」推进（白盒模式）。")]
-        public bool switchToFarmOnCruise = true;
+        // 兼容旧场景序列化；巡航固定显示 RobotCruise 进度页。
+        [HideInInspector] public bool switchToFarmOnCruise = false;
 
         [Tooltip("自动巡航在农场场景里跑完之后，是否自动切回本屏。")]
         public bool returnAfterAutoCruise = true;
@@ -75,13 +74,7 @@ namespace Engineer.UI
         private FarmFieldGrid grid;
         private FarmCruiseController cruise;
 
-        /// <summary>
-        /// 本次巡航是否已经"扫完了"（覆盖率达标）。
-        /// 进入本屏时重置为 false；点击巡航时也重置。
-        /// 【为什么需要】旧实现用 `cruise.Mode` 判断，而 Mode 在点击瞬间就变了，
-        /// 导致两个按钮被永久禁用 —— 见 RefreshCruiseState 里的说明。
-        /// </summary>
-        private bool cruiseFinished;
+        private float displayedCoverage = -1f;
 
         /// <summary>当前覆盖率 0~1（来自 3D 巡航网格）。</summary>
         public float Coverage
@@ -89,11 +82,16 @@ namespace Engineer.UI
             get { return grid != null ? grid.Coverage : 0f; }
         }
 
+        protected override bool OwnsButton(Button button) => button != null
+            && (button == manualButton || button == autoButton || button == updateButton);
+
         public override void OnEnter(object args)
         {
             base.OnEnter(args);
 
             Resolve();
+            analyzeThreshold = FarmProbeState.RequiredCoverage;
+            completeThreshold = FarmProbeState.RequiredCoverage;
 
             // 每次进本屏都解除按钮禁用状态。
             //
@@ -102,7 +100,6 @@ namespace Engineer.UI
             //     ① 进入本屏时里程/覆盖率被清零 —— 玩家来回切页面就丢进度
             //     ② 如果此刻巡航正在进行，Mode 会被打回 Idle，巡航当场结束
             //   真正的重置放在玩家**主动点击**「手动/自动巡航」的时候。
-            cruiseFinished = false;
 
             // 开始一次新的探测：抄一份"原数据"
             var probe = Flow != null ? Flow.Probe : null;
@@ -130,6 +127,7 @@ namespace Engineer.UI
                 updateButton.onClick.AddListener(OnUpdateData);
             }
 
+            displayedCoverage = -1f;
             RefreshSourceValues();
             SyncProbeFromGrid();
             RefreshCruiseState();
@@ -181,6 +179,12 @@ namespace Engineer.UI
                 if (t != null) hintText = t.GetComponent<TMP_Text>();
             }
 
+            ConfigureProgressBar();
+            // 移除白盒中心说明，保留实际 3D 视野。
+            foreach (var label in GetComponentsInChildren<TMP_Text>(true))
+                if (label.text != null && label.text.Contains("3D") && label.text.Contains("占位"))
+                    label.gameObject.SetActive(false);
+
             // 9 项原数据 / 9 项探测数据
             if (sourceValueTexts == null || sourceValueTexts.Length < SoilIndicators.Count)
                 sourceValueTexts = new TMP_Text[SoilIndicators.Count];
@@ -218,6 +222,24 @@ namespace Engineer.UI
             }
         }
 
+        private void ConfigureProgressBar()
+        {
+            if (coverageFill == null) return;
+            // 没有 Sprite 的 Image 不会按 fillAmount 裁切，因此用真实 RectTransform 宽度。
+            coverageFill.type = Image.Type.Simple;
+            coverageFill.raycastTarget = false;
+            coverageFill.color = new Color(0.12f, 0.78f, 0.95f, 1f);
+            var background = coverageFill.transform.parent.GetComponent<Image>();
+            if (background != null)
+            {
+                background.color = new Color(0.035f, 0.09f, 0.15f, 0.95f);
+                background.raycastTarget = false;
+            }
+            if (coverageText != null) coverageText.color = Color.white;
+            if (uncoveredText != null) uncoveredText.color = new Color(.8f, .9f, 1f);
+            if (autoProgressText != null) autoProgressText.color = Color.white;
+        }
+
         private void Update()
         {
             // 覆盖率会随小车移动实时变化，所以每帧同步一下（代价很低）
@@ -233,9 +255,9 @@ namespace Engineer.UI
 
             Resolve();
             var coverage = grid != null ? grid.Coverage : 0f;
-            if (Mathf.Approximately(coverage, probe.Coverage)) return;
-
             probe.SetCoverage(coverage);
+            if (Mathf.Approximately(displayedCoverage, probe.Coverage)) return;
+            displayedCoverage = probe.Coverage;
 
             if (probeValueTexts == null) return;
             for (var i = 0; i < probeValueTexts.Length && i < SoilIndicators.Count; i++)
@@ -251,92 +273,62 @@ namespace Engineer.UI
         //  巡航
         // ==================================================================
 
-        /// <summary>点巡航按钮时的详细诊断（用来定位"点了却没反应/被切走"）。</summary>
-        private void LogCruiseStart(string which)
-        {
-            var flowName = Flow != null ? Flow.Current.ToString() : "(无 Flow)";
-            var cruiseMode = cruise != null ? cruise.Mode.ToString() : "(无 cruise)";
-            var gridCov = grid != null ? (grid.Coverage * 100f).ToString("0.0") + "%" : "(无 grid)";
-            var probe = Flow != null ? Flow.Probe : null;
-            var probeCov = probe != null ? (probe.Coverage * 100f).ToString("0.0") + "%" : "(无 probe)";
-
-            Debug.Log(string.Format(
-                "[巡航] 点击「{0}」：当前界面状态={1}　cruise.Mode={2}　grid 覆盖率={3}　probe 覆盖率={4}\n" +
-                "  switchToFarmOnCruise={5}　目标状态=FarmStage({6})\n" +
-                "  → 如果下面没有「[UI] → 农场主界面」，说明 GoTo 被拦住了。",
-                which, flowName, cruiseMode, gridCov, probeCov,
-                switchToFarmOnCruise, (int)GameState.FarmStage), this);
-        }
-
-        /// <summary>手动巡航：切到农场场景，玩家用 WASD 开小车。</summary>
+        /// <summary>手动巡航：显示巡航进度页，同时驾驶小车。</summary>
         public void OnManualCruise()
         {
             Resolve();
-            LogCruiseStart("手动巡航");
+
 
             if (cruise == null || grid == null)
             {
                 Debug.LogWarning("[UI] 当前场景里没有农场巡航组件，" +
-                                 "改用「一键跑完」占位。载入 Farm 场景后即可真正巡航。", this);
+                                 "请等待 Farm 场景加载；不会生成虚假探测数据。", this);
                 RunInstantFallback();
                 return;
             }
 
-            cruiseFinished = false;
+            if (Flow != null) { Flow.Probe.Reset(); Flow.Probe.Begin(Flow.Session); }
             cruise.ResetToStart();
             cruise.StartManual();
             Debug.Log("[巡航] StartManual 完成，mode=" + cruise.Mode, this);
 
-            if (switchToFarmOnCruise && Flow != null)
-                Flow.GoTo(GameState.FarmStage);
+            if (Flow != null) Flow.GoTo(GameState.RobotCruise);
+            displayedCoverage = -1f;
+            SyncProbeFromGrid();
+            RefreshCruiseState();
         }
 
-        /// <summary>自动巡航：切到农场场景，小车自己走完。</summary>
+        /// <summary>自动巡航：显示巡航进度页，小车自己走完。</summary>
         public void OnAutoCruise()
         {
             Resolve();
-            LogCruiseStart("自动巡航");
+
 
             if (cruise == null || grid == null)
             {
                 Debug.LogWarning("[UI] 当前场景里没有农场巡航组件，" +
-                                 "改用「一键跑完」占位。载入 Farm 场景后即可真正巡航。", this);
+                                 "请等待 Farm 场景加载；不会生成虚假探测数据。", this);
                 RunInstantFallback();
                 return;
             }
 
-            cruiseFinished = false;
+            if (Flow != null) { Flow.Probe.Reset(); Flow.Probe.Begin(Flow.Session); }
             cruise.ResetToStart();
             cruise.StartAuto();
             Debug.Log("[巡航] StartAuto 完成，mode=" + cruise.Mode +
                       "，路点数=" + cruise.WaypointCount, this);
 
-            if (switchToFarmOnCruise && Flow != null)
-                Flow.GoTo(GameState.FarmStage);
+            if (Flow != null) Flow.GoTo(GameState.RobotCruise);
+            displayedCoverage = -1f;
+            SyncProbeFromGrid();
+            RefreshCruiseState();
         }
 
         /// <summary>没有农场场景时的兜底：直接把覆盖标记补齐。</summary>
         private void RunInstantFallback()
         {
-            var probe = Flow != null ? Flow.Probe : null;
-            if (probe == null) return;
-
-            // 没有 3D 场景就没有遮罩可言，但仍然把状态推进到"已探测完"，
-            // 保证后面的"更新数据 → 分析"流程能走通。
-            Resolve();
-            if (grid != null)
-            {
-                grid.BeginCruise();
-                grid.MarkAllScanned();
-                grid.EndCruise();
-            }
-
-            probe.SetCoverage(1f);
-            probe.RevealAll();
-            SyncProbeFromGrid();
-            RefreshCruiseState();
-
-            Debug.Log("[UI] 没有 3D 巡航场景，已用「一键跑完」把覆盖率补齐到 100%。", this);
+            if (hintText != null) hintText.text = "农场巡航组件未加载，请返回农场等待加载后重试。";
+            Debug.LogWarning("[巡航] 缺少巡航组件，不能伪造覆盖率或进入分析。", this);
         }
 
         // ==================================================================
@@ -344,7 +336,7 @@ namespace Engineer.UI
         // ==================================================================
 
         /// <summary>
-        /// 「更新数据」：把探测结果确认下来，回到农场。
+        /// 「更新数据」：确认探测快照并留在本页，玩家自行返回农场后开始分析。
         ///
         /// 【注意】**不写回内核土壤**。内核里的土壤是权威数据，只能由水肥演算推进。
         /// 探测值保存在 <see cref="FarmProbeState"/> 里，分析界面读它。
@@ -354,25 +346,21 @@ namespace Engineer.UI
         {
             var probe = Flow != null ? Flow.Probe : null;
 
-            if (probe != null && probe.Coverage < analyzeThreshold)
+            if (Flow == null || !Flow.ConfirmProbe())
             {
-                Debug.Log(string.Format("[UI] 覆盖率只有 {0:0.0}%，还没到 {1:0}%，暂时不能更新数据。",
-                    probe.Coverage * 100f, analyzeThreshold * 100f), this);
+                if (hintText != null) hintText.text = "请完成本阶段 100% 巡航后再确认数据。";
                 return;
             }
 
-            // 达标后把静态四项也揭示出来（它们不随覆盖率逐项揭示，跟着"确认"一起给）
-            if (probe != null) probe.RevealAll();
-
-            cruiseFinished = true;
 
             Debug.Log(string.Format("[UI] 数据已确认。覆盖率 {0:0.0}%，" +
                                     "探测误差幅度 {1:0.#}%~{2:0.#}%。\n" +
-                                    "  探测值已存入 FarmProbeState，分析界面会用它做「真值 vs 探测值」对比。",
+                                    "  探测值已存入 FarmProbeState，分析适宜度与水肥建议将使用这份已确认的探测数据。",
                 (probe != null ? probe.Coverage : 0f) * 100f,
                 FarmProbeState.MinError * 100f, FarmProbeState.MaxError * 100f), this);
 
-            if (Flow != null) Flow.Back();
+            if (cruise != null) cruise.Stop();
+            RefreshCruiseState();
         }
 
         // ==================================================================
@@ -405,38 +393,45 @@ namespace Engineer.UI
                 ? probe.Coverage
                 : (grid != null ? grid.Coverage : 0f);
 
-            if (coverageFill != null) coverageFill.fillAmount = progress;
+            progress = Mathf.Clamp01(progress);
+            if (coverageFill != null)
+            {
+                coverageFill.fillAmount = progress;
+                var rect = coverageFill.rectTransform;
+                rect.anchorMin = Vector2.zero;
+                rect.anchorMax = new Vector2(progress, 1f);
+                rect.offsetMin = Vector2.zero;
+                rect.offsetMax = Vector2.zero;
+                coverageFill.color = progress >= FarmProbeState.RequiredCoverage
+                    ? new Color(.2f, .85f, .45f, 1f) : new Color(.12f, .78f, .95f, 1f);
+            }
             if (coverageText != null)
-                coverageText.text = "已覆盖 " + Mathf.RoundToInt(progress * 100f) + "%";
+                coverageText.text = "巡航进度 " + (progress >= FarmProbeState.RequiredCoverage ? "100" : Mathf.FloorToInt(progress * 100f).ToString()) + "%";
 
             var context = Flow != null ? Flow.Context : null;
             var area = context != null ? context.LandAreaMu : 0f;
             if (uncoveredText != null)
                 uncoveredText.text = "未覆盖面积 " + (area * (1f - progress)).ToString("0.0") + " 亩";
 
-            var canAnalyze = progress >= analyzeThreshold;
-            if (updateButton != null) updateButton.interactable = canAnalyze;
-
-            // 【原来这里有个 bug，导致"只有第一阶段能巡航"】
-            //   旧代码：
-            //     var autoDone = cruise.Mode == Auto || cruise.Mode == Finished;
-            //     manualButton.interactable = !autoDone || !canAnalyze;
-            //   问题：一点「手动巡航」，Mode 立刻变成 Manual → autoDone = true，
-            //   而此刻覆盖率还很低 → canAnalyze = false →
-            //   两个按钮被永久禁用，之后再进巡航界面就点不动了。
-            //
-            //   正确做法：只在"把剩下的一次扫完"这种情况下才禁按钮，
-            //   而"进入本屏"时把这个状态清掉（见 OnEnter 里的 cruiseFinished）。
-            if (manualButton != null) manualButton.interactable = !cruiseFinished;
-            if (autoButton != null) autoButton.interactable = !cruiseFinished;
+            var canAnalyze = progress >= FarmProbeState.RequiredCoverage;
+            var confirmed = Flow != null && Flow.CanAnalyze;
+            if (updateButton != null) updateButton.interactable = canAnalyze && !confirmed;
+            // 更新之后仍可开始新一轮巡航；主动重扫会清空覆盖并撤销上一份确认。
+            if (manualButton != null) manualButton.interactable = true;
+            if (autoButton != null) autoButton.interactable = true;
 
             if (hintText != null)
             {
-                if (!canAnalyze)
+                if (confirmed)
+                {
+                    hintText.text = "数据已更新。点击「返回农场」，再点击「开始分析」查看结果。\n" +
+                        "也可以重新手动或自动巡航，采集新一轮数据；重新采集后需再次完成覆盖并更新数据。";
+                }
+                else if (!canAnalyze)
                 {
                     hintText.text =
-                        "机器人探测：请选择手动或者自动巡航进行数据收集。\n" +
-                        "· 手动巡航：切到农场，Q/E 转向、W/S 前进后退（也能用方向键）\n" +
+                        (cruise != null && cruise.IsCruising ? "机器人探测：巡航中，右上角显示实际采集进度。\n" : "机器人探测：请选择手动或者自动巡航进行数据收集。\n") +
+                        "· 手动巡航：Q/E 转向、W/S 前进后退（也能用方向键）\n" +
                         "· 自动巡航：小车按弓字形自己走遍全田\n" +
                         string.Format("覆盖率到 {0:0}% 即可「更新数据」。当前 {1:0}%",
                             analyzeThreshold * 100f, progress * 100f);
@@ -468,8 +463,7 @@ namespace Engineer.UI
                 return;
             }
 
-            autoProgressText.text = string.Format("自动巡航中 {0:0}%　剩余约 {1:0} 秒",
-                cruise.AutoProgress * 100f, cruise.EstimateRemainingSeconds());
+            autoProgressText.text = string.Format("自动巡航中　剩余约 {0:0} 秒", cruise.EstimateRemainingSeconds());
         }
     }
 }

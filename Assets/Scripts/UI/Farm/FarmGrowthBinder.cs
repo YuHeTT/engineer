@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  FarmGrowthBinder.cs —— 把数值内核的状态绑到农场的视觉上
 // ---------------------------------------------------------------------------
 //  作用：**这是"数据 → 表现"的唯一桥梁**。
@@ -147,6 +147,7 @@ namespace Engineer.UI
         {
             var session = flow != null ? flow.Session : null;
             if (session == null || !session.IsStarted) return;
+            if (field.UsesSavedSceneLayout) return;
 
             // 亩数存在 GameContext 上（它是 UI 的输入数据），不是在内核里
             var context = flow.Context;

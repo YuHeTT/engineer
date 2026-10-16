@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Engineer.Core;
@@ -49,6 +49,16 @@ namespace Engineer.UI
         private readonly float[] lastValues = new float[SoilIndicators.Count];
         private readonly bool[] hasLast = new bool[SoilIndicators.Count];
 
+        protected override bool OwnsButton(Button button) => button != null && button == primaryButton;
+        private float nextRefresh;
+        private void Update()
+        {
+            if (Time.unscaledTime < nextRefresh) return;
+            nextRefresh = Time.unscaledTime + 0.15f;
+            if (Flow != null) Flow.SyncProbe();
+            RefreshFromContext();
+        }
+
         public override void OnEnter(object args)
         {
             base.OnEnter(args);
@@ -87,10 +97,16 @@ namespace Engineer.UI
                     : "尚未开始模拟";
             }
 
-            if (hintText != null) hintText.text = BuildHint(uiStage, session);
+            var probe = Flow != null ? Flow.Probe : null;
+            if (hintText != null)
+                hintText.text = BuildHint(uiStage, session) + (isHarvest ? "" :
+                    "\n本阶段巡航 " + ((probe != null ? probe.Coverage : 0f) * 100f).ToString("0")
+                    + "% · " + (Flow.CanAnalyze ? "探测数据已确认，可开始分析" : "完成100%巡航后确认数据；未探测项不参与分析"));
 
             if (primaryButtonLabel != null)
                 primaryButtonLabel.text = isHarvest ? PrimaryLabelRevenue : PrimaryLabelAnalyze;
+            if (primaryButton != null)
+                primaryButton.interactable = isHarvest || Flow.CanAnalyze;
 
             RefreshIndicators(context, session, started);
         }
@@ -105,8 +121,12 @@ namespace Engineer.UI
                 if (indicatorValueTexts[i] == null) continue;
 
                 // GetIndicator 内部已经做了"开始了读内核、没开始读输入"的分支
-                var value = context.GetIndicator(i);
-                var text = SoilIndicators.Format(i, value);
+                var probe = Flow != null ? Flow.Probe : null;
+                bool observed = probe != null && probe.IsCurrent(session) && probe.IsRevealed(i);
+                var value = observed ? probe.GetProbe(i) : context.GetIndicator(i);
+                var text = started && !session.IsFinished
+                    ? (observed ? SoilIndicators.Format(i, value) + "（探测）" : "待巡航采集")
+                    : SoilIndicators.Format(i, value);
 
                 if (showDelta && started && hasLast[i])
                 {
@@ -136,6 +156,9 @@ namespace Engineer.UI
                 ? StageMap.IsHarvest(session.UiStage)
                 : context != null && context.IsLastStage;
 
+            Flow.SyncProbe();
+            // 右侧只负责分析；未确认采集时不再充当第二个“机器人检测”入口。
+            if (!isHarvest && !Flow.CanAnalyze) return;
             Flow.GoTo(isHarvest ? GameState.Revenue : GameState.Analyze);
         }
 

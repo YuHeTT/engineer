@@ -1,191 +1,115 @@
-// ---------------------------------------------------------------------------
-//  FarmProbeState.cs —— 探测状态（原数据 / 探测数据）
-// ---------------------------------------------------------------------------
-//  作用：这是「农场 3D 巡航」和「UI 界面」之间的**共享数据**。
-//
-//  【为什么需要它】
-//    策划的设定是"原数据可能不准，所以要探测"（见 Docs/漏洞与风险清单.md 的 I2）。
-//    所以同一块土壤有两个层面的值：
-//      · 原数据  = 界面进入时看到的、**玩家以为的**值
-//      · 探测数据 = 机器人实探到的值，**带误差**，只在探测到之后才有
-//    分析界面应该用探测值（否则"探测"这一步没有意义）。
-//
-//  【误差模型】（2026-10-15 与策划沟通后暂定）
-//      误差幅度随覆盖率**从 10% 收敛到 5%**：
-//        amplitude = Lerp(MaxError, MinError, coverage)
-//        probe = truth * (1 + N(0, amplitude))      对大部分指标
-//        probe = truth + N(0, amplitude * truth)    对 pH（乘性没意义）
-//    覆盖率 100% 时仍有 5% 误差 —— 这样"探测"永远有意义，
-//    但也不会因为误差太大导致分析结论乱跳。
-//
-//  【为什么不是随机每次刷新都变】
-//    误差在**首次探测到该项时固定下来**（存进 probeValues），
-//    之后刷新界面显示的是同一个值。否则同一个指标每次看都不一样，玩家会困惑。
-// ---------------------------------------------------------------------------
-
-using UnityEngine;
+﻿using System;
 using Engineer.Core;
 
 namespace Engineer.UI
 {
-    /// <summary>一次模拟里的探测结果。由农场巡航写入，由 UI 读取。</summary>
+    /// <summary>阶段探测快照：采集、确认与分析共用；不直接改写真实土壤。</summary>
     public sealed class FarmProbeState
     {
-        /// <summary>误差幅度上限（覆盖率 0% 时）。</summary>
         public const float MaxError = 0.10f;
-
-        /// <summary>误差幅度下限（覆盖率 100% 时）。</summary>
         public const float MinError = 0.05f;
-
-        private readonly float[] truth = new float[SoilIndicators.Count];
-        private readonly float[] probe = new float[SoilIndicators.Count];
-        private readonly bool[] revealed = new bool[SoilIndicators.Count];
-
+        public const float RequiredCoverage = 1f;
+        private readonly float[] truth = new float[SoilMetrics.Count];
+        private readonly float[] probe = new float[SoilMetrics.Count];
+        private readonly bool[] revealed = new bool[SoilMetrics.Count];
+        private SoilState capturedSoil;
+        private GameSession owner;
         private int seed;
-
+        public int StageIndex { get; private set; }
         public bool IsActive { get; private set; }
-
-        /// <summary>当前覆盖率 0~1。</summary>
+        public bool IsConfirmed { get; private set; }
         public float Coverage { get; private set; }
-
-        /// <summary>已揭示的指标个数。</summary>
         public int RevealedCount
         {
-            get
-            {
-                var n = 0;
-                for (var i = 0; i < revealed.Length; i++) if (revealed[i]) n++;
-                return n;
-            }
+            get { int n = 0; foreach (bool value in revealed) if (value) n++; return n; }
         }
+        public bool IsCurrent(GameSession session) => IsActive && session != null && session.IsStarted
+            && !session.IsFinished && ReferenceEquals(owner, session)
+            && StageIndex == session.UiStage && ReferenceEquals(capturedSoil, session.Soil);
+        public bool CanAnalyze(GameSession session) => IsCurrent(session) && IsConfirmed
+            && Coverage >= RequiredCoverage && RevealedCount == SoilMetrics.Count;
 
-        // ==================================================================
-        //  开始 / 重置
-        // ==================================================================
-
-        /// <summary>开始一次新的探测：抄一份真实土壤作为"原数据"。</summary>
+        /// <summary>同阶段重复进页面保留进度和随机种子；新局/新阶段才建立新快照。</summary>
         public void Begin(GameSession session)
         {
+            if (IsCurrent(session)) return;
+            Reset();
+            if (session == null || !session.IsStarted || session.IsFinished) return;
+            owner = session;
+            capturedSoil = session.Soil;
+            StageIndex = session.UiStage;
+            seed = Guid.NewGuid().GetHashCode(); // 每次主动重扫独立取样，不受连续点击的时钟粒度影响。
             IsActive = true;
-            Coverage = 0f;
-            seed = Random.Range(int.MinValue, int.MaxValue);
-
-            for (var i = 0; i < truth.Length; i++)
-            {
-                truth[i] = session != null && session.IsStarted
-                    ? session.GetIndicator(i, 0f)
-                    : 0f;
-                probe[i] = 0f;
-                revealed[i] = false;
-            }
+            for (int i = 0; i < truth.Length; i++) truth[i] = session.GetIndicator(i, 0f);
         }
-
-        /// <summary>清空。</summary>
         public void Reset()
         {
-            IsActive = false;
-            Coverage = 0f;
-            for (var i = 0; i < revealed.Length; i++) revealed[i] = false;
+            IsActive = false; IsConfirmed = false; Coverage = 0f;
+            owner = null; capturedSoil = null; StageIndex = 0;
+            Array.Clear(truth, 0, truth.Length);
+            Array.Clear(probe, 0, probe.Length);
+            Array.Clear(revealed, 0, revealed.Length);
         }
-
-        // ==================================================================
-        //  读
-        // ==================================================================
-
-        /// <summary>原数据（玩家以为的值）。</summary>
-        public float GetSource(int index)
+        public float GetSource(int index) => InRange(index) ? truth[index] : 0f;
+        public bool IsRevealed(int index) => InRange(index) && revealed[index];
+        public float GetProbe(int index, float fallback = 0f) => IsRevealed(index) ? probe[index] : fallback;
+        // 保留旧接口，但未采集的值不再用真值兜底。
+        public float GetEffective(int index) => GetProbe(index);
+        public void SetCoverage(float value)
         {
-            return InRange(index) ? truth[index] : 0f;
-        }
-
-        /// <summary>该项是否已经探测到。</summary>
-        public bool IsRevealed(int index)
-        {
-            return InRange(index) && revealed[index];
-        }
-
-        /// <summary>探测到的值。未探测到时返回 <paramref name="fallback"/>。</summary>
-        public float GetProbe(int index, float fallback = 0f)
-        {
-            return IsRevealed(index) ? probe[index] : fallback;
-        }
-
-        /// <summary>
-        /// 给分析/推荐用的值：探测到就用探测值，没探测到就用真值兜底。
-        /// 兜底是为了不让流程断掉（UI 上仍会把未探测的显示成「无」）。
-        /// </summary>
-        public float GetEffective(int index)
-        {
-            if (!InRange(index)) return 0f;
-            return revealed[index] ? probe[index] : truth[index];
-        }
-
-        // ==================================================================
-        //  写（由农场巡航调用）
-        // ==================================================================
-
-        /// <summary>
-        /// 更新覆盖率。覆盖率上升会**按比例揭示**静态指标之外的前几项 ——
-        /// 也就是"扫得越多，知道的越多"。
-        /// </summary>
-        public void SetCoverage(float coverage)
-        {
-            Coverage = Mathf.Clamp01(coverage);
-
-            // 动态 5 项（pH / 腐殖丰度 / 速效氮 / 磷活度 / 钾储量）随覆盖率揭示
-            var revealTarget = Mathf.FloorToInt(Coverage * SoilIndicators.DynamicCount + 1e-4f);
-            for (var i = 0; i < SoilIndicators.DynamicCount && i < revealed.Length; i++)
+            if (!IsActive || !MathX.IsFinite(value)) return;
+            value = MathX.Clamp01(value);
+            if (value < Coverage) // 主动重扫或网格重置：旧确认立即失效。
             {
-                if (i < revealTarget) Reveal(i);
+                IsConfirmed = false;
+                Array.Clear(revealed, 0, revealed.Length);
+                Array.Clear(probe, 0, probe.Length);
             }
+            if (IsConfirmed) return; // 已确认快照冻结。
+            Coverage = value;
+            int target = (int)Math.Floor(Coverage * SoilMetrics.DynamicCount + 1e-4f);
+            for (int i = 0; i < target && i < SoilMetrics.DynamicCount; i++) Reveal(i);
+            // 固定误差方向，幅度随覆盖率收敛；同覆盖率刷新不会跳值。
+            for (int i = 0; i < revealed.Length; i++) if (revealed[i]) probe[i] = ComputeProbe(i);
+            if (Coverage >= RequiredCoverage) RevealAll();
         }
-
-        /// <summary>揭示某一项（如果还没揭示）。</summary>
         public void Reveal(int index)
         {
-            if (!InRange(index) || revealed[index]) return;
-            revealed[index] = true;
-            probe[index] = ComputeProbe(index, Coverage);
+            if (!IsActive || !InRange(index) || revealed[index]) return;
+            revealed[index] = true; probe[index] = ComputeProbe(index);
         }
-
-        /// <summary>揭示全部（巡航到 100% 时）。静态四项也一起给。</summary>
         public void RevealAll()
         {
-            for (var i = 0; i < revealed.Length; i++) Reveal(i);
+            if (!IsActive || Coverage < RequiredCoverage) return;
+            for (int i = 0; i < revealed.Length; i++) Reveal(i);
         }
-
-        // ==================================================================
-        //  误差
-        // ==================================================================
-
-        private float ComputeProbe(int index, float coverage)
+        public bool Confirm(GameSession session)
         {
-            var t = truth[index];
-            if (Mathf.Approximately(t, 0f)) return t;
-
-            var amplitude = Mathf.Lerp(MaxError, MinError, Mathf.Clamp01(coverage));
-
-            // 用确定性的伪随机：同一个 seed + 同一个指标，结果固定，
-            // 不会每次刷新都变（否则玩家会觉得数值在乱跳）。
-            var r = Hash01(seed, index) * 2f - 1f;
-
-            // pH 用加性误差（乘性对对数尺度没意义），其余用乘性
-            if (index == (int)SoilMetric.pH)
-                return t + r * amplitude * t;
-
-            return t * (1f + r * amplitude);
+            if (!IsCurrent(session) || Coverage < RequiredCoverage) return false;
+            RevealAll();
+            IsConfirmed = RevealedCount == SoilMetrics.Count;
+            return IsConfirmed;
         }
-
-        private static bool InRange(int index)
+        /// <summary>只允许取得本阶段已确认的观测值；调用方拿到的是副本。</summary>
+        public SoilState AnalysisSoil(GameSession session)
         {
-            return index >= 0 && index < SoilIndicators.Count;
+            if (!CanAnalyze(session)) return null;
+            var soil = new SoilState();
+            for (int i = 0; i < probe.Length; i++) soil[(SoilMetric)i] = probe[i];
+            return soil;
         }
-
+        private float ComputeProbe(int index)
+        {
+            float amplitude = MaxError + (MinError - MaxError) * Coverage;
+            float r = Hash01(seed, index) * 2f - 1f;
+            return truth[index] * (1f + r * amplitude);
+        }
+        private static bool InRange(int index) => index >= 0 && index < SoilMetrics.Count;
         private static float Hash01(int seed, int index)
         {
             unchecked
             {
-                var x = (uint)(seed * 73856093 ^ index * 19349663);
+                uint x = (uint)(seed * 73856093 ^ index * 19349663);
                 x ^= x >> 16; x *= 0x7feb352du;
                 x ^= x >> 15; x *= 0x846ca68bu;
                 x ^= x >> 16;

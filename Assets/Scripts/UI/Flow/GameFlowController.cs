@@ -144,9 +144,59 @@ namespace Engineer.UI
             }
         }
 
+        private FarmFieldGrid probeGrid;
+        private FarmCruiseController probeCruise;
+        private float nextProbeResolve;
+        private bool wasAutoCruising;
+        public bool CanAnalyze => probe.CanAnalyze(session);
+
+        /// <summary>由常驻状态机同步，页面隐藏后采集仍继续。</summary>
+        public void SyncProbe()
+        {
+            if (session == null || !session.IsStarted || session.IsFinished) return;
+            if (probeGrid == null && Time.unscaledTime >= nextProbeResolve)
+            {
+                nextProbeResolve = Time.unscaledTime + 1f;
+                probeGrid = FindObjectOfType<FarmFieldGrid>();
+                probeCruise = FindObjectOfType<FarmCruiseController>();
+            }
+            probe.Begin(session);
+            if (probeGrid != null) probe.SetCoverage(probeGrid.Coverage);
+        }
+        private void LateUpdate()
+        {
+            SyncProbe();
+            bool auto = probeCruise != null && probeCruise.Mode == FarmCruiseController.CruiseMode.Auto;
+            if (wasAutoCruising && !auto && probeCruise != null
+                && probeCruise.Mode == FarmCruiseController.CruiseMode.Finished
+                && Current == GameState.FarmStage && !CanAnalyze)
+            {
+                var screen = Find(GameState.RobotCruise) as RobotCruiseScreen;
+                if (screen == null || screen.returnAfterAutoCruise) GoTo(GameState.RobotCruise);
+            }
+            wasAutoCruising = auto;
+        }
+        private void ResetStageProbe()
+        {
+            probe.Reset();
+            if (probeCruise != null) probeCruise.Stop();
+            if (probeGrid != null) { probeGrid.ClearCoverage(); probeGrid.EndCruise(); }
+            wasAutoCruising = false;
+        }
+        public bool ConfirmProbe()
+        {
+            SyncProbe();
+            return probe.Confirm(session);
+        }
+
         /// <summary>切换状态（记录历史）。</summary>
         public void GoTo(GameState state)
         {
+            if (state == GameState.Analyze)
+            {
+                SyncProbe();
+                if (!CanAnalyze) state = GameState.RobotCruise;
+            }
             var next = Find(state);
             if (next == null)
             {
@@ -202,6 +252,7 @@ namespace Engineer.UI
                 return;
             }
             var previous = history.Pop();
+            if (previous == GameState.Analyze && !CanAnalyze) previous = GameState.FarmStage;
             var target = Find(previous);
             if (target == null)
             {
@@ -213,6 +264,7 @@ namespace Engineer.UI
             if (current != null) current.OnExit();
             current = target;
             current.OnEnter(null);
+            ApplyInputPolicy(previous);
 
             if (logTransitions) Debug.Log("[UI] ← " + GameStateInfo.DisplayName(previous));
         }
@@ -222,6 +274,7 @@ namespace Engineer.UI
         {
             history.Clear();
             context.Reset();
+            ResetStageProbe();
             ResetScreens();
 
             var welcome = Find(GameState.Welcome);
@@ -260,10 +313,11 @@ namespace Engineer.UI
         /// <returns>本阶段结果；未开始或已结束时返回 null</returns>
         public Engineer.Core.StageResult CommitStageDosage()
         {
-            if (session == null || !session.IsStarted) return null;
+            if (session == null || !session.IsStarted || !CanAnalyze) return null;
 
             var result = session.CommitFromDosage(context.StageDosage);
             if (result == null) return null;
+            ResetStageProbe();
             context.SyncStageFromSession();
             ClearStageDosage();
             return result;
@@ -272,6 +326,7 @@ namespace Engineer.UI
         /// <summary>用六项基础数据启动数值内核。由「土地基础数据设置」界面调用。</summary>
         public bool BeginSimulation()
         {
+            ResetStageProbe();
             var ok = context.BeginSimulation();
             if (ok) context.SyncStageFromSession();
             return ok;

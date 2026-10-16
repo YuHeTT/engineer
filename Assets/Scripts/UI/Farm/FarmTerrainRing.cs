@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  FarmTerrainRing.cs —— 田块外围的地形
 // ---------------------------------------------------------------------------
 //  作用：把地形模型（平川台等）铺在田块外围，让"一片田"有落脚的地形，
@@ -64,6 +64,7 @@ namespace Engineer.UI
         {
             if (field == null) field = FindObjectOfType<FarmFieldBuilder>();
             if (field == null || field.Config == null) return;
+            if (Application.isPlaying && field.UsesSavedSceneLayout && transform.Find("TerrainRing") != null) return;
             if (ringMode == RingMode.None) return;
 
             Clear();

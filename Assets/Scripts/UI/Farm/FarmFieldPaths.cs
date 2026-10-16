@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  FarmFieldPaths.cs —— 田埂与田间小路
 // ---------------------------------------------------------------------------
 //  作用：在田块之间和整片田外围铺出田埂/小路。
@@ -52,6 +52,7 @@ namespace Engineer.UI
         {
             if (field == null) field = FindObjectOfType<FarmFieldBuilder>();
             if (field == null || field.Config == null) return;
+            if (Application.isPlaying && field.UsesSavedSceneLayout && transform.Find("Paths") != null) return;
 
             Clear();
 

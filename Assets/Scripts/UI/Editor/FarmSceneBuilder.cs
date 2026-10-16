@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  FarmSceneBuilder.cs —— 一键搭建农场可视化场景
 // ---------------------------------------------------------------------------
 //  作用：把所有可视化元件（光照 / 天空盒 / 相机 / 田块根节点）自动建好，
@@ -10,7 +10,7 @@
 //      而且没法进版本管理。脚本化之后可以一键重建、一键对比。
 //    · 与现有的 UiWhiteboxBuilder 是同一套思路。
 //
-//  菜单：Engineer / 农场 / 一键搭建农场场景
+//  菜单：Tools / Engineer / 场景初始化 / 创建农场场景
 // ---------------------------------------------------------------------------
 
 using System.Collections.Generic;
@@ -73,7 +73,7 @@ namespace Engineer.UI.EditorTools
         //  一键搭建
         // ==================================================================
 
-        [MenuItem("Engineer/农场/一键搭建农场场景", false, 10)]
+        [MenuItem("Tools/Engineer/场景初始化/创建农场场景", false, 10)]
         public static void BuildFarmScene()
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -83,19 +83,8 @@ namespace Engineer.UI.EditorTools
             var sunRoot = BuildLightingAndSky();
             var fieldRoot = BuildFieldRoot(config, sunRoot);
 
-            // ★ 这里**故意不调用**任何 Build()。
-            //
-            // 【为什么这是本项目最重要的一条约定】
-            //   所有几何（土壤、玉米、田埂、地形、房车）都是"运行时生成"的。
-            //   如果在编辑期调 Build()，Unity 会把它们**序列化进 Farm.unity**：
-            //     实测 20,333 个 GameObject、46 MB 场景文件、20,059 个 MeshRenderer。
-            //   而 Play 时 Awake 又生成一遍 → 场景里**同时存在两套几何** →
-            //     渲染器累积涨到 40,251、draw call 爆炸、
-            //     阴影投影物体 10 万、画面还叠加渲染变亮。
-            //   这一条坑了我们好几轮排查。
-            //
-            //   所以：场景只存"根节点 + 组件 + 配置"，几何一律留到运行时。
-            //   代价是编辑期看不到预览 —— 按 Play 看即可。
+            // 自动编辑适配会在场景就绪后生成唯一一份可保存布局。
+            // Play 复用布局，不再生成叠加的第二份几何。
             var cam = BuildCamera(fieldRoot);
 
             // 保存场景
@@ -115,26 +104,6 @@ namespace Engineer.UI.EditorTools
             Selection.activeGameObject = fieldRoot.gameObject;
         }
 
-        [MenuItem("Engineer/农场/只重建田块与玉米（保留相机光照）", false, 11)]
-        public static void RebuildFieldOnly()
-        {
-            var builder = Object.FindObjectOfType<FarmFieldBuilder>();
-            if (builder == null)
-            {
-                Debug.LogWarning("[农场构建器] 当前场景里没有 FarmFieldBuilder。");
-                return;
-            }
-
-            // ★ 编辑期不再生成几何 —— 否则会被序列化进场景文件，
-            //   Play 时又生成一遍就成了两套（见 BuildFarmScene 里的说明）。
-            //   现在改参数在 Play 中会自动重建。
-            Debug.LogWarning(
-                "[农场构建器] 几何改为**只在运行时生成**，编辑期不再烘焙进场景。\n" +
-                "  要改田块/玉米：Play 之后在 FarmFieldBuilder.Config 上直接改，" +
-                "运行时会自动重建（Console 会打印「检测到 Config 改动」）。", builder);
-            EditorUtility.SetDirty(builder);
-        }
-
         [MenuItem("Engineer/农场/自动取景（相机对齐田块）", false, 12)]
         public static void FrameCamera()
         {
@@ -149,47 +118,10 @@ namespace Engineer.UI.EditorTools
         }
 
         // ==================================================================
-        //  巡航遮罩开关（编辑器里预览用）
-        // ==================================================================
-
-        [MenuItem("Engineer/农场/切换未覆盖遮罩（编辑器预览）", false, 13)]
-        public static void ToggleMaskPreview()
-        {
-            var grid = Object.FindObjectOfType<FarmFieldGrid>();
-            if (grid == null)
-            {
-                Debug.LogWarning("[农场构建器] 当前场景里没有 FarmFieldGrid。");
-                return;
-            }
-
-            var root = grid.transform.Find("UncoveredMask");
-            if (root == null)
-            {
-                // 还没生成过：手动建一次（这时绕过 play mode 限制）
-                var refresh = typeof(FarmFieldGrid).GetMethod("RefreshMask",
-                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-                refresh?.Invoke(grid, null);
-                root = grid.transform.Find("UncoveredMask");
-            }
-
-            if (root == null)
-            {
-                Debug.LogWarning("[农场构建器] 遮罩没生成。检查 FarmFieldGrid.showUncoveredMask。");
-                return;
-            }
-
-            var on = !root.gameObject.activeSelf;
-            root.gameObject.SetActive(on);
-            Debug.Log("[农场构建器] 未覆盖遮罩预览：" + (on ? "开" : "关") +
-                      "。注意运行时遮罩由 FarmFieldGrid 自己管理，这个开关只影响编辑器里看不看得到。", grid);
-            EditorUtility.SetDirty(grid);
-        }
-
-        // ==================================================================
         //  Bootstrap 场景：把 UI 与 Farm 组合起来
         // ==================================================================
 
-        [MenuItem("Engineer/农场/生成 Bootstrap 场景（UI + Farm 一起跑）", false, 20)]
+        [MenuItem("Tools/Engineer/场景初始化/创建 Bootstrap 场景", false, 20)]
         public static void BuildBootstrapScene()
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -482,6 +414,77 @@ namespace Engineer.UI.EditorTools
                 camGo.transform.position.y, camGo.transform.position.z), camGo);
 
             return cam;
+        }
+    }
+}
+
+
+namespace Engineer.UI.EditorTools
+{
+    // 打开旧农场骨架时自动初始化为普通场景物体。
+    [InitializeOnLoad]
+    public static class FarmSceneAuthoring
+    {
+        static FarmSceneAuthoring()
+        {
+            EditorApplication.delayCall += EnsureOpenScenes;
+            EditorSceneManager.sceneOpened += (scene, mode) => EnsureOpenScenes();
+            EditorApplication.playModeStateChanged += state =>
+            {
+                if (state == PlayModeStateChange.EnteredEditMode) EditorApplication.delayCall += EnsureOpenScenes;
+            };
+        }
+
+        public static void EnsureOpenScenes()
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || BuildPipeline.isBuildingPlayer) return;
+            foreach (var field in UnityEngine.Object.FindObjectsOfType<FarmFieldBuilder>())
+            {
+                if (!field.gameObject.scene.IsValid() || !field.gameObject.scene.isLoaded || field.UsesSavedSceneLayout) continue;
+                if (PrefabUtility.IsPartOfPrefabAsset(field)) continue;
+                PrepareEditableFarm(field);
+            }
+        }
+
+        public static void PrepareEditableFarm(FarmFieldBuilder field)
+        {
+            if (field.UsesSavedSceneLayout) return;
+            // 只对旧的空骨架执行一次。之后绝不因打开场景/刷新而重建用户布局。
+            field.Build(false);
+            foreach (var paths in field.GetComponents<FarmFieldPaths>()) paths.Build();
+            foreach (var ring in field.GetComponents<FarmTerrainRing>()) ring.Build();
+            foreach (var equipment in field.GetComponents<FarmEquipment>()) equipment.Build();
+            foreach (var grid in field.GetComponents<FarmFieldGrid>()) grid.Build();
+            foreach (var cruise in field.GetComponents<FarmCruiseController>()) cruise.ResetToStart();
+
+            const string directory = "Assets/Art/GeneratedFarm";
+            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+            AssetDatabase.Refresh();
+            var assetPath = AssetDatabase.GenerateUniqueAssetPath(directory + "/FarmLayout.asset");
+            var saved = new HashSet<int>();
+            bool hasAsset = false;
+            System.Action<UnityEngine.Object> persist = obj =>
+            {
+                if (obj == null || EditorUtility.IsPersistent(obj) || !saved.Add(obj.GetInstanceID())) return;
+                obj.hideFlags = HideFlags.None;
+                if (!hasAsset) { AssetDatabase.CreateAsset(obj, assetPath); hasAsset = true; }
+                else AssetDatabase.AddObjectToAsset(obj, assetPath);
+            };
+            // 合并后的共享网格、程序生成材质必须成为资源，否则重开场景会丢模型。
+            foreach (var filter in field.GetComponentsInChildren<MeshFilter>(true)) persist(filter.sharedMesh);
+            foreach (var renderer in field.GetComponentsInChildren<Renderer>(true))
+                foreach (var material in renderer.sharedMaterials) persist(material);
+            foreach (var transform in field.GetComponentsInChildren<Transform>(true))
+                transform.gameObject.hideFlags = HideFlags.None;
+            field.UseSavedSceneLayout();
+            // 清除未放入场景的合并模板，已保存的网格不会被销毁。
+            typeof(FarmFieldBuilder).GetMethod("ClearCombinedCache",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(field, null);
+            EditorUtility.SetDirty(field);
+            AssetDatabase.SaveAssets();
+            EditorSceneManager.MarkSceneDirty(field.gameObject.scene);
+            SceneView.RepaintAll();
+            Debug.Log("[农场] 已转为可直接编辑的场景布局。直接拖动修改，Ctrl+S 保存即可；运行时复用布局。", field);
         }
     }
 }

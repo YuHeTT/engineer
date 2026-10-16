@@ -204,30 +204,26 @@ namespace Engineer.UI
         /// 由巡航小车在移动时调用。
         /// </summary>
         /// <returns>本次新覆盖的格子数。</returns>
-        public int MarkScanned(Vector3 center, float radius)
+        public int MarkScanned(Vector3 center, float radius) => MarkScannedSegment(center, center, radius);
+
+        /// <summary>扫描上一采样点到当前位置整段路径，低帧率/高速移动也不会跳过中间格子。</summary>
+        public int MarkScannedSegment(Vector3 from, Vector3 to, float radius)
         {
             if (!built || cells == null || radius <= 0f) return 0;
-
-            var r2 = radius * radius;
-            var newly = 0;
-
-            for (var i = 0; i < cells.Length; i++)
+            var a = new Vector2(from.x, from.z);
+            var b = new Vector2(to.x, to.z);
+            var direction = b - a;
+            float length2 = direction.sqrMagnitude;
+            int newly = 0;
+            for (int i = 0; i < cells.Length; i++)
             {
                 if (cells[i].Covered) continue;
-
-                // 用"格子中心到扫描中心的距离"判定。
-                // 更精确的做法是算圆与矩形的重叠面积，但格子只有 2~3 m，
-                // 用中心判定已经足够，而且避免逐格做几何裁剪的开销。
-                var dx = cells[i].Center.x - center.x;
-                var dz = cells[i].Center.y - center.z;
-                if (dx * dx + dz * dz > r2) continue;
-
+                float t = length2 > 0f ? Mathf.Clamp01(Vector2.Dot(cells[i].Center - a, direction) / length2) : 0f;
+                if ((cells[i].Center - (a + direction * t)).sqrMagnitude > radius * radius) continue;
                 cells[i].Covered = true;
                 cells[i].CoveredArea = cells[i].Area;
-                coveredCells++;
-                newly++;
+                coveredCells++; newly++;
             }
-
             if (newly > 0) RecomputeCoverage();
             return newly;
         }

@@ -54,6 +54,11 @@ namespace Engineer.UI
         /// <summary>没有接上内核时的兜底文案（理论上不该出现）。</summary>
         private const string NotConnected = "未接入数值内核";
 
+        private SoilState analysisSoil;
+        private SuitabilityResult analysisFit;
+        private bool observationFallback;
+        private RecommendedPlan analysisPlan;
+
         protected override bool OwnsButton(Button button) => button != null && button == confirmButton;
 
         public override void OnEnter(object args)
@@ -89,25 +94,16 @@ namespace Engineer.UI
                 confirmButton.onClick.AddListener(OnConfirmDosage);
             }
 
+            analysisSoil = Flow != null ? Flow.Probe.AnalysisSoil(session) : null;
+            analysisFit = analysisSoil != null ? SuitabilityResult.From(analysisSoil, session.Config) : null;
+            analysisPlan = session != null ? session.RecommendFromObservation(analysisSoil, out observationFallback) : null;
+            if (confirmButton != null) confirmButton.interactable = analysisSoil != null;
+            if (stageTitleText != null) stageTitleText.text += analysisSoil != null
+                ? " · 探测数据分析（100%）" : " · 请先完成本阶段巡航并确认数据";
             RefreshSuggestions(session);
         }
 
-        /// <summary>
-        /// 报告"探测值"与"内核真值"的差距。
-        ///
-        /// 【为什么要有这个方法 —— 说明一个设计选择】
-        ///   推荐方案（<see cref="GameSession.Recommend"/>）与适宜度（Fit）用的是
-        ///   **内核里的真实土壤**，而不是带误差的探测值。
-        ///   这是有意的：内核是权威数据，只由水肥演算推进；
-        ///   如果让带误差的探测值去驱动推荐，误差会累积进数值链路，
-        ///   最后收益算出来就不可信了。
-        ///
-        ///   所以本屏的分工是：
-        ///     · 适宜度 / 推荐 → 用真值（保证数值链路的正确性）
-        ///     · 巡航界面的"探测数据"列 → 显示带误差的值（体现"探测"这件事）
-        ///   这里把这个差距打出来，方便对比两者，也提醒策划：
-        ///   如果希望"误差影响决策"，那是另一套玩法，需要单独设计。
-        /// </summary>
+        /// <summary>诊断对比：建议/适宜度采用确认探测值，真实土壤仅用于演变与产量。</summary>
         private void ReportProbeGap(GameSession session)
         {
             if (!logSuggestionRefresh) return;
@@ -123,14 +119,9 @@ namespace Engineer.UI
                                  "探测值对比无法输出。", this);
                 return;
             }
-            if (!probe.IsActive)
+            if (!probe.CanAnalyze(session))
             {
-                Debug.LogWarning("[Analyze] 探测未激活（probe.IsActive = false）—— " +
-                                 "说明本阶段没有走过「巡航」界面。\n" +
-                                 "  路径应该是：农场主界面 → 点「巡航」→ RobotCruiseScreen.OnEnter " +
-                                 "会调 probe.Begin()。\n" +
-                                 "  如果跳过巡航直接点「分析」，就没有探测值（这是符合设计的）。\n" +
-                                 "  想快速验证：Play 时在巡航界面按 G 立刻结束巡航，再进分析。", this);
+                Debug.LogWarning("[Analyze] 本阶段探测数据尚未确认，禁止分析与提交。", this);
                 return;
             }
 
@@ -232,7 +223,7 @@ namespace Engineer.UI
             }
 
             // 1) 读输入框 → GameContext.StageDosage（顺序：灌溉 / 有机肥 / 钾 / 氮 / 磷）
-            if (flow.Current != GameState.Analyze || !ReadDosageInputs(context)) return;
+            if (flow.Current != GameState.Analyze || !flow.CanAnalyze || !ReadDosageInputs(context)) return;
 
             // 2) 交给内核演算并推进。
             //    注意：CommitStageDosage 内部会同步 StageIndex 并清空输入槽。
@@ -274,11 +265,11 @@ namespace Engineer.UI
                 return;
             }
 
-            var plan = session.Recommend();
+            var plan = analysisPlan;
             if (plan == null)
             {
                 for (var i = 0; i < suggestionValues.Length; i++)
-                    if (suggestionValues[i] != null) suggestionValues[i].text = "本阶段无需操作";
+                    if (suggestionValues[i] != null) suggestionValues[i].text = "请先完成巡航并确认探测数据";
 
                 if (logSuggestionRefresh)
                     Debug.Log("[Analyze] 本阶段没有推荐方案（已结束或未开始），4 项建议显示占位。");
@@ -293,20 +284,34 @@ namespace Engineer.UI
             {
                 Debug.Log(string.Format(
                     "[Analyze] 写入建议：plan=「{0}」 走兜底={1} | 有机肥={2:0.#} 氮={3:0.#} 磷={4:0.#} 钾={5:0.#} 水={6:0.#}",
-                    plan.Label, session.RecommendUsedFallback,
+                    plan.Label, observationFallback,
                     amounts.Organic, amounts.N, amounts.P, amounts.K, plan.BaseIrrigation));
             }
 
             SetText(0, plan.Label);
             SetText(1, BuildFertilizerText(amounts));
             SetText(2, plan.BaseIrrigation.ToString("0.#") + " m³/亩");
-            SetText(3, plan.Physiology);
+            var sourceText = "分析依据：本阶段确认探测值（覆盖100%）"
+                + "\npH " + analysisSoil.pH.ToString("0.##") + " / OM " + analysisSoil.OM.ToString("0.##")
+                + "\nN " + analysisSoil.N.ToString("0.##") + " / P " + analysisSoil.P.ToString("0.##")
+                + " / K " + analysisSoil.K.ToString("0.##")
+                + "\n土壤演变与产量结算使用真实土壤及实际投入。";
+            var noteNode = transform.Find("Body/DosagePanel/Note");
+            var note = noteNode != null ? noteNode.GetComponent<TMP_Text>() : null;
+            if (note != null)
+            {
+                note.text = sourceText;
+                note.enableAutoSizing = true;
+                note.fontSizeMin = 12f;
+                note.fontSizeMax = 18f;
+            }
+            SetText(3, plan.Physiology + (note == null ? "\n" + sourceText : ""));
 
             // 文档规则空洞提示（见 Docs/漏洞与风险清单.md G2）
-            if (warnOnFallbackRecommendation && session.RecommendUsedFallback
+            if (warnOnFallbackRecommendation && observationFallback
                 && stageTitleText != null)
             {
-                stageTitleText.text += "（该情况文档未定义，使用兜底建议）";
+                stageTitleText.text += "（建议采用兜底规则）";
             }
 
             if (prefillWithRecommendation)
@@ -341,7 +346,7 @@ namespace Engineer.UI
                 return;
             }
 
-            var fit = session.Fit;
+            var fit = analysisFit;
             if (fit == null)
             {
                 for (var i = 0; i < suitabilityValues.Length; i++)

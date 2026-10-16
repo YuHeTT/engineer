@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Engineer.Core;
 using Engineer.UI;
 
@@ -94,6 +94,43 @@ static class Program
         sim.Initialize(GameSession.BuildInput(6.5f,25,90,15,150));
         Throws(()=>sim.Initialize(GameSession.BuildInput(float.NaN,25,90,15,150)),"拒绝非法初始土壤");
         Check(Near(sim.CurrentSoil.pH,6.5f) && sim.CommittedCount==0,"非法初始化不破坏旧局");
+        var observedSession = new GameSession(cfg);
+        observedSession.Begin(GameSession.BuildInput(6.5f,25,90,15,150), new Random(12));
+        var probe = new FarmProbeState();
+        probe.Begin(observedSession);
+        Check(!probe.CanAnalyze(observedSession) && probe.AnalysisSoil(observedSession)==null,"零覆盖不能分析也不泄漏真值");
+        probe.SetCoverage(0.8f);
+        Check(!probe.Confirm(observedSession) && !probe.CanAnalyze(observedSession),"80%仍不能确认");
+        float firstProbe = probe.GetProbe(0);
+        probe.Begin(observedSession);
+        Check(Near(probe.Coverage,0.8f) && Near(probe.GetProbe(0),firstProbe),"重进巡航页保留覆盖和探测值");
+        probe.SetCoverage(1f);
+        Check(probe.RevealedCount==9 && !probe.CanAnalyze(observedSession),"覆盖完成但未确认仍不可分析");
+        Check(probe.Confirm(observedSession) && probe.CanAnalyze(observedSession),"100%确认后允许分析");
+        var observation=probe.AnalysisSoil(observedSession);
+        Check(observation!=null && Near(observation.N,probe.GetProbe(2)),"分析快照采用探测值");
+        float saved=observation.N; observation.N=999;
+        Check(Near(probe.AnalysisSoil(observedSession).N,saved),"外部修改不会污染确认快照");
+        bool fallback;
+        var observationForPlan = probe.AnalysisSoil(observedSession);
+        var planFromProbe = observedSession.RecommendFromObservation(observationForPlan,out fallback);
+        var independentPlan = new PlanTable(cfg).Match(Stage.S1,SuitabilityResult.From(observationForPlan,cfg));
+        Check(planFromProbe!=null && planFromProbe.Label==independentPlan.Label,"建议来自观测快照");
+        Check(Near(observedSession.Soil.N,90),"探测与推荐不改写真实土壤");
+        var frozen=probe.GetProbe(0);probe.SetCoverage(1f);
+        Check(Near(probe.GetProbe(0),frozen),"确认后的值稳定不跳动");
+        probe.SetCoverage(0f);
+        Check(!probe.CanAnalyze(observedSession) && probe.RevealedCount==0,"重新扫描使旧确认失效");
+        probe.SetCoverage(1f);probe.Confirm(observedSession);
+        observedSession.CommitFromDosage(new float[5]);
+        Check(!probe.CanAnalyze(observedSession),"下一阶段不能复用上一阶段确认");
+        probe.Begin(observedSession);
+        Check(Near(probe.Coverage,0) && !probe.IsConfirmed,"新阶段清零采集状态");
+        probe.SetCoverage(1f);probe.Confirm(observedSession);
+        observedSession.Begin(GameSession.BuildInput(6.5f,25,90,15,150));
+        Check(!probe.CanAnalyze(observedSession),"同一Session重开新局旧快照失效");
+        probe.Reset();
+        Check(!probe.IsActive && !probe.IsConfirmed && probe.RevealedCount==0,"重置清空采集数据");
         Console.WriteLine("ALL PASSED: " + count);
     }
 }

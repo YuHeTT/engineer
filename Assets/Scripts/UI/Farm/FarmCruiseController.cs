@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  FarmCruiseController.cs —— 巡航小车（手动 + 自动）
 // ---------------------------------------------------------------------------
 //  作用：这是"数字孪生"玩法的核心 —— 小车在田里走，走过的地方被探测到，
@@ -235,16 +235,11 @@ namespace Engineer.UI
             }
         }
 
-        /// <summary>立刻结束自动巡航：把剩下的区域一次扫完。</summary>
+        /// <summary>提前停止保留真实覆盖率，不能凭空补齐未巡航区域。</summary>
         public void FinishNow()
         {
-            if (grid == null) return;
-            grid.MarkAllScanned();
-            grid.RefreshMask();
-            waypointIndex = waypoints.Count;
-            mode = CruiseMode.Finished;
-            Debug.Log(string.Format("[农场] 自动巡航已手动结束，覆盖率补齐到 {0:0.0}%。",
-                grid.Coverage * 100f), this);
+            Stop();
+            Debug.Log("[巡航] 已停止，保留实际覆盖率；未完成采集不能分析。", this);
         }
 
         private void Resolve()
@@ -332,7 +327,7 @@ namespace Engineer.UI
             LogFacingDiagnostics();
 
             Debug.Log(string.Format("[农场] 进入自动巡航：{0} 个路点，预计 {1:0} 秒走完。\n" +
-                                    "  按 ] / [ 调速，F 拉到最快，G 立刻结束。",
+                                    "  按 ] / [ 调速，F 拉到最快，G 停止巡航（不补齐覆盖率）。",
                 waypoints.Count, EstimateRemainingSeconds()), this);
         }
 
@@ -363,6 +358,8 @@ namespace Engineer.UI
         private void BuildRover()
         {
             if (rover != null) return;
+            var savedRover = transform.Find("Rover");
+            if (savedRover != null) { rover = savedRover.gameObject; return; }
 
             if (roverPrefab != null)
             {
@@ -556,6 +553,13 @@ namespace Engineer.UI
 
             if (waypointIndex >= waypoints.Count)
             {
+                // 主路线后对仍未覆盖的格子追加真实补扫路点，不伪造100%。
+                if (grid != null && grid.Coverage < FarmProbeState.RequiredCoverage)
+                {
+                    foreach (var cell in grid.Cells)
+                        if (!cell.Covered) waypoints.Add(new Vector3(cell.Center.x, 0f, cell.Center.y));
+                    if (waypointIndex < waypoints.Count) return;
+                }
                 mode = CruiseMode.Finished;
                 Debug.Log(string.Format("[农场] 自动巡航完成，覆盖率 {0:0.0}%。",
                     grid != null ? grid.Coverage * 100f : 0f), this);
@@ -568,8 +572,9 @@ namespace Engineer.UI
             var flat = new Vector3(target.x - pos.x, 0f, target.z - pos.z);
             var dist = flat.magnitude;
 
-            if (dist <= waypointTolerance)
+            if (dist <= Mathf.Min(waypointTolerance, scanRadius * 0.5f))
             {
+                TickProbe(true);
                 waypointIndex++;
                 // 每到一个路点报一次进度，方便知道还剩多久
                 Debug.Log(string.Format("[农场] 自动巡航 {0}/{1} 路点，覆盖率 {2:0.0}%，预计还需 {3:0} 秒。",
@@ -631,16 +636,16 @@ namespace Engineer.UI
         // ==================================================================
 
         /// <summary>每移动一定距离就标一次扫描范围。</summary>
-        private void TickProbe()
+        private void TickProbe(bool force = false)
         {
             if (grid == null || rover == null) return;
 
             var p = rover.transform.position;
             var moved = Vector2.Distance(new Vector2(p.x, p.z), new Vector2(lastProbePosition.x, lastProbePosition.z));
-            if (moved < probeStepDistance) return;
+            if (!force && moved < probeStepDistance) return;
 
+            var newly = grid.MarkScannedSegment(lastProbePosition, p, scanRadius);
             lastProbePosition = p;
-            var newly = grid.MarkScanned(p, scanRadius);
             if (newly > 0) grid.RefreshMask();
         }
 

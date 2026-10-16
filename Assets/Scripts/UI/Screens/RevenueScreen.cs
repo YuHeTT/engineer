@@ -297,7 +297,7 @@ namespace Engineer.UI
         {
             return "pH " + soil.pH.ToString("0.##")
                  + " / OM " + soil.OM.ToString("0.##")
-                 + " / N " + soil.N.ToString("0.##")
+                 + "\nN " + soil.N.ToString("0.##")
                  + " / P " + soil.P.ToString("0.##")
                  + " / K " + soil.K.ToString("0.##");
         }

@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  BatchValidationWindow.cs —— 数值批量验证窗口
 // ---------------------------------------------------------------------------
 //  作用：把"在 Unity 里手点着试数值"换成"一次跑几百组参数出对比表"。
@@ -38,7 +38,7 @@ namespace Engineer.Editor
         private string _report = "点击下方按钮开始验证。";
         private bool _useDefault = true;
 
-        [MenuItem("Engineer/数值批量验证")]
+        [MenuItem("Engineer/验证/数值批量验证")]
         public static void Open()
         {
             var w = GetWindow<BatchValidationWindow>("数值批量验证");

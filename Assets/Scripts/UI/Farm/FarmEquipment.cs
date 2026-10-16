@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  FarmEquipment.cs —— 停在田边的智能农田房车
 // ---------------------------------------------------------------------------
 //  作用：把房车模型摆到田块外侧（环田路旁边），并播放它的"独立开合"动画。
@@ -62,6 +62,13 @@ namespace Engineer.UI
         public void Build()
         {
             if (field == null) field = FindObjectOfType<FarmFieldBuilder>();
+            if (rv == null && transform.Find("RV") != null) rv = transform.Find("RV").gameObject;
+            if (rv != null && field != null && field.UsesSavedSceneLayout)
+            {
+                CollectClips();
+                if (Application.isPlaying && autoPlayAnimation && clips.Count > 0) PlayClip(0);
+                return;
+            }
             if (rvPrefab == null)
             {
                 Debug.LogWarning("[农场] 没有指定房车模型，跳过。" +

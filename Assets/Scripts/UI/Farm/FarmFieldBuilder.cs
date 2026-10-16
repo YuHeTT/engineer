@@ -1,4 +1,4 @@
-// ---------------------------------------------------------------------------
+﻿// ---------------------------------------------------------------------------
 //  FarmFieldBuilder.cs —— 生成农田地块与玉米
 // ---------------------------------------------------------------------------
 //  作用：按 <see cref="FarmVisualConfig"/> 的配置，把"土壤块 + 玉米"实例化出来。
@@ -76,6 +76,32 @@ namespace Engineer.UI
         private Transform soilRoot;
         private Transform plantRoot;
         private bool built;
+        [SerializeField, HideInInspector] private bool savedSceneLayout;
+        public bool UsesSavedSceneLayout { get { return savedSceneLayout; } }
+
+        // 保存的层级是布局来源；运行时只恢复索引，不再重铺土壤。
+        public void UseSavedSceneLayout()
+        {
+            savedSceneLayout = true;
+            soilRoot = transform.Find("Soil");
+            plantRoot = transform.Find("Plants");
+            plantCount = 0;
+            for (var s = 1; s <= 3; s++)
+            {
+                plantsByStage[s] = new List<Transform>();
+                stageRoots[s] = plantRoot != null ? plantRoot.Find("Stage_" + s) : null;
+                if (stageRoots[s] != null)
+                    foreach (Transform child in stageRoots[s]) plantsByStage[s].Add(child);
+                stageReady[s] = stageRoots[s] != null && stageRoots[s].childCount > 0;
+                plantCount += plantsByStage[s].Count;
+            }
+            builtGrowth = currentGrowth;
+            built = true;
+            var size = config.FieldSize;
+            FieldBounds = new Bounds(transform.position + Vector3.up * (config.SoilRidgeTopY * .5f),
+                new Vector3(size.x, config.SoilRidgeTopY + 3f, size.y));
+        }
+
 
         /// <summary>当前已生成的玉米是按哪个长势建的。</summary>
         private GrowthLevel builtGrowth = GrowthLevel.Normal;
@@ -101,21 +127,11 @@ namespace Engineer.UI
 
         private void Awake()
         {
-            // ★ 只在运行时生成。
-            //
-            // 【为什么必须这样】这是本项目最大的设计教训：
-            //   如果 Awake 里无条件 Build()，那么"编辑期点菜单生成场景"时
-            //   这些几何会被**序列化进 Farm.unity**（实测 20,333 个 GameObject、
-            //   46 MB 的场景文件）。等到 Play 时 Awake 又 Build() 一遍，
-            //   于是场景里同时存在**烘焙的旧几何**和**运行时生成的新几何**，
-            //   渲染器数量翻倍累积（实测涨到 40,251），
-            //   直接导致：draw call 爆炸、阴影投影物体 10 万、画面叠加变亮。
-            //
-            //   改成"只在 isPlaying 时生成"之后：
-            //     · Farm.unity 只存根节点与组件，几百 KB
-            //     · Play 时生成唯一一套几何
-            //   代价是编辑期看不到预览 —— 用 Play 看即可。
-            if (Application.isPlaying) Build();
+            // 已保存的场景布局直接恢复索引；旧场景仍兼容运行时生成。
+            if (Application.isPlaying)
+            {
+                if (savedSceneLayout) UseSavedSceneLayout(); else Build();
+            }
             lastConfigSignature = ConfigSignature();
         }
 
@@ -131,6 +147,7 @@ namespace Engineer.UI
             //   ① 必须记录"上次已经重建过的签名"，而不是每帧跟 Build() 时的值比 ——
             //      否则 Build() 之后签名对不上就会**每帧重建**，直接卡死。
             //   ② 重建是重活（几百个 Instantiate），所以只在签名真的变了才做。
+            if (savedSceneLayout) return;
             var sig = ConfigSignature();
             if (sig == lastConfigSignature) return;
 
@@ -194,6 +211,13 @@ namespace Engineer.UI
         /// <summary>重建整片田。可以重复调用（会先清掉旧的）。</summary>
         public void Build()
         {
+            Build(true);
+        }
+
+        /// <summary>编辑预览可禁止重置已手工调整的相机。</summary>
+        public void Build(bool frameCamera)
+        {
+            if (savedSceneLayout) { UseSavedSceneLayout(); return; }
             Clear();
             config.Sanitize();
 
@@ -232,7 +256,7 @@ namespace Engineer.UI
             // （场景里不再烘焙几何，所以编辑期算不出 FieldBounds，
             //   相机的初始位置是按 Config 推算的近似值，这里修正成精确值。）
             var rig = FindObjectOfType<FarmCameraRig>();
-            if (rig != null && rig.CurrentViewLevel != FarmCameraRig.ViewLevel.CloseUp)
+            if (frameCamera && rig != null && rig.CurrentViewLevel != FarmCameraRig.ViewLevel.CloseUp)
                 rig.FrameField(FieldBounds, config.BlockGroupSize.x);
 
             Debug.Log(string.Format(
@@ -405,6 +429,17 @@ namespace Engineer.UI
         /// <param name="growth">长势（决定用"好/正常/差"哪个模型）</param>
         public void ApplyStage(CornStage stage, GrowthLevel growth)
         {
+            var previousStage = currentStage;
+            var poses = new List<Transform>();
+            if (savedSceneLayout)
+            {
+                var previousRoot = plantRoot != null ? plantRoot.Find("Stage_" + (int)(previousStage == CornStage.None ? CornStage.Mature : previousStage)) : null;
+                if (previousRoot != null) foreach (Transform child in previousRoot) poses.Add(child);
+            }
+            var positions = new List<Vector3>();
+            var rotations = new List<Quaternion>();
+            var scales = new List<Vector3>();
+            foreach (var t in poses) { positions.Add(t.localPosition); rotations.Add(t.localRotation); scales.Add(t.localScale); }
             currentStage = stage;
 
             if (!built) return;
@@ -425,6 +460,12 @@ namespace Engineer.UI
                 if (!stageReady[s]) RebuildStage(stage, growth);
             }
 
+            if (savedSceneLayout && stage != CornStage.None && positions.Count > 0)
+            {
+                var target = plantsByStage[(int)stage];
+                for (var i = 0; i < target.Count && i < positions.Count; i++)
+                { target[i].localPosition = positions[i]; target[i].localRotation = rotations[i]; target[i].localScale = scales[i]; }
+            }
             ActivateOnly(stage);
         }
 
@@ -643,6 +684,9 @@ namespace Engineer.UI
                 {
                     var mesh = filter.sharedMesh;
                     if (mesh == null || !mesh.name.StartsWith("Combined_")) continue;
+#if UNITY_EDITOR
+                    if (UnityEditor.EditorUtility.IsPersistent(mesh)) continue;
+#endif
                     if (Application.isPlaying) Destroy(mesh); else DestroyImmediate(mesh);
                 }
                 if (Application.isPlaying) Destroy(kv.Value); else DestroyImmediate(kv.Value);

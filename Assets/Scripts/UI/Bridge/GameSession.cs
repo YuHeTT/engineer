@@ -172,6 +172,17 @@ namespace Engineer.UI
                 : null;
         }
 
+        /// <summary>用观测快照生成建议，不修改真实土壤与模拟阶段。</summary>
+        public RecommendedPlan RecommendFromObservation(SoilState observation, out bool usedFallback)
+        {
+            usedFallback = false;
+            if (!IsStarted || IsFinished || observation == null) return null;
+            var table = new PlanTable(config);
+            var plan = table.Match(CoreStage, SuitabilityResult.From(observation, config));
+            usedFallback = table.LastMatchUsedFallback;
+            return plan;
+        }
+
         /// <summary>
         /// 上一次 <see cref="Recommend"/> 是否走了兜底规则。
         /// true 表示这个适宜度组合在策划文档里没有定义 —— 界面可以据此提示。
