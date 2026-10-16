@@ -125,6 +125,23 @@ namespace Engineer.UI
         /// <summary>整片田的世界包围盒（供相机自动取景用）。</summary>
         public Bounds FieldBounds { get; private set; }
 
+        private Bounds[] soilContactBounds;
+        public float SurfaceHeight(Vector3 point)
+        {
+            if (soilContactBounds == null)
+            {
+                var soil = transform.Find("Soil");
+                var renderers = soil != null ? soil.GetComponentsInChildren<Renderer>() : new Renderer[0];
+                soilContactBounds = new Bounds[renderers.Length];
+                for (int i = 0; i < renderers.Length; i++) soilContactBounds[i] = renderers[i].bounds;
+            }
+            var height = transform.position.y + config.SoilRidgeTopY;
+            foreach (var bounds in soilContactBounds)
+                if (point.x >= bounds.min.x-.05f && point.x <= bounds.max.x+.05f && point.z >= bounds.min.z-.05f && point.z <= bounds.max.z+.05f)
+                    height = Mathf.Max(height, bounds.max.y);
+            return height + .015f;
+        }
+
         private void Awake()
         {
             // 已保存的场景布局直接恢复索引；旧场景仍兼容运行时生成。
@@ -267,6 +284,7 @@ namespace Engineer.UI
         /// <summary>清掉已生成的内容。</summary>
         public void Clear()
         {
+            soilContactBounds = null;
             DestroyChildren(soilRoot);
             DestroyChildren(plantRoot);
             ClearCombinedCache();

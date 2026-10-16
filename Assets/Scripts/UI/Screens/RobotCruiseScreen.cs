@@ -133,6 +133,13 @@ namespace Engineer.UI
             RefreshCruiseState();
         }
 
+        public override void OnExit()
+        {
+            // 中途离开出舱页时取消开场，防止其它页面被镜头接管。
+            if (cruise != null && cruise.IsDeploying) cruise.Stop();
+            base.OnExit();
+        }
+
         private void Resolve()
         {
             // 【注意】FindObjectOfType 开销不小，而这里每帧都会被调，
@@ -277,7 +284,7 @@ namespace Engineer.UI
         public void OnManualCruise()
         {
             Resolve();
-
+            if (cruise != null && cruise.IsDeploying) return;
 
             if (cruise == null || grid == null)
             {
@@ -302,7 +309,7 @@ namespace Engineer.UI
         public void OnAutoCruise()
         {
             Resolve();
-
+            if (cruise != null && cruise.IsDeploying) return;
 
             if (cruise == null || grid == null)
             {
@@ -417,12 +424,16 @@ namespace Engineer.UI
             var confirmed = Flow != null && Flow.CanAnalyze;
             if (updateButton != null) updateButton.interactable = canAnalyze && !confirmed;
             // 更新之后仍可开始新一轮巡航；主动重扫会清空覆盖并撤销上一份确认。
-            if (manualButton != null) manualButton.interactable = true;
-            if (autoButton != null) autoButton.interactable = true;
+            if (manualButton != null) manualButton.interactable = cruise == null || !cruise.IsDeploying;
+            if (autoButton != null) autoButton.interactable = cruise == null || !cruise.IsDeploying;
 
             if (hintText != null)
             {
-                if (confirmed)
+                if (cruise != null && cruise.IsDeploying)
+                {
+                    hintText.text = "房车正在打开机器人舱，小车出舱中，请稍候……";
+                }
+                else if (confirmed)
                 {
                     hintText.text = "数据已更新。点击「返回农场」，再点击「开始分析」查看结果。\n" +
                         "也可以重新手动或自动巡航，采集新一轮数据；重新采集后需再次完成覆盖并更新数据。";

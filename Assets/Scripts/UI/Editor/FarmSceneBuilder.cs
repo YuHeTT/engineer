@@ -440,10 +440,21 @@ namespace Engineer.UI.EditorTools
             if (EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling || BuildPipeline.isBuildingPlayer) return;
             foreach (var field in UnityEngine.Object.FindObjectsOfType<FarmFieldBuilder>())
             {
-                if (!field.gameObject.scene.IsValid() || !field.gameObject.scene.isLoaded || field.UsesSavedSceneLayout) continue;
+                if (!field.gameObject.scene.IsValid() || !field.gameObject.scene.isLoaded) continue;
                 if (PrefabUtility.IsPartOfPrefabAsset(field)) continue;
-                PrepareEditableFarm(field);
+                RemoveStandaloneRover(field);
+                if (!field.UsesSavedSceneLayout) PrepareEditableFarm(field);
             }
+        }
+
+        private static void RemoveStandaloneRover(FarmFieldBuilder field)
+        {
+            var equipment = field.GetComponent<FarmEquipment>();
+            if (equipment == null || equipment.DockedRobot == null) return;
+            var old = field.transform.Find("Rover");
+            if (old == null || equipment.DockedRobot.IsChildOf(old)) return;
+            Undo.DestroyObjectImmediate(old.gameObject);
+            EditorSceneManager.MarkSceneDirty(field.gameObject.scene);
         }
 
         public static void PrepareEditableFarm(FarmFieldBuilder field)
@@ -477,6 +488,7 @@ namespace Engineer.UI.EditorTools
             foreach (var transform in field.GetComponentsInChildren<Transform>(true))
                 transform.gameObject.hideFlags = HideFlags.None;
             field.UseSavedSceneLayout();
+            RemoveStandaloneRover(field);
             // 清除未放入场景的合并模板，已保存的网格不会被销毁。
             typeof(FarmFieldBuilder).GetMethod("ClearCombinedCache",
                 System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).Invoke(field, null);

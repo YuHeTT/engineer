@@ -17,6 +17,7 @@
 //    **不是靠物理触发器** —— 用距离判定更可控，而且不依赖层的配置。
 // ---------------------------------------------------------------------------
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -135,14 +136,25 @@ namespace Engineer.UI
             get { return mode == CruiseMode.Manual || mode == CruiseMode.Auto; }
         }
 
+        private FarmEquipment launchEquipment;
+        private FarmCameraRig launchRig;
+        private Coroutine departure;
+        private bool usesDockedRobot;
+        private float dockedGroundOffset;
+        public bool IsDeploying { get; private set; }
+
         private void Awake()
         {
             Resolve();
+            launchEquipment = FindObjectOfType<FarmEquipment>();
+            if (launchEquipment != null) launchEquipment.Build();
             BuildRover();
+            if (usesDockedRobot) launchEquipment.DockRobot(rover.transform);
         }
 
         private void Update()
         {
+            if (IsDeploying) return;
             if (mode == CruiseMode.Manual) UpdateManual();
             else if (mode == CruiseMode.Auto) UpdateAuto();
             else HandleShortcuts();
@@ -276,6 +288,7 @@ namespace Engineer.UI
         /// <summary>摆放小车到田块一角，并清空探测状态。</summary>
         public void ResetToStart()
         {
+            CancelDeparture();
             Resolve();
             if (grid == null) return;
 
@@ -295,6 +308,7 @@ namespace Engineer.UI
             lastProbePosition = start;
             mode = CruiseMode.Idle;
             waypointIndex = 0;
+            if (usesDockedRobot) launchEquipment.DockRobot(rover.transform);
         }
 
         /// <summary>开始手动巡航。</summary>
@@ -302,10 +316,11 @@ namespace Engineer.UI
         {
             Resolve();
             if (grid == null) return;
+            if (TryDeparture(false)) return;
             mode = CruiseMode.Manual;
             grid.BeginCruise();
             var equipment = FindObjectOfType<FarmEquipment>();
-            if (equipment != null) equipment.ToggleOpen();
+            if (equipment != null && !usesDockedRobot) equipment.ToggleOpen();
             LogFacingDiagnostics();
             Debug.Log("[农场] 进入手动巡航：Q/E 转向，W/S 前进后退（也能用方向键）。\n" +
                       "  朝向不对就按 Z / X 每次转 90°，转对了把 Console 里的数值抄到 roverYawOffset。\n" +
@@ -318,12 +333,13 @@ namespace Engineer.UI
             Resolve();
             if (grid == null) return;
 
+            if (TryDeparture(true)) return;
             BuildWaypoints();
             waypointIndex = 0;
             mode = waypoints.Count > 0 ? CruiseMode.Auto : CruiseMode.Finished;
             grid.BeginCruise();
             var equipment = FindObjectOfType<FarmEquipment>();
-            if (equipment != null) equipment.ToggleOpen();
+            if (equipment != null && !usesDockedRobot) equipment.ToggleOpen();
             LogFacingDiagnostics();
 
             Debug.Log(string.Format("[农场] 进入自动巡航：{0} 个路点，预计 {1:0} 秒走完。\n" +
@@ -331,9 +347,56 @@ namespace Engineer.UI
                 waypoints.Count, EstimateRemainingSeconds()), this);
         }
 
+        private bool TryDeparture(bool automatic)
+        {
+            if (!usesDockedRobot || launchEquipment == null) return false;
+            if (IsDeploying) return true;
+            IsDeploying = true;
+            departure = StartCoroutine(Departure(automatic));
+            return true;
+        }
+
+        private IEnumerator Departure(bool automatic)
+        {
+            mode = CruiseMode.Idle;
+            launchRig = FindObjectOfType<FarmCameraRig>();
+            var b = grid.FieldBounds;
+            var start = GroundHeight(new Vector3(b.min.x + 1.5f, 0, b.min.z + 1.5f));
+            yield return launchEquipment.DeployRobot(rover.transform, start, launchRig);
+            if (!launchEquipment.DeploymentSucceeded)
+            {
+                IsDeploying = false; departure = null; mode = CruiseMode.Idle;
+                if (launchRig != null) launchRig.EndDeploymentShot();
+                Debug.LogWarning("[巡航] 出舱未到达目标，已释放相机与按钮，请重新启动巡航。", this);
+                yield break;
+            }
+            roverHeading = rover.transform.eulerAngles.y;
+            rover.transform.rotation = Quaternion.Euler(0f, roverHeading, 0f);
+            lastProbePosition = rover.transform.position;
+            grid.BeginCruise();
+            if (automatic) { BuildWaypoints(); waypointIndex = 0; mode = waypoints.Count > 0 ? CruiseMode.Auto : CruiseMode.Finished; }
+            else mode = CruiseMode.Manual;
+            IsDeploying = false;
+            departure = null;
+        }
+
+        private void CancelDeparture()
+        {
+            var wasDeploying = IsDeploying;
+            if (launchEquipment != null) launchEquipment.StopDeparturePhysics();
+            if (departure != null) StopCoroutine(departure);
+            departure = null; IsDeploying = false;
+            if (wasDeploying && usesDockedRobot && rover != null && launchEquipment != null)
+                launchEquipment.DockRobot(rover.transform);
+            if (launchRig != null) launchRig.EndDeploymentShot();
+        }
+
+        private void OnDisable() { CancelDeparture(); }
+
         /// <summary>停止巡航。</summary>
         public void Stop()
         {
+            CancelDeparture();
             if (mode == CruiseMode.Manual || mode == CruiseMode.Auto)
             {
                 mode = CruiseMode.Finished;
@@ -358,6 +421,18 @@ namespace Engineer.UI
         private void BuildRover()
         {
             if (rover != null) return;
+            if (launchEquipment != null && launchEquipment.DockedRobot != null)
+            {
+                var old = transform.Find("Rover");
+                if (old != null) { old.gameObject.SetActive(false); Destroy(old.gameObject); }
+                rover = new GameObject("Rover"); rover.transform.SetParent(transform, false);
+                usesDockedRobot = true;
+                launchEquipment.DockRobot(rover.transform);
+                var bottom = float.PositiveInfinity;
+                foreach (var renderer in rover.GetComponentsInChildren<Renderer>()) bottom = Mathf.Min(bottom, renderer.bounds.min.y);
+                if (!float.IsInfinity(bottom)) dockedGroundOffset = rover.transform.position.y - bottom;
+                return;
+            }
             var savedRover = transform.Find("Rover");
             if (savedRover != null) { rover = savedRover.gameObject; return; }
 
@@ -431,8 +506,21 @@ namespace Engineer.UI
             // 注意：field 在 Resolve 里缓存，**不要**在这里调 FindObjectOfType
             // —— 这个方法每帧被调，那样会非常慢。
             var y = 0.5f;
-            if (field != null && field.Config != null) y = field.Config.SoilRidgeTopY;
-            return new Vector3(p.x, y + roverGroundOffset, p.z);
+            if (field != null && field.Config != null) y = field.SurfaceHeight(p);
+            return new Vector3(p.x, y + roverGroundOffset + dockedGroundOffset, p.z);
+        }
+
+        /// <summary>物理出舱交接时按可视车体最低点只上抬到土壤表面，避免车轮陷入土里。</summary>
+        private void AlignRoverToSoilSurface()
+        {
+            if (rover == null || field == null) return;
+            var renderers = rover.GetComponentsInChildren<Renderer>(true);
+            if (renderers == null || renderers.Length == 0) return;
+            var bounds = renderers[0].bounds;
+            for (int i = 1; i < renderers.Length; i++) bounds.Encapsulate(renderers[i].bounds);
+            var lift = field.SurfaceHeight(rover.transform.position) + .035f - bounds.min.y;
+            if (lift > 0f) rover.transform.position += Vector3.up * lift;
+            Physics.SyncTransforms();
         }
 
         // ==================================================================
@@ -489,6 +577,7 @@ namespace Engineer.UI
         /// </summary>
         private void ApplyVisualYawOffset()
         {
+            if (usesDockedRobot) return;
             if (rover == null) return;
             var visual = rover.transform.Find("Visual");
             if (visual == null) return;

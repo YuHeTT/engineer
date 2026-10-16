@@ -227,7 +227,7 @@ namespace Engineer.UI
         {
             get
             {
-                return followRoverWhileCruising && cruise != null && cruise.IsCruising;
+                return followRoverWhileCruising && cruise != null && (cruise.IsCruising || cruise.IsDeploying);
             }
         }
 
@@ -236,8 +236,20 @@ namespace Engineer.UI
             if (cruise == null) cruise = FindObjectOfType<FarmCruiseController>();
         }
 
+        public void GetPatrolShot(Vector3 center, out Vector3 position, out Quaternion rotation)
+        {
+            var distance = Mathf.Sqrt(Mathf.Pow(Mathf.Max(10f, cruiseFollowBack), 2f) + Mathf.Pow(Mathf.Max(7f, cruiseFollowHeight), 2f));
+            position = center + Quaternion.Euler(Mathf.Max(38f, cruiseFollowPitch), yaw, 0f) * Vector3.back * distance;
+            rotation = Quaternion.LookRotation(center - position, Vector3.up);
+        }
+
+        private bool deploymentShot;
+        public void BeginDeploymentShot() { deploymentShot = true; velocity = Vector3.zero; }
+        public void EndDeploymentShot() { deploymentShot = false; velocity = Vector3.zero; }
+
         private void LateUpdate()
         {
+            if (deploymentShot) return;
             HandleInput();
 
             var desired = ComputePosition();
@@ -276,7 +288,7 @@ namespace Engineer.UI
             // ★ 巡航期间**完全不接收键盘输入** —— 把 WASD / QE 让给小车。
             //   否则：按 W 开车时相机也把观察中心往前推，
             //   田被推出画面，只剩地面和雾（看起来就是"纯灰色"）。
-            if (CruiseTakesInput) return;
+            if (cruise != null && cruise.IsDeploying) return;
 
             if (allowModeSwitch && Input.GetKeyDown(switchKey))
             {
@@ -298,6 +310,14 @@ namespace Engineer.UI
             {
                 var next = ((int)viewLevel + 1) % 3;
                 SetViewLevel((ViewLevel)next);
+            }
+
+            // 视角切换键允许在巡航时使用；只有驾驶方向键让给小车。
+            if (cruise != null && cruise.IsCruising)
+            {
+                var zoom = Input.GetAxis("Mouse ScrollWheel");
+                if (Mathf.Abs(zoom) > .001f) distanceScale = Mathf.Clamp(distanceScale - zoom, .6f, 2.5f);
+                return;
             }
 
             // 旋转
@@ -418,9 +438,10 @@ namespace Engineer.UI
             if (CruiseTakesInput)
             {
                 // 用一个固定的俯角，保证相机不会贴地或钻进模型
-                var rot = Quaternion.Euler(cruiseFollowPitch, yaw, 0f);
-                var dist = Mathf.Sqrt(cruiseFollowBack * cruiseFollowBack +
-                                      cruiseFollowHeight * cruiseFollowHeight);
+                var rot = Quaternion.Euler(Mathf.Max(38f, cruiseFollowPitch), yaw, 0f);
+                var dist = Mathf.Sqrt(Mathf.Max(10f, cruiseFollowBack) * Mathf.Max(10f, cruiseFollowBack) +
+                                      Mathf.Max(7f, cruiseFollowHeight) * Mathf.Max(7f, cruiseFollowHeight));
+                dist *= distanceScale * (viewLevel == ViewLevel.CloseUp ? .85f : viewLevel == ViewLevel.Panorama ? 1.5f : 1f);
                 return center + rot * Vector3.back * dist;
             }
 
@@ -473,3 +494,5 @@ namespace Engineer.UI
         }
     }
 }
+
+
