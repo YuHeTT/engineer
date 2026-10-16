@@ -72,6 +72,9 @@ namespace Engineer.UI
         {
             if (Input.GetKeyDown(toggleShadowsKey)) ToggleAllShadows();
             if (Input.GetKeyDown(rerunKey)) Run();
+#if UNITY_EDITOR
+            if (Input.GetKeyDown(KeyCode.F10)) BeginPerformanceSample();
+#endif
         }
 
         /// <summary>一键开/关全部阴影，用来对比性能。</summary>
@@ -115,7 +118,101 @@ namespace Engineer.UI
         {
             Run();
             DumpRenderState();
+#if UNITY_EDITOR
+            BeginPerformanceSample();
+#endif
         }
+
+#if UNITY_EDITOR
+        // 编辑器诊断：只采样帧时间与 Unity 自带计数，不逐帧遍历场景或输出日志。
+        private Coroutine performanceSample;
+
+        private void BeginPerformanceSample()
+        {
+            if (performanceSample != null) return;
+            performanceSample = StartCoroutine(SamplePerformance());
+        }
+
+        [System.Serializable]
+        private sealed class PerformanceSample
+        {
+            public string capturedAt;
+            public string note = "编辑器前台的农场帧间隔；含VSync/等待，不等于纯CPU耗时。无GPU耗时，不能单凭此判断CPU或GPU瓶颈。";
+            public int frames, focusedFrames, framesOver33ms, activeRenderers, shadowCasters;
+            public float averageMs, medianMs, p95Ms, maximumMs;
+            public float averageBatches, averageTriangles;
+            public int targetFrameRate, vSyncCount;
+            public string[] cameras;
+        }
+
+        private System.Collections.IEnumerator SamplePerformance()
+        {
+            yield return new WaitForSecondsRealtime(3f);
+            var samples = new List<float>(1200);
+            var report = new PerformanceSample();
+            double batches = 0, triangles = 0, totalMs = 0;
+            var flow = FindObjectOfType<GameFlowController>();
+            double end = Time.realtimeSinceStartupAsDouble + 10d;
+            while (Time.realtimeSinceStartupAsDouble < end && samples.Count < 10000)
+            {
+                yield return null;
+                if (Time.timeScale == 0f || !Application.isFocused) continue;
+                // 数据只在有可见农场镜头时采样，避免把启动菜单算成农场性能。
+                if (flow != null && flow.Current != GameState.FarmStage && flow.Current != GameState.RobotCruise)
+                    continue;
+                float ms = Time.unscaledDeltaTime * 1000f;
+                samples.Add(ms);
+                totalMs += ms;
+                batches += UnityEditor.UnityStats.batches;
+                triangles += UnityEditor.UnityStats.triangles;
+                if (ms > 33.333f) report.framesOver33ms++;
+            }
+            report.frames = samples.Count;
+            report.focusedFrames = samples.Count;
+            report.capturedAt = System.DateTime.Now.ToString("O");
+            report.targetFrameRate = Application.targetFrameRate;
+            report.vSyncCount = QualitySettings.vSyncCount;
+            if (samples.Count > 0)
+            {
+                samples.Sort();
+                report.averageMs = (float)(totalMs / samples.Count);
+                report.medianMs = samples[samples.Count / 2];
+                report.p95Ms = samples[Mathf.Clamp(Mathf.CeilToInt(samples.Count * 0.95f) - 1, 0, samples.Count - 1)];
+                report.maximumMs = samples[samples.Count - 1];
+                report.averageBatches = (float)(batches / samples.Count);
+                report.averageTriangles = (float)(triangles / samples.Count);
+            }
+            // 场景枚举只在采样完成后做一次，不计入这次帧间隔样本。
+            foreach (var renderer in FindObjectsOfType<Renderer>())
+            {
+                if (!renderer.enabled || !renderer.gameObject.activeInHierarchy) continue;
+                report.activeRenderers++;
+                if (renderer.shadowCastingMode != UnityEngine.Rendering.ShadowCastingMode.Off) report.shadowCasters++;
+            }
+            var cameras = new List<string>();
+            foreach (var camera in FindObjectsOfType<Camera>())
+                if (camera.enabled && camera.gameObject.activeInHierarchy)
+                    cameras.Add(camera.gameObject.scene.name + "/" + camera.name + " mask=" + camera.cullingMask);
+            report.cameras = cameras.ToArray();
+            try
+            {
+                string folder = System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.dataPath, "../Logs"));
+                System.IO.Directory.CreateDirectory(folder);
+                string path = System.IO.Path.Combine(folder, "farm-performance-latest.json");
+                string json = JsonUtility.ToJson(report, true);
+                System.IO.File.WriteAllText(path, json);
+                System.IO.File.WriteAllText(System.IO.Path.Combine(folder,
+                    "farm-performance-" + System.DateTime.Now.ToString("yyyyMMdd-HHmmss-fff") + ".json"), json);
+                Debug.Log("[农场性能采样] " + samples.Count + " 帧，P95=" + report.p95Ms.ToString("0.0")
+                    + "ms；报告：" + path + "。样本不足时进入农场并点击 Game 窗口，按 F10 重采。", this);
+            }
+            catch (System.Exception error)
+            {
+                Debug.LogWarning("[农场性能采样] 写入报告失败：" + error.Message, this);
+            }
+            performanceSample = null;
+        }
+#endif
 
         /// <summary>
         /// 把"影响画面亮度的全部运行时状态"打出来。
@@ -288,6 +385,14 @@ namespace Engineer.UI
                 renderersAfter, shadowCastersDisabled, leftover,
                 QualitySettings.shadowCascades, QualitySettings.shadowDistance,
                 toggleShadowsKey, rerunKey), this);
+        }
+
+        /// <summary>后续阶段/面积重建也要遵守阴影配置，不能只在 Start 时处理一次。</summary>
+        public void ApplyGeneratedShadows(GameObject root, bool corn)
+        {
+            if (root == null) return;
+            if (disableAllShadows || (corn ? disableCornShadows : disableSoilShadows))
+                FarmLighting.DisableShadowCasting(root);
         }
 
         private int CountRenderers()

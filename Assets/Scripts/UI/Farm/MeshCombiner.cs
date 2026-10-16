@@ -134,7 +134,7 @@ namespace Engineer.UI
                 var mat = order[gi];
                 var list = groups[mat];
 
-                var chunks = BuildChunks(list, rootT);
+                var chunks = BuildChunks(list, rootT, allowMultipleChunks);
 
                 for (var ci = 0; ci < chunks.Count; ci++)
                 {
@@ -163,13 +163,23 @@ namespace Engineer.UI
                     var mf = filters[i];
                     if (mf == null) continue;
                     // 不要删掉自己（root 上如果有 MeshFilter）
-                    if (mf.gameObject == root) continue;
+                    if (mf.gameObject == root)
+                    {
+                        // 根节点不能删除，但原 Renderer 也不能与合并结果重复绘制。
+                        var original = mf.GetComponent<MeshRenderer>();
+                        if (original != null) original.enabled = false;
+                        continue;
+                    }
                     toDestroy.Add(mf.gameObject);
                 }
 
                 foreach (var go in toDestroy)
                 {
                     if (go == null) continue;
+                    // Destroy 在帧末才执行。必须立即脱离模板树，防止同帧 Instantiate
+                    // 把“已预约删除”的原网格再复制到每一株作物，复制品不会随源对象删除。
+                    go.SetActive(false);
+                    go.transform.SetParent(null, false);
                     if (Application.isPlaying) Object.Destroy(go);
                     else Object.DestroyImmediate(go);
                 }
@@ -187,7 +197,7 @@ namespace Engineer.UI
         /// 把一组 MeshFilter 按顶点上限拆成若干块，每块拼成一个 Mesh。
         /// 顶点会从各自的世界位置变换到 <paramref name="rootT"/> 的本地空间。
         /// </summary>
-        private static List<Mesh> BuildChunks(List<MeshFilter> filters, Transform rootT)
+        private static List<Mesh> BuildChunks(List<MeshFilter> filters, Transform rootT, bool allowMultipleChunks)
         {
             var result = new List<Mesh>();
 
@@ -220,7 +230,7 @@ namespace Engineer.UI
                 if (vCount == 0) continue;
 
                 // 这块装不下了：先落盘
-                if (verts.Count + vCount > MaxVertsPerChunk && verts.Count > 0)
+                if (allowMultipleChunks && verts.Count + vCount > MaxVertsPerChunk && verts.Count > 0)
                 {
                     result.Add(Finish(verts, norms, uvs, colors, tris, hasColors, hasUvs, chunkIndex++));
                     verts.Clear(); norms.Clear(); uvs.Clear(); colors.Clear(); tris.Clear();
@@ -316,6 +326,8 @@ namespace Engineer.UI
 
             var copy = Object.Instantiate(prefab);
             copy.name = prefab.name + "_Combined";
+            // 这是缓存模板，不是田里的实例，不能留在原点参与渲染。
+            copy.SetActive(false);
             // ★ 用 CombineSingle：不拆块、不复制几何。
             //   这样"合并后的预制体"每个材质只有 1 个网格，
             //   实例化 200 次就是 200 × 材质数 个渲染器，

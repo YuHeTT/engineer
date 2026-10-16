@@ -113,7 +113,10 @@ namespace Engineer.UI.EditorTools
         private static PlaceholderScreen BuildRevenue(Transform parent)
         {
             RectTransform body, footer;
-            var screen = NewScreen(parent, GameState.Revenue, UiContent.RevenueTitle, UiContent.RevenueNote,
+            // 挂专用脚本 RevenueScreen：它按 RevenueReport 刷新公式展开与四阶段明细。
+            // 挂通用 PlaceholderScreen 时，页面显示的只是 UiContent.FormulaLines 里的静态文案。
+
+            var screen = NewScreen<RevenueScreen>(parent, GameState.Revenue, UiContent.RevenueTitle, UiContent.RevenueNote,
                 false, out body, out footer);
 
             // ---------- 左：计算公式 + 最终收益 Y ----------

@@ -125,18 +125,29 @@ namespace Engineer.UI
                 "阶段肥力系数  Ffert,stage = fPH × fOM × fN × fP × fK\n" + BuildStageFertilityLine(report));
 
             SetText(formulaTexts, 1,
-                "全生育期平均  Ffert = (S1+S2+S3+S4) / 4\n= " + report.OverallFertility.ToString("0.0000"));
+                (report.IsPartial ? "已结算阶段平均  Ffert\n= " : "全生育期平均  Ffert = (S1+S2+S3+S4) / 4\n= ") + report.OverallFertility.ToString("0.0000")
+                + (report.IsPartial
+                    ? "（只统计已结算的 " + report.CommittedCount + " 个阶段）"
+                    : string.Empty));
 
+            // 水分/静态系数与那句 v1 说明都取 report 里的值 —— UI 不再自己写死
             SetText(formulaTexts, 2,
                 "水分系数  Fwater = " + report.WaterFactor.ToString("0.##")
                 + "      静态系数  Sstatic = " + report.StaticFactor.ToString("0.##")
-                + "\n（v1：系统总给最优灌溉，故 Fwater = 1）");
+                + "\n" + report.WaterNote);
 
             var sb = new StringBuilder();
             sb.Append("产量  Y = Ymax,geo × Ffert × Fwater × Sstatic\n");
+            // 四个因子全列出来：只写前两项会让"界面上的式子"和"算出来的 Y"对不上
             sb.Append("= ").Append(report.YmaxGeo.ToString("0.##"))
               .Append(" × ").Append(report.OverallFertility.ToString("0.0000"))
+              .Append(" × ").Append(report.WaterFactor.ToString("0.##"))
+              .Append(" × ").Append(report.StaticFactor.ToString("0.##"))
               .Append(" = ").Append(report.Yield.ToString("0.##")).Append(' ').Append(yieldUnit);
+
+            if (report.IsPartial)
+                sb.Append("\n（只结算了 ").Append(report.CommittedCount).Append('/')
+                  .Append(Stages.Count).Append(" 个阶段，本值是中间结果）");
 
             if (showEconomicsIfAvailable && report.HasEconomics)
             {
@@ -146,9 +157,18 @@ namespace Engineer.UI
             }
             else if (showEconomicsIfAvailable)
             {
-                sb.Append("\n（经济层未启用：缺少玉米单价与肥料/灌溉成本，待策划提供）");
+                sb.Append("\n（当前仅结算产量，暂未启用金额收益）");
             }
 
+            if (report.HasInputSummary && report.HasArea)
+            {
+                var input = report.TotalInput;
+                sb.Append("\n全田累计投入：灌溉 ").Append(input.Irrigation.ToString("0.##")).Append(" m³")
+                  .Append("，有机肥 ").Append(input.Organic.ToString("0.##"))
+                  .Append(" / 氮 ").Append(input.N.ToString("0.##"))
+                  .Append(" / 磷 ").Append(input.P.ToString("0.##"))
+                  .Append(" / 钾 ").Append(input.K.ToString("0.##")).Append(" kg");
+            }
             SetText(formulaTexts, 3, sb.ToString());
         }
 
@@ -165,12 +185,16 @@ namespace Engineer.UI
             sb.Append("达成率 ").Append((report.AchievementRate * 100f).ToString("0.0")).Append('%');
             sb.Append("（理论上限 ").Append(report.YmaxGeo.ToString("0")).Append(' ').Append(yieldUnit).Append('）');
 
-            if (context != null && context.LandAreaMu > 0f)
+            if (report.HasArea)
             {
                 sb.Append('\n').Append("总产量 ").Append(report.TotalYield.ToString("0.##"))
-                  .Append(' ').Append(yieldUnit)
-                  .Append("（").Append(context.LandAreaMu.ToString("0.#")).Append(" 亩）");
+                  .Append(" kg")
+                  .Append("（").Append(report.Area.ToString("0.#")).Append(" 亩）");
             }
+
+            if (report.IsPartial)
+                sb.Append('\n').Append("尚未跑完全部 ").Append(Stages.Count)
+                  .Append(" 个阶段，这里是按已结算的 ").Append(report.CommittedCount).Append(" 个阶段估算的");
 
             resultNote.text = sb.ToString();
         }
@@ -199,7 +223,7 @@ namespace Engineer.UI
                 var fert = GetFertility(report, sourceStage);
 
                 if (row.fertilityText != null)
-                    row.fertilityText.text = fert.ToString("0.0000");
+                    row.fertilityText.text = result != null ? fert.ToString("0.0000") : "—";
 
                 if (row.soilText != null)
                 {
@@ -260,7 +284,11 @@ namespace Engineer.UI
             for (var i = 0; i < report.StageFertility.Length && i < Stages.Count; i++)
             {
                 if (i > 0) sb.Append(" , ");
-                sb.Append(report.StageFertility[i].ToString("0.0000"));
+                // 报告只统计【已结算】阶段：未结算的显示"—"，
+                // 别显示 0.0000 —— 那会被误读成"该阶段肥力为零"
+                sb.Append(i < report.CommittedCount
+                    ? report.StageFertility[i].ToString("0.0000")
+                    : "—");
             }
             return sb.ToString();
         }

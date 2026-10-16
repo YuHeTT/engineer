@@ -33,6 +33,12 @@ namespace Engineer.Core
         /// <summary>四个阶段各自的肥力系数，下标 0=S1。收益计算取它的平均。</summary>
         private readonly float[] _stageFertility = new float[Stages.Count];
 
+        /// <summary>
+        /// 四个阶段各自的水分因子 Fw,s，下标 0=S1。收益计算按 α 权重合成 Fwater。
+        /// v1 由 <see cref="ResetWaterFactors"/> 填成全 1（见挂起项 D2）。
+        /// </summary>
+        private readonly float[] _stageWaterFactors = new float[Stages.Count];
+
         /// <summary>四个阶段的完整结果，便于回看与导出。</summary>
         private readonly StageResult[] _history = new StageResult[Stages.Count];
 
@@ -53,6 +59,7 @@ namespace Engineer.Core
         {
             _config = config ?? SimConfig.CreateDefault();
             _planTable = new PlanTable(_config);
+            ResetWaterFactors();          // v1：Fw,s 全为 1（挂起项 D2 见 StageWaterFactors()）
         }
 
         /// <summary>清掉适宜度缓存。任何改变土壤或阶段的操作都必须调它。</summary>
@@ -119,6 +126,9 @@ namespace Engineer.Core
         /// </param>
         public void Initialize(SoilState userInput, System.Random rng = null)
         {
+            if (userInput != null && (!MathX.IsFinite(userInput.pH) || !MathX.IsFinite(userInput.OM)
+                || !MathX.IsFinite(userInput.N) || !MathX.IsFinite(userInput.P) || !MathX.IsFinite(userInput.K)))
+                throw new System.ArgumentException("土壤输入必须是有限数字。", nameof(userInput));
             // 不传随机源时自动新建，保证静态指标真的随机
             if (rng == null) rng = new System.Random();
 
@@ -129,6 +139,7 @@ namespace Engineer.Core
 
             for (int i = 0; i < _stageFertility.Length; i++) _stageFertility[i] = 0f;
             for (int i = 0; i < _history.Length; i++) _history[i] = null;
+            ResetWaterFactors();
         }
 
         /// <summary>仅重置流程，保留同一套配置。用于"开始新的模拟"。</summary>
@@ -140,6 +151,7 @@ namespace Engineer.Core
             InvalidateCache();
             for (int i = 0; i < _stageFertility.Length; i++) _stageFertility[i] = 0f;
             for (int i = 0; i < _history.Length; i++) _history[i] = null;
+            ResetWaterFactors();
         }
 
         // ===================================================================
@@ -190,6 +202,10 @@ namespace Engineer.Core
         public StageResult Commit(FertilizerApplication applied)
         {
             if (_soil == null || IsFinished) return null;
+
+            if (!MathX.IsFinite(applied.Irrigation) || !MathX.IsFinite(applied.Organic)
+                || !MathX.IsFinite(applied.N) || !MathX.IsFinite(applied.P) || !MathX.IsFinite(applied.K))
+                return null; // 拒绝整个事务，不写历史、不推进阶段。
 
             var stage = _stage;
 
@@ -247,25 +263,53 @@ namespace Engineer.Core
         //  收益
         // ===================================================================
 
-        /// <summary>产出收益报告。四阶段未结算完时按已结算的部分计算，并在日志中体现。</summary>
+        /// <summary>
+        /// 【挂起项 D2 的唯一改动点】四个阶段的水分因子 Fw,s（下标 0=S1）。
+        ///
+        /// v1：按文档 [248]/[249] —— 玩家照抄系统推荐灌溉量 ⇒ Fw,s 全为 1 ⇒ Fwater = 1。
+        /// 公式确定后只要改 <see cref="YieldModel.SimplifiedWaterFactors"/>，
+        /// 或在这里按实际灌溉量（可参考 StageResult.EffectiveWaterRatio()）写入 _stageWaterFactors，
+        /// 收益报告与收益界面都不用动。
+        /// 【只读语义】返回内部数组，请勿修改。
+        /// </summary>
+        public float[] StageWaterFactors() => _stageWaterFactors;
+
+        /// <summary>把水分因子重置为 v1 的取值（全 1）。</summary>
+        private void ResetWaterFactors()
+        {
+            for (int i = 0; i < _stageWaterFactors.Length; i++)
+                _stageWaterFactors[i] = YieldModel.SimplifiedWaterFactor;
+        }
+
+        /// <summary>
+        /// 产出收益报告。
+        ///
+        /// 【统一入口】这里不再自己拼公式，只把两样输入交给 <see cref="RevenueReport.Create"/>：
+        ///   · 已结算阶段的肥力系数（_stageFertility 的前 _committedCount 个）
+        ///   · 阶段水分因子 _stageWaterFactors
+        /// 公式实现全工程只有一份（YieldModel）。
+        ///
+        /// 四阶段未结算完时按【已结算的那几个阶段】求平均，报告的 IsPartial = true ——
+        /// 未结算阶段不会被按 0 摊进平均。
+        /// </summary>
+        /// <param name="area">土地面积（亩），只用于算总产量；0 表示未设置</param>
         public RevenueReport Revenue(float area = 0f)
         {
-            float fert = YieldModel.OverallFertility(_stageFertility);
-            float water = 1f;                                        // v1：Fwater = 1
-            float stat = _config.Yield != null ? _config.Yield.SStatic : 1f;
-            float y = YieldModel.Yield(fert, water, stat, _config.Yield);
-
-            return new RevenueReport
+            var inputs = FertilizerApplication.None;
+            for (int i = 0; i < _committedCount; i++)
             {
-                StageFertility = (float[])_stageFertility.Clone(),
-                OverallFertility = fert,
-                WaterFactor = water,
-                StaticFactor = stat,
-                Yield = y,
-                YmaxGeo = _config.Yield != null ? _config.Yield.YmaxGeo : 0f,
-                FinalSoil = _soil != null ? _soil.Clone() : null,
-                Area = area,
-            };
+                var applied = _history[i].Applied;
+                inputs.Irrigation += applied.Irrigation;
+                inputs.Add(applied.Organic, applied.N, applied.P, applied.K);
+            }
+            return RevenueReport.Create(
+                _stageFertility,
+                _stageWaterFactors,
+                _config.Yield,
+                area,
+                _soil,
+                _committedCount,
+                cumulativeInputPerMu: inputs);
         }
 
         // ===================================================================
