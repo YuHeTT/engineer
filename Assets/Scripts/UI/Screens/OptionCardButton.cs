@@ -84,6 +84,8 @@ namespace Engineer.UI
         /// <summary>点击：写回选择 + 跳转。也允许在 Inspector 里手动挂到 onClick 上。</summary>
         public void OnClicked()
         {
+            if (UiClickFeedback.Busy) return;
+
             var flow = FindFlow();
             if (flow == null)
             {
@@ -94,7 +96,18 @@ namespace Engineer.UI
             var context = flow.Context;
             if (context != null) Apply(context);
 
-            flow.GoTo(targetState);
+            // 作物决定适宜度曲线与产量配置；土地基础数据页启动内核时还没选作物，
+            // 所以这里选完作物后重开一局，确保 Confirm / Analyze / Revenue 用的是当前作物。
+            if (category == OptionCategory.Plant)
+            {
+                if (!flow.BeginSimulation())
+                    Debug.LogWarning("[OptionCard] 选定作物后重启数值内核失败。", this);
+            }
+
+            // 卡片也走同一套反馈：收回之后才切屏。
+            var target = targetState;
+            var source = button != null ? button : GetComponent<Button>();
+            UiClickFeedback.Play(source, true, delegate { flow.GoTo(target); });
         }
 
         /// <summary>把本卡片的选择写回共享数据。</summary>
@@ -111,6 +124,10 @@ namespace Engineer.UI
                 case OptionCategory.Land:
                     context.LandTypeId = id;
                     context.LandTypeName = name;
+
+                    // 记一笔"玩家确实选过"，选地页据此决定要不要亮「● 已选」。
+                    // GameContext 里本来就有默认值，光看 LandTypeId 分不出选没选过。
+                    LandPreviewContent.LandChosen = true;
 
                     // 换地形后，之前的初始土壤数值未必还合适 —— 目前四套地形共用同一组区间，
                     // 所以只记选择、不重置数值。将来地形有独立区间时，在这里补默认值。

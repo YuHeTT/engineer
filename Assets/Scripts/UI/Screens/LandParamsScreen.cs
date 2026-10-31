@@ -89,6 +89,8 @@ namespace Engineer.UI
         /// <summary>点「选择植物」：读输入 → 启动内核 → 进入植物选择。</summary>
         public void OnPlantSelectClicked()
         {
+            if (UiClickFeedback.Busy) return;
+
             var flow = Flow;
             var context = flow != null ? flow.Context : null;
             if (flow == null || context == null)
@@ -104,7 +106,7 @@ namespace Engineer.UI
                 return;
             }
 
-            flow.GoTo(GameState.PlantSelect);
+            ClickThen(plantSelectButton, true, delegate { flow.GoTo(GameState.PlantSelect); });
         }
 
         /// <summary>

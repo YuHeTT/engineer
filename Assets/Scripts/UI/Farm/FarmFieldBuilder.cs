@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 //  FarmFieldBuilder.cs —— 生成农田地块与玉米
 // ---------------------------------------------------------------------------
 //  作用：按 <see cref="FarmVisualConfig"/> 的配置，把"土壤块 + 玉米"实例化出来。
@@ -65,13 +65,13 @@ namespace Engineer.UI
         [SerializeField] private GrowthLevel currentGrowth = GrowthLevel.Normal;
 
         /// <summary>每个阶段已生成的玉米实例，下标 1~3 有效。</summary>
-        private readonly List<Transform>[] plantsByStage = new List<Transform>[4];
+        private List<Transform>[] plantsByStage = new List<Transform>[4];
 
         /// <summary>每个阶段的容器物体，下标 1~3 有效。</summary>
-        private readonly Transform[] stageRoots = new Transform[4];
+        private Transform[] stageRoots = new Transform[4];
 
         /// <summary>每个阶段当前是否"已按 builtGrowth 建好"。false 表示需要重建。</summary>
-        private readonly bool[] stageReady = new bool[4];
+        private bool[] stageReady = new bool[4];
 
         private Transform soilRoot;
         private Transform plantRoot;
@@ -79,9 +79,26 @@ namespace Engineer.UI
         [SerializeField, HideInInspector] private bool savedSceneLayout;
         public bool UsesSavedSceneLayout { get { return savedSceneLayout; } }
 
+        /// <summary>
+        /// 这些数组是运行时状态，Unity 在 Play 中重编译脚本/重载域时可能把它们清空。
+        /// 每个入口先补一次，避免 FarmGrowthBinder.Update 每帧访问空列表。
+        /// </summary>
+        private void EnsureRuntimeState()
+        {
+            if (plantsByStage == null) plantsByStage = new List<Transform>[4];
+            if (stageRoots == null) stageRoots = new Transform[4];
+            if (stageReady == null) stageReady = new bool[4];
+
+            for (var s = 1; s <= 3; s++)
+            {
+                if (plantsByStage[s] == null) plantsByStage[s] = new List<Transform>();
+            }
+        }
+
         // 保存的层级是布局来源；运行时只恢复索引，不再重铺土壤。
         public void UseSavedSceneLayout()
         {
+            EnsureRuntimeState();
             savedSceneLayout = true;
             soilRoot = transform.Find("Soil");
             plantRoot = transform.Find("Plants");
@@ -144,6 +161,8 @@ namespace Engineer.UI
 
         private void Awake()
         {
+            EnsureRuntimeState();
+
             // 已保存的场景布局直接恢复索引；旧场景仍兼容运行时生成。
             if (Application.isPlaying)
             {
@@ -235,6 +254,12 @@ namespace Engineer.UI
         public void Build(bool frameCamera)
         {
             if (savedSceneLayout) { UseSavedSceneLayout(); return; }
+            EnsureRuntimeState();
+            if (config == null)
+            {
+                Debug.LogError("[农场] FarmFieldBuilder 没有配置 FarmVisualConfig，无法生成田块。", this);
+                return;
+            }
             Clear();
             config.Sanitize();
 
@@ -284,6 +309,7 @@ namespace Engineer.UI
         /// <summary>清掉已生成的内容。</summary>
         public void Clear()
         {
+            EnsureRuntimeState();
             soilContactBounds = null;
             DestroyChildren(soilRoot);
             DestroyChildren(plantRoot);
@@ -447,6 +473,7 @@ namespace Engineer.UI
         /// <param name="growth">长势（决定用"好/正常/差"哪个模型）</param>
         public void ApplyStage(CornStage stage, GrowthLevel growth)
         {
+            EnsureRuntimeState();
             var previousStage = currentStage;
             var poses = new List<Transform>();
             if (savedSceneLayout)
@@ -461,6 +488,14 @@ namespace Engineer.UI
             currentStage = stage;
 
             if (!built) return;
+
+            // 换作物（玉米 ↔ 甜菜/红薯/土豆）后，之前按玉米建好的阶段全部作废。
+            var cropId = CurrentCropId();
+            if (cropId != builtCropId)
+            {
+                builtCropId = cropId;
+                for (var s = 1; s <= 3; s++) stageReady[s] = false;
+            }
 
             // 长势变了：所有已建好的阶段都作废，标记成需要重建
             if (growth != builtGrowth)
@@ -490,6 +525,7 @@ namespace Engineer.UI
         /// <summary>只让某个阶段的玉米可见；CornStage.None 表示全部隐藏。</summary>
         private void ActivateOnly(CornStage stage)
         {
+            EnsureRuntimeState();
             var wanted = (stage == CornStage.None) ? -1 : Mathf.Clamp((int)stage, 1, 3);
             visiblePlantCount = 0;
 
@@ -524,8 +560,13 @@ namespace Engineer.UI
         /// </summary>
         private GameObject CreateAlignedCorn(GameObject prefab, Vector3 localPosition, Quaternion rotation, float scale, int stage)
         {
+            if (prefab == null) return null;
+
+            var renderPrefab = GetRenderPrefab(prefab);
+            if (renderPrefab == null) return null;
+
             var parent = (stage >= 1 && stage <= 3 && stageRoots[stage] != null) ? stageRoots[stage] : plantRoot;
-            var go = Instantiate(GetRenderPrefab(prefab), parent);
+            var go = Instantiate(renderPrefab, parent);
             go.name = prefab.name;
             go.transform.localPosition = Vector3.zero;
             go.transform.localRotation = Quaternion.identity;
@@ -584,11 +625,15 @@ namespace Engineer.UI
         private void RebuildStage(CornStage stage, GrowthLevel growth)
         {
             if (stage == CornStage.None) return;
+            EnsureRuntimeState();
+            if (config == null) return;
+
             var s = Mathf.Clamp((int)stage, 1, 3);
+            if (plantsByStage[s] == null) plantsByStage[s] = new List<Transform>();
 
             DestroyStageInstances(s);
 
-            var prefabProbe = ResolveCornPrefab(s, growth);
+            var prefabProbe = ResolveCropPrefab(s, growth);
             if (prefabProbe == null)
             {
                 Debug.LogWarning("[农场] 找不到阶段 " + s + " 的玉米预制体，跳过。", this);
@@ -614,6 +659,8 @@ namespace Engineer.UI
 
                         var go = CreateAlignedCorn(prefabProbe, local,
                             BuildRotation(bx, by, i, 0), BuildScale(bx, by, i, 0), s);
+                        if (go == null) continue;
+
                         go.name = string.Format("Corn_S{0}_B{1}_{2}_{3}", s, bx, by, i);
                         plantsByStage[s].Add(go.transform);
                         plantCount++;
@@ -641,6 +688,7 @@ namespace Engineer.UI
 
         private void DestroyStageInstances(int s)
         {
+            EnsureRuntimeState();
             var list = plantsByStage[s];
             if (list == null) return;
 
@@ -676,11 +724,20 @@ namespace Engineer.UI
         /// </summary>
         private readonly Dictionary<int, GameObject> combinedCache = new Dictionary<int, GameObject>();
 
+        /// <summary>甜菜/红薯/土豆没有模型时的白色占位植株，下标 1~3。</summary>
+        private readonly GameObject[] whiteboxPrefabs = new GameObject[4];
+
+        /// <summary>上一次建田时用的作物 id；换作物时让所有阶段重新生成。</summary>
+        private string builtCropId;
+
         /// <summary>取合并版预制体（没有就合并一次并缓存）。</summary>
         private GameObject GetRenderPrefab(GameObject prefab)
         {
             if (prefab == null) return null;
             if (!optimizeMeshes) return prefab;
+
+            // 白膜只有一两个基础网格，不需要（也不应该）走玉米的多材质合并。
+            if (prefab.name.StartsWith("CropWhitebox_")) return prefab;
 
             var id = prefab.GetInstanceID();
             GameObject cached;
@@ -734,6 +791,68 @@ namespace Engineer.UI
             x ^= x >> 15; x *= 0x846ca68bu;
             x ^= x >> 16;
             return (x & 0xFFFFFF) / (float)0xFFFFFF;
+        }
+
+        /// <summary>
+        /// 按当前作物取植株。玉米用 9 个 glb；甜菜/红薯/土豆没有模型，用白色胶囊占位。
+        /// </summary>
+        private GameObject ResolveCropPrefab(int stage, GrowthLevel growth)
+        {
+            if (string.Equals(CurrentCropId(), "corn", System.StringComparison.OrdinalIgnoreCase))
+                return ResolveCornPrefab(stage, growth);
+
+            return GetWhiteboxPrefab(stage);
+        }
+
+        private static string CurrentCropId()
+        {
+            var flow = FindObjectOfType<GameFlowController>();
+            var id = flow != null && flow.Context != null ? flow.Context.PlantTypeId : null;
+            return string.IsNullOrEmpty(id) ? "corn" : id;
+        }
+
+        /// <summary>白膜植株：一个白色胶囊，高度按阶段变化；根节点保持 scale=1。</summary>
+        private GameObject GetWhiteboxPrefab(int stage)
+        {
+            var s = Mathf.Clamp(stage, 1, 3);
+            if (whiteboxPrefabs[s] != null) return whiteboxPrefabs[s];
+
+            var root = new GameObject("CropWhitebox_S" + s);
+            root.SetActive(false);
+
+            var body = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            body.name = "Body";
+            body.transform.SetParent(root.transform, false);
+
+            var radius = s == 1 ? 0.12f : (s == 2 ? 0.20f : 0.28f);
+            var halfHeight = s == 1 ? 0.16f : (s == 2 ? 0.45f : 0.75f);
+            body.transform.localScale = new Vector3(radius, halfHeight, radius);
+
+            var collider = body.GetComponent<Collider>();
+            if (collider != null)
+            {
+                if (Application.isPlaying) Destroy(collider);
+                else DestroyImmediate(collider);
+            }
+
+            var renderer = body.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                var shader = Shader.Find("Standard");
+                if (shader == null) shader = Shader.Find("Unlit/Color");
+                if (shader == null) shader = Shader.Find("Diffuse");
+
+                if (shader != null)
+                {
+                    var material = new Material(shader);
+                    material.color = new Color(0.92f, 0.92f, 0.92f, 1f);
+                    material.enableInstancing = true;
+                    renderer.sharedMaterial = material;
+                }
+            }
+
+            whiteboxPrefabs[s] = root;
+            return root;
         }
 
         /// <summary>

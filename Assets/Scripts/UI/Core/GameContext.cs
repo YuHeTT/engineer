@@ -70,8 +70,8 @@ namespace Engineer.UI
         // 选择结果
         // ------------------------------------------------------------------
 
-        /// <summary>土地类型 Id（Demo 只开放「平川台」）。</summary>
-        public string LandTypeId = "pingchuantai";
+        /// <summary>土地类型 Id。四块地都开放；默认平川台。</summary>
+        public string LandTypeId = "flat_plain";
 
         /// <summary>土地类型显示名。</summary>
         public string LandTypeName = "平川台";
@@ -242,7 +242,7 @@ namespace Engineer.UI
 
             var input = GameSession.BuildInput(Ph, OrganicMatter, AvailableNitrogen,
                                                LabilePhosphorus, Potassium);
-            session.Begin(input, rng);
+            session.Begin(input, PlantTypeId, rng);
             StageIndex = 1;
             return true;
         }
@@ -260,7 +260,7 @@ namespace Engineer.UI
         /// <summary>恢复到「开始新的模拟」时的初始值。</summary>
         public void Reset()
         {
-            LandTypeId = "pingchuantai";
+            LandTypeId = "flat_plain";
             LandTypeName = "平川台";
             PlantTypeId = "corn";
             PlantTypeName = "玉米";

@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Engineer.Core;
@@ -283,6 +283,9 @@ namespace Engineer.UI
         /// <summary>手动巡航：显示巡航进度页，同时驾驶小车。</summary>
         public void OnManualCruise()
         {
+            // 不切屏的按钮：只出声 + 闪一下，不收起、不排队。
+            UiClickFeedback.Play(manualButton, false, null);
+
             Resolve();
             if (cruise != null && cruise.IsDeploying) return;
 
@@ -308,6 +311,8 @@ namespace Engineer.UI
         /// <summary>自动巡航：显示巡航进度页，小车自己走完。</summary>
         public void OnAutoCruise()
         {
+            UiClickFeedback.Play(autoButton, false, null);
+
             Resolve();
             if (cruise != null && cruise.IsDeploying) return;
 
@@ -351,6 +356,8 @@ namespace Engineer.UI
         /// </summary>
         public void OnUpdateData()
         {
+            UiClickFeedback.Play(updateButton, false, null);
+
             var probe = Flow != null ? Flow.Probe : null;
 
             if (Flow == null || !Flow.ConfirmProbe())

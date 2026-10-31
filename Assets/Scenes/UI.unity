@@ -1309,6 +1309,8 @@ GameObject:
   m_Component:
   - component: {fileID: 52729871}
   - component: {fileID: 52729872}
+  - component: {fileID: 1876543211}
+  - component: {fileID: 1876543212}
   m_Layer: 0
   m_Name: UI_Flow
   m_TagString: Untagged
@@ -1345,6 +1347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startState: 0
   logTransitions: 1
+  transition: {fileID: 1876543211}
   configAsset: {fileID: 0}
   validateConfigOnAwake: 1
   screens:
@@ -50229,6 +50232,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143566951}
   m_CullTransparentMesh: 1
+--- !u!114 &1876543211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52729870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b1f3c2a9d4e4f8a9b6c5d4e3f2a1b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  style: 5
+  easing: 0
+  duration: 0.55
+  parallax: 0.25
+  zoomAmount: 0.06
+  hologramFlickerRate: 26
+  hologramMinAlpha: 0.06
+--- !u!114 &1876543212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52729870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8a1f7b6d2e4b95a4f0c1d2e3b4a5c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickClip: {fileID: 8300000, guid: 61c1c9f803e5ed942a591c1b49a4118b, type: 3}
+  volume: 0.85
+  audioSource: {fileID: 0}
+  tintTime: 0.08
+  flashTime: 0.12
+  shredDelay: 0.22
+  shredDuration: 0.45
+  shredStripHeight: 5
+  shredSpread: 90
+  shredMaxStrips: 24
+  recoverTime: 0.14
+  recoverDelay: 1.2
+  tintColor: {r: 0.25, g: 0.85, b: 1, a: 0.45}
+  flashColor: {r: 0.85, g: 0.97, b: 1, a: 0.95}
+  shredOnNavigate: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

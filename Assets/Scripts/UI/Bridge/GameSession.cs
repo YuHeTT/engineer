@@ -55,6 +55,18 @@ namespace Engineer.UI
             get { return config; }
         }
 
+        /// <summary>当前选中的作物（未开始时为 null）。</summary>
+        public CropDef Crop
+        {
+            get { return simulation.Crop; }
+        }
+
+        /// <summary>当前作物生效的适宜度曲线；给分析页算观测快照用。</summary>
+        public SuitabilityCurve[] ActiveCurves
+        {
+            get { return simulation.ActiveCurves; }
+        }
+
         /// <summary>
         /// 只读视图。界面若要直接读内核状态，走这个接口，
         /// 这样编译期就调不到 Commit / Initialize 之类的写操作。
@@ -89,7 +101,37 @@ namespace Engineer.UI
         /// <param name="rng">可选随机源；不传则自动新建（每局不同）</param>
         public void Begin(SoilState input, System.Random rng = null)
         {
+            Begin(input, null, rng);
+        }
+
+        /// <summary>
+        /// 开始模拟并选定作物。cropId 为空/找不到时回退到第一种作物（玉米）。
+        /// 作物决定适宜度曲线与产量配置；土壤/阶段仍由 Initialize 重置。
+        /// </summary>
+        public void Begin(SoilState input, string cropId, System.Random rng = null)
+        {
+            simulation.SetCrop(FindCrop(cropId));
             simulation.Initialize(input, rng);
+        }
+
+        private CropDef FindCrop(string cropId)
+        {
+            var crops = config.Crops;
+            if (crops == null || crops.Length == 0) return null;
+
+            if (!string.IsNullOrEmpty(cropId))
+            {
+                for (var i = 0; i < crops.Length; i++)
+                {
+                    if (crops[i] != null && string.Equals(crops[i].Id, cropId, System.StringComparison.OrdinalIgnoreCase))
+                        return crops[i];
+                }
+            }
+
+            for (var i = 0; i < crops.Length; i++)
+                if (crops[i] != null) return crops[i];
+
+            return null;
         }
 
         /// <summary>把当前 UI 的六项输入合成一份 SoilState。"土地基础数据设置"用。</summary>
@@ -178,7 +220,7 @@ namespace Engineer.UI
             usedFallback = false;
             if (!IsStarted || IsFinished || observation == null) return null;
             var table = new PlanTable(config);
-            var plan = table.Match(CoreStage, SuitabilityResult.From(observation, config));
+            var plan = table.Match(CoreStage, SuitabilityResult.From(observation, config, ActiveCurves));
             usedFallback = table.LastMatchUsedFallback;
             return plan;
         }

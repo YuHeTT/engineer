@@ -117,13 +117,23 @@ namespace Engineer.Core
         /// </summary>
         public static SuitabilityResult From(SoilState soil, SimConfig config)
         {
+            return From(soil, config, null);
+        }
+
+        /// <summary>
+        /// 指定作物曲线集合的入口。curves 为 null 或某下标为空时回退到 config 的全局曲线。
+        /// </summary>
+        public static SuitabilityResult From(SoilState soil, SimConfig config, SuitabilityCurve[] curves)
+        {
             if (soil == null || config == null) return new SuitabilityResult();
 
             var r = new SuitabilityResult();
             for (int i = 0; i < SoilMetrics.DynamicCount; i++)
             {
                 var metric = SoilMetrics.Dynamic[i];
-                var curve = config.CurveOf(metric);
+                var curve = (curves != null && i < curves.Length && curves[i] != null)
+                    ? curves[i]
+                    : config.CurveOf(metric);
                 r[metric] = curve != null ? curve.Evaluate(soil[metric]) : 1f;
             }
             return r;

@@ -94,8 +94,18 @@ namespace Engineer.UI
                 confirmButton.onClick.AddListener(OnConfirmDosage);
             }
 
+            // 旧场景里的固定文案是「玉米生理说明」；四种作物都开放后改成通用叫法。
+            var labels = GetComponentsInChildren<TMP_Text>(true);
+            for (var i = 0; i < labels.Length; i++)
+            {
+                if (labels[i] != null && labels[i].text == "玉米生理说明")
+                    labels[i].text = "作物生理说明";
+            }
+
             analysisSoil = Flow != null ? Flow.Probe.AnalysisSoil(session) : null;
-            analysisFit = analysisSoil != null ? SuitabilityResult.From(analysisSoil, session.Config) : null;
+            analysisFit = analysisSoil != null && session != null
+                ? SuitabilityResult.From(analysisSoil, session.Config, session.ActiveCurves)
+                : null;
             analysisPlan = session != null ? session.RecommendFromObservation(analysisSoil, out observationFallback) : null;
             if (confirmButton != null) confirmButton.interactable = analysisSoil != null;
             if (stageTitleText != null) stageTitleText.text += analysisSoil != null
@@ -214,6 +224,8 @@ namespace Engineer.UI
         /// <summary>把输入框里的数值交给内核演算，然后进入下一阶段并返回农场主界面。</summary>
         public void OnConfirmDosage()
         {
+            if (UiClickFeedback.Busy) return;
+
             var flow = Flow;
             var context = flow != null ? flow.Context : null;
             if (flow == null || context == null)
@@ -238,10 +250,12 @@ namespace Engineer.UI
 
             // 3) 判断去农场还是去收益
             //    S4 提交完之后内核进入 Done，此时应该直接看收益
-            if (flow.Session != null && (flow.Session.IsFinished || StageMap.IsHarvest(flow.Session.UiStage)))
-                flow.GoTo(GameState.Revenue);
-            else
-                flow.GoTo(GameState.FarmStage);
+            var target = flow.Session != null && (flow.Session.IsFinished || StageMap.IsHarvest(flow.Session.UiStage))
+                ? GameState.Revenue
+                : GameState.FarmStage;
+
+            // 先播按钮反馈，再切屏：否则新界面会立刻盖住消散动画。
+            ClickThen(confirmButton, true, delegate { flow.GoTo(target); });
         }
 
         /// <summary>刷新左侧 4 项建议 + 5 项适宜度。</summary>

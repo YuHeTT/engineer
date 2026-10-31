@@ -417,6 +417,29 @@ namespace Engineer.UI.EditorTools
             return changed;
         }
 
+        /// <summary>
+        /// 判断界面当前用的是青蓝还是暖橙文字色。补丁脚本用它让新建的屏和旧屏保持一致，
+        /// 而不是把整棵界面按映射表重刷一遍。
+        /// </summary>
+        public static bool IsCoolPalette(GameObject root)
+        {
+            if (root == null) return false;
+
+            var cool = 0;
+            var warm = 0;
+
+            foreach (var text in root.GetComponentsInChildren<TMP_Text>(true))
+            {
+                foreach (var pair in TextPalette)
+                {
+                    if (SameColor(text.color, pair.Cool)) { cool++; break; }
+                    if (SameColor(text.color, pair.Warm)) { warm++; break; }
+                }
+            }
+
+            return cool > warm;
+        }
+
         /// <summary>颜色比较留一点余量：Color 经过序列化 / TMP 内部转换后末位可能有极小误差。</summary>
         private static bool SameColor(Color a, Color b)
         {

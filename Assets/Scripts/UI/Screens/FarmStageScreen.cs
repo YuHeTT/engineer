@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Engineer.Core;
@@ -157,6 +157,7 @@ namespace Engineer.UI
 
         private void OnPrimaryClicked()
         {
+            if (UiClickFeedback.Busy) return;
             if (Flow == null) return;
 
             var context = Flow.Context;
@@ -168,7 +169,9 @@ namespace Engineer.UI
             Flow.SyncProbe();
             // 右侧只负责分析；未确认采集时不再充当第二个“机器人检测”入口。
             if (!isHarvest && !Flow.CanAnalyze) return;
-            Flow.GoTo(isHarvest ? GameState.Revenue : GameState.Analyze);
+
+            var target = isHarvest ? GameState.Revenue : GameState.Analyze;
+            ClickThen(primaryButton, true, delegate { Flow.GoTo(target); });
         }
 
         /// <summary>

@@ -113,6 +113,21 @@ namespace Engineer.UI.EditorTools
             return button;
         }
 
+        private static void AttachOption(Button button, string id, string displayName,
+            OptionCategory category, GameState target, string description)
+        {
+            if (button == null) return;
+
+            var option = button.GetComponent<OptionCardButton>();
+            if (option == null) option = button.gameObject.AddComponent<OptionCardButton>();
+
+            option.optionId = id;
+            option.displayName = displayName;
+            option.category = category;
+            option.targetState = target;
+            option.description = description;
+        }
+
         // ==================================================================
         // image3 土地类型选择
         // ==================================================================
@@ -131,9 +146,12 @@ namespace Engineer.UI.EditorTools
                 var cell = UiFactory.MakeGroup(cards, "Cell_Land" + (i + 1));
                 UiLayout.GridCell(cell, i, 0, UiContent.LandNames.Length, 1, 0f, 0f, 0f, 0f, 32f, 0f);
 
-                BuildSelectCard(cell, screen, "Card_Land" + (i + 1), "土地类型 " + (i + 1),
+                var landButton = BuildSelectCard(cell, screen, "Card_Land" + (i + 1), "土地类型 " + (i + 1),
                     UiContent.LandNames[i], UiContent.LandIntros[i],
-                    i == 0 ? "选择" : "暂未开放", GameState.LandParams, i == 0);
+                    "选择", GameState.LandParams, true);
+
+                AttachOption(landButton, UiContent.LandIds[i], UiContent.LandNames[i],
+                    OptionCategory.Land, GameState.LandParams, UiContent.LandIntros[i]);
             }
 
             var note = UiFactory.MakeText(body, "Note", UiContent.LandSelectNote,
@@ -162,9 +180,12 @@ namespace Engineer.UI.EditorTools
                 var cell = UiFactory.MakeGroup(cards, "Cell_Plant" + (i + 1));
                 UiLayout.GridCell(cell, i, 0, UiContent.PlantNames.Length, 1, 0f, 0f, 0f, 0f, 32f, 0f);
 
-                BuildSelectCard(cell, screen, "Card_Plant" + (i + 1), "植物类型 " + (i + 1),
+                var plantButton = BuildSelectCard(cell, screen, "Card_Plant" + (i + 1), "植物类型 " + (i + 1),
                     UiContent.PlantNames[i], UiContent.PlantIntros[i],
-                    i == 0 ? "选择" : "暂未开放", GameState.Confirm, i == 0);
+                    "选择", GameState.Confirm, true);
+
+                AttachOption(plantButton, UiContent.PlantIds[i], UiContent.PlantNames[i],
+                    OptionCategory.Plant, GameState.Confirm, UiContent.PlantIntros[i]);
             }
 
             var note = UiFactory.MakeText(body, "Note", UiContent.PlantSelectNote,

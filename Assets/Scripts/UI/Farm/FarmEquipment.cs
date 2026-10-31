@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 //  FarmEquipment.cs —— 停在田边的智能农田房车
 // ---------------------------------------------------------------------------
 //  作用：把房车模型摆到田块外侧（环田路旁边），并播放它的"独立开合"动画。
@@ -186,7 +186,25 @@ namespace Engineer.UI
             var exit = start + outward * 3f;
             DeploymentSucceeded = false;
             yield return DrivePhysicsTo(exit, 12f);
-            if (!physicsArrived) { StopDeparturePhysics(); if (rig != null) rig.EndDeploymentShot(); yield break; }
+            if (!physicsArrived)
+            {
+                // 物理出舱被坡道/地面/房车碰撞体卡住时，不再让整段巡航失败。
+                // 只把小车平滑滑到舱外（仍走 0.8 秒，不是瞬移），覆盖率从出舱后才开始算。
+                StopDeparturePhysics();
+                Debug.LogWarning("[农场] 物理出舱受阻，改用平滑滑出兜底；不补齐覆盖率，只保证小车能出舱。", this);
+                yield return SlideCarrier(carrier, carrier.position, exit, .8f);
+
+                if (rig != null)
+                {
+                    rig.GetPatrolShot(carrier.position, out returnPosition, out returnRotation);
+                    yield return MoveCamera(rig, returnPosition, returnRotation, cameraTravelSeconds);
+                    rig.EndDeploymentShot();
+                }
+
+                DeploymentSucceeded = true;
+                if (rig != null) rig.EndDeploymentShot();
+                yield break;
+            }
             if (rig != null)
             {
                 rig.GetPatrolShot(carrier.position, out returnPosition, out returnRotation);
@@ -279,8 +297,24 @@ namespace Engineer.UI
             Physics.SyncTransforms();
         }
 
-        private IEnumerator DrivePhysicsTo(Vector3 destination, float timeout)
+        /// <summary>
+        /// 物理出舱失败时的兜底：不经过刚体，沿直线把小车平滑滑到舱外。
+        /// 只用于出舱这一小段，进入巡航后仍是正常移动。
+        /// </summary>
+        private static IEnumerator SlideCarrier(Transform carrier, Vector3 from, Vector3 to, float duration)
         {
+            if (carrier == null) yield break;
+
+            var total = Mathf.Max(0.05f, duration);
+            for (var t = 0f; t < total; t += Time.deltaTime)
+            {
+                carrier.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, t / total));
+                yield return null;
+            }
+            carrier.position = to;
+        }
+
+        private IEnumerator DrivePhysicsTo(Vector3 destination, float timeout)        {
             physicsArrived = false;
             float stable = 0f;
             var origin = departureBody.position;
@@ -328,7 +362,13 @@ namespace Engineer.UI
         {
             if (departureBody != null)
             {
-                departureBody.velocity = Vector3.zero; departureBody.angularVelocity = Vector3.zero;
+                // 刚体可能本来就是 kinematic（比如上一次出舱刚结束）；此时写 velocity
+                // 会触发 Unity 的 "Setting velocity of a kinematic body" 警告。
+                if (!departureBody.isKinematic)
+                {
+                    departureBody.velocity = Vector3.zero;
+                    departureBody.angularVelocity = Vector3.zero;
+                }
                 departureBody.collisionDetectionMode = CollisionDetectionMode.Discrete;
                 departureBody.isKinematic = true;
                 // 巡航使用Transform，交接后关闭刚体插值，避免渲染帧被旧物理位姿拉回。

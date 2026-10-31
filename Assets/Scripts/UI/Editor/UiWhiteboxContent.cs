@@ -22,6 +22,7 @@ namespace Engineer.UI.EditorTools
         // ---------------- 3 土地类型选择 ----------------
 
         public static readonly string[] LandNames = { "平川台", "泽洼域", "崇岭阶", "高原坪" };
+        public static readonly string[] LandIds = { "flat_plain", "low_wetland", "steep_ridge", "plateau" };
 
         public static readonly string[] LandIntros =
         {
@@ -32,11 +33,12 @@ namespace Engineer.UI.EditorTools
             "海拔高，气压较低，昼夜温差较大，地势相对平缓，气候较凉爽。",
         };
 
-        public const string LandSelectNote = "备注：目前只能选择一个平川台。";
+        public const string LandSelectNote = "备注：四块地均可选择。";
 
         // ---------------- 5 植物类型选择 ----------------
 
         public static readonly string[] PlantNames = { "玉米", "甜菜", "红薯", "土豆" };
+        public static readonly string[] PlantIds = { "corn", "beet", "sweet_potato", "potato" };
 
         public static readonly string[] PlantIntros =
         {
@@ -46,7 +48,7 @@ namespace Engineer.UI.EditorTools
             "土豆喜凉爽气候和疏松、排水良好的土壤，地下块茎可食用。高原坪昼夜温差较大，种植时应注意防霜和补水，保障块茎发育。",
         };
 
-        public const string PlantSelectNote = "备注：现在只能选择玉米。";
+        public const string PlantSelectNote = "备注：四种作物均可选择。";
 
         // ---------------- 4 土地基础数据设置 ----------------
 
@@ -117,7 +119,7 @@ namespace Engineer.UI.EditorTools
         /// <summary>五项适宜度的值域，来自文档「值域 [0.2,1]」。</summary>
         public const string SuitabilityRange = "值域 [0.2, 1]（结果得 1 即 100%）";
 
-        public static readonly string[] SuggestionLabels = { "推荐肥料类型", "单亩施肥量（kg/亩）", "单亩基准灌溉（m³/亩）", "玉米生理说明" };
+        public static readonly string[] SuggestionLabels = { "推荐肥料类型", "单亩施肥量（kg/亩）", "单亩基准灌溉（m³/亩）", "作物生理说明" };
 
         /// <summary>本阶段水肥量输入行，顺序与 GameContext.StageDosage 一致。</summary>
         public static readonly string[] DosageLabels =

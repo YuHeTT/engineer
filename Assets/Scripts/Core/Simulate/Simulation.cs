@@ -29,6 +29,7 @@ namespace Engineer.Core
     {
         private readonly SimConfig _config;
         private readonly PlanTable _planTable;
+        private CropDef _crop;
 
         /// <summary>四个阶段各自的肥力系数，下标 0=S1。收益计算取它的平均。</summary>
         private readonly float[] _stageFertility = new float[Stages.Count];
@@ -74,6 +75,26 @@ namespace Engineer.Core
 
         /// <summary>推荐方案表。</summary>
         public PlanTable PlanTable => _planTable;
+
+        /// <summary>当前选中的作物；null 表示使用 SimConfig 的全局曲线/产量。</summary>
+        public CropDef Crop => _crop;
+
+        /// <summary>当前生效的适宜度曲线（作物优先，回退全局）。</summary>
+        public SuitabilityCurve[] ActiveCurves =>
+            _crop != null && _crop.Curves != null && _crop.Curves.Length > 0
+                ? _crop.Curves
+                : _config.Curves;
+
+        /// <summary>当前生效的产量配置（作物优先，回退全局）。</summary>
+        public YieldConfig ActiveYield =>
+            _crop != null && _crop.Yield != null ? _crop.Yield : _config.Yield;
+
+        /// <summary>选择作物。换作物后适宜度缓存失效；土壤/阶段本身不变。</summary>
+        public void SetCrop(CropDef crop)
+        {
+            _crop = crop;
+            InvalidateCache();
+        }
 
         /// <summary>当前阶段。Done 表示四阶段已全部结算。</summary>
         public Stage CurrentStage => _stage;
@@ -165,7 +186,7 @@ namespace Engineer.Core
         public SuitabilityResult Evaluate()
         {
             if (_cachedFit == null)
-                _cachedFit = SuitabilityResult.From(_soil, _config);
+                _cachedFit = SuitabilityResult.From(_soil, _config, ActiveCurves);
             return _cachedFit;
         }
 
@@ -305,7 +326,7 @@ namespace Engineer.Core
             return RevenueReport.Create(
                 _stageFertility,
                 _stageWaterFactors,
-                _config.Yield,
+                ActiveYield,
                 area,
                 _soil,
                 _committedCount,

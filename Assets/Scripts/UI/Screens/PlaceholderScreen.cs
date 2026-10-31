@@ -84,11 +84,33 @@ namespace Engineer.UI
         public virtual void OnEnter(object args)
         {
             gameObject.SetActive(true);
+
+            // 上次离场时按钮可能还停在"切片消散后隐藏"的状态，进来先还原。
+            UiClickFeedback.RestoreAll(this);
         }
 
         public virtual void OnExit()
         {
+            // 先还原按钮，再隐藏；这样下次进来不用等动效组件来收拾。
+            UiClickFeedback.RestoreAll(this);
             gameObject.SetActive(false);
+        }
+
+        // ------------------------------------------------------------------
+        // 点击表现
+        // ------------------------------------------------------------------
+
+        /// <summary>
+        /// 按钮点击的统一表现：音效 + 变色闪烁 + 横向切片消散。
+        ///
+        /// navigate = true（会换页）：碎裂后停在消失状态，动作在动画播完后执行——
+        /// 如果直接 GoTo，新界面会立刻盖上来，消散动画根本看不见。
+        /// navigate = false（不换页）：碎裂后快速重组回来，动作**立刻**执行，不挡后续点击。
+        /// 没有挂 UiClickFeedback 时它会立刻执行 action，行为和以前一致。
+        /// </summary>
+        protected void ClickThen(Button button, bool navigate, Action action)
+        {
+            UiClickFeedback.Play(button, navigate, action);
         }
 
         // ------------------------------------------------------------------
@@ -131,8 +153,8 @@ namespace Engineer.UI
 
 
 
-        /// <summary>「开始新的模拟」时把本屏文案与输入框复位。</summary>
-        public void ResetPlaceholderState()
+        /// <summary>「开始新的模拟」时把本屏文案与输入框复位。子类可重写以复位自己的运行时状态。</summary>
+        public virtual void ResetPlaceholderState()
         {
             CacheInitialState();
 
@@ -184,6 +206,11 @@ namespace Engineer.UI
         private void Handle(ScreenAction action)
         {
             if (OwnsButton(action.button)) return;
+
+            // 这张卡片如果挂了 OptionCardButton，由它自己负责写回数据 + 跳转；
+            // 旧的 ScreenAction（GoTo / LogOnly）必须让路，否则两个监听会抢一次点击。
+            if (action.button != null && action.button.GetComponent<OptionCardButton>() != null) return;
+
             if (logActionDispatch)
             {
                 var buttonName = action.button != null ? action.button.name : "(null)";
@@ -197,21 +224,34 @@ namespace Engineer.UI
             switch (action.kind)
             {
                 case ScreenActionKind.GoTo:
-                    if (flow != null) flow.GoTo(action.target);
-                    else Debug.LogWarning("[UI] " + name + " 没有拿到 GameFlowController。", this);
+                    ClickThen(action.button, true, delegate
+                    {
+                        if (flow != null) flow.GoTo(action.target);
+                        else Debug.LogWarning("[UI] " + name + " 没有拿到 GameFlowController。", this);
+                    });
                     break;
 
                 case ScreenActionKind.Back:
-                    if (flow != null) flow.Back();
+                    ClickThen(action.button, true, delegate
+                    {
+                        if (flow != null) flow.Back();
+                    });
                     break;
 
                 case ScreenActionKind.Restart:
-                    if (flow != null) flow.Restart();
+                    ClickThen(action.button, true, delegate
+                    {
+                        if (flow != null) flow.Restart();
+                    });
                     break;
 
                 case ScreenActionKind.LogOnly:
                 default:
-                    LogPlaceholder(string.IsNullOrEmpty(action.note) ? "该操作" : action.note);
+                    // 不切屏的按钮不做收起，只发声 + 闪一下，否则按钮会凭空消失。
+                    ClickThen(action.button, false, delegate
+                    {
+                        LogPlaceholder(string.IsNullOrEmpty(action.note) ? "该操作" : action.note);
+                    });
                     break;
             }
         }

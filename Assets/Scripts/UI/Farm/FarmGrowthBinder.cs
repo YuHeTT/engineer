@@ -1,4 +1,4 @@
-﻿// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 //  FarmGrowthBinder.cs —— 把数值内核的状态绑到农场的视觉上
 // ---------------------------------------------------------------------------
 //  作用：**这是"数据 → 表现"的唯一桥梁**。
@@ -64,6 +64,8 @@ namespace Engineer.UI
         private int lastUiStage = int.MinValue;
         private GrowthLevel lastGrowth = (GrowthLevel)int.MinValue;
         private bool lastStarted;
+        private bool applyErrorLogged;
+        private bool updateErrorLogged;
 
         private void Awake()
         {
@@ -78,7 +80,19 @@ namespace Engineer.UI
 
         private void Update()
         {
-            Sync();
+            try
+            {
+                Sync();
+                updateErrorLogged = false;
+            }
+            catch (System.Exception e)
+            {
+                if (!updateErrorLogged)
+                {
+                    updateErrorLogged = true;
+                    Debug.LogError("[农场] 生长同步异常，已停止本帧更新：" + e, this);
+                }
+            }
         }
 
         private void Resolve()
@@ -250,7 +264,22 @@ namespace Engineer.UI
                 ? idleStage
                 : FarmFieldBuilder.StageFromUiStage(uiStage.Value);
 
-            field.ApplyStage(stage, growth);
+            // 田块在 Play 中重编译脚本后可能有一帧状态没恢复；这里兜底，
+            // 避免异常从 Update 每帧抛出把编辑器拖死。真出错时只记一次。
+            try
+            {
+                field.ApplyStage(stage, growth);
+                applyErrorLogged = false;
+            }
+            catch (System.Exception e)
+            {
+                if (!applyErrorLogged)
+                {
+                    applyErrorLogged = true;
+                    Debug.LogError("[农场] 应用生长阶段失败，已暂停本帧同步：" + e, this);
+                }
+                return;
+            }
 
             var what = isIdle
                 ? "模拟未开始（占位阶段 " + stage + "）"

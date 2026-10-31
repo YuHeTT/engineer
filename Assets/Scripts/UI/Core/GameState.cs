@@ -40,6 +40,14 @@ namespace Engineer.UI
 
         /// <summary>11/12 收益计算。</summary>
         Revenue = 9,
+
+        /// <summary>
+        /// 地形观察（LandSelect 之后、LandParams 之前）。
+        ///
+        /// 【只能追加在最后】场景里 PlaceholderScreen.state / OptionCardButton.targetState
+        /// 都是按 int 序列化的，插在中间会把已有屏的编号全部错位。
+        /// </summary>
+        LandPreview = 10,
     }
 
     /// <summary>状态的显示名与调试信息，供状态机写日志、供后续做面包屑导航使用。</summary>
@@ -57,6 +65,7 @@ namespace Engineer.UI
             "机器人操控",
             "开始分析",
             "收益计算",
+            "地形观察",
         };
 
         public static string DisplayName(GameState state)

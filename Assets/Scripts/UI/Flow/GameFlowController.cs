@@ -28,6 +28,10 @@ namespace Engineer.UI
         [Tooltip("是否在控制台打印状态切换日志。")]
         [SerializeField] private bool logTransitions = true;
 
+        [Header("切换动效")]
+        [Tooltip("留空 = 瞬时切换。挂在 UI 根节点上（可以和本组件同一个对象），由它负责新旧屏的进出动画。")]
+        [SerializeField] private ScreenTransitionPlayer transition;
+
         [Header("数值内核")]
         [Tooltip("数值配置资产。留空则使用 SimConfig.CreateDefault()（文档默认数值）。")]
         [SerializeField] private SimConfigAsset configAsset;
@@ -83,6 +87,9 @@ namespace Engineer.UI
             CreateSession();
             RebuildScreenMap();
 
+            // 动效组件通常和状态机挂在同一个对象上，没手动拖就自己找一下。
+            if (transition == null) transition = GetComponent<ScreenTransitionPlayer>();
+
             // 场景里同时存在多个屏时，除起始屏外全部隐藏，避免打开时所有屏叠在一起。
             foreach (var pair in screenMap)
             {
@@ -91,6 +98,10 @@ namespace Engineer.UI
                 pair.Value.gameObject.SetActive(pair.Key == startState);
             }
             current = Find(startState);
+
+            // 土地/植物选择页：四张卡全部开放。既兼容已经手工补过的场景，
+            // 也保证没跑编辑器补丁时 Play 仍然能用（旧 ScreenAction 会被 OptionCardButton 接管）。
+            AllOptionsUi.Apply(transform.root);
         }
 
         /// <summary>创建数值内核会话并注入共享数据。配置资产留空时用文档默认值兜底。</summary>
@@ -204,18 +215,38 @@ namespace Engineer.UI
                 return;
             }
 
-            if (current != null)
+            var previous = current;
+            if (previous != null)
             {
-                if (current.State == state) return;
-                history.Push(current.State);
-                current.OnExit();
+                if (previous.State == state) return;
+                history.Push(previous.State);
             }
 
+            // 先让新屏 OnEnter 把数据填好、把自己显示出来，再让旧屏退场；
+            // 反过来的话，切换的那一帧会先露出背景。
             current = next;
             current.OnEnter(null);
             ApplyInputPolicy(state);
 
+            if (previous != null) Leave(previous, next, true);
+
             if (logTransitions) Debug.Log("[UI] → " + GameStateInfo.DisplayName(state));
+        }
+
+        /// <summary>
+        /// 让旧屏退场：有动效就播完再隐藏，没有就立刻隐藏。
+        ///
+        /// 【为什么把 OnExit 塞进回调】旧屏要留在场上被动画移走，所以不能一进新屏就
+        /// SetActive(false)，否则动效根本来不及播。没有挂动效组件时行为和以前完全一致。
+        /// </summary>
+        private void Leave(PlaceholderScreen leaving, PlaceholderScreen entering, bool forward)
+        {
+            if (leaving == null) return;
+
+            if (transition != null && transition.isActiveAndEnabled)
+                transition.Play(leaving, entering, forward, leaving.OnExit);
+            else
+                leaving.OnExit();
         }
 
         /// <summary>
@@ -233,7 +264,21 @@ namespace Engineer.UI
             var cameraHasInput = state == GameState.FarmStage || state == GameState.RobotCruise;
 
             var rig = FindObjectOfType<FarmCameraRig>();
-            if (rig != null) rig.SetInputEnabled(cameraHasInput);
+            if (rig != null)
+            {
+                if (state == GameState.LandPreview)
+                {
+                    // 观察页由地形观察的飞行相机接管，农场相机要**整体停掉**：
+                    // 只关输入的话，它的 LateUpdate 还会继续把相机往农场取景上拽。
+                    rig.SetInputEnabled(false);
+                    rig.enabled = false;
+                }
+                else
+                {
+                    rig.enabled = true;
+                    rig.SetInputEnabled(cameraHasInput);
+                }
+            }
 
             if (logTransitions && cameraHasInput)
             {
@@ -261,10 +306,12 @@ namespace Engineer.UI
                 return;
             }
 
-            if (current != null) current.OnExit();
+            var leaving = current;
             current = target;
             current.OnEnter(null);
             ApplyInputPolicy(previous);
+
+            Leave(leaving, target, false);
 
             if (logTransitions) Debug.Log("[UI] ← " + GameStateInfo.DisplayName(previous));
         }
@@ -272,8 +319,12 @@ namespace Engineer.UI
         /// <summary>开始新的模拟：清空历史与数据，回到初始界面。</summary>
         public void Restart()
         {
+            // 重置会直接改屏上的文案，先把正在播的动效收掉，避免旧屏被"复活"到一半。
+            if (transition != null) transition.FinishImmediately();
+
             history.Clear();
             context.Reset();
+            LandPreviewContent.LandChosen = false;
             ResetStageProbe();
             ResetScreens();
 

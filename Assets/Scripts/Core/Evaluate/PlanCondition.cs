@@ -3,13 +3,14 @@
 // ---------------------------------------------------------------------------
 //  作用：把文档 TABLE 13 的"适宜度判定条件"列，变成可以求值的数据结构。
 //
-//  【文档的条件一共只有 5 种形态】
+//  【文档的条件形态】
 //      "任意项＜0.6（优先 fOM、fN）"       -> AnyBelow
 //      "全部≥0.6 且≥3 项≥0.8"             -> AllAboveAndCount
 //      "fN＜0.6（其次 fP）"                -> Below (限定指标 N)
 //      "fN 或 fP 或 fK＜0.6"               -> AnyBelowAmong (限定指标集合)
 //      "任意项 0.6~0.8"                    -> AnyInRange
 //      "全部≥0.8"                          -> AllAbove
+//      "其余情况"                          -> Always（必须放在同阶段最后一条）
 //
 //  【边界语义 —— 全表统一，实现时必须一致】
 //      "＜0.6"  ->  value <  0.6         （严格小于才触发低档）
@@ -37,6 +38,12 @@ namespace Engineer.Core
 
         /// <summary>全部 ≥ 阈值，且至少有 Count 项 ≥ CountThreshold。如 S1 行 2。</summary>
         AllAboveAndCount = 4,
+
+        /// <summary>
+        /// 其余情况（兜底分支）。只应放在同阶段规则的最后一条；
+        /// 对应 2026-10-16 策划方案里的「其余情况」。
+        /// </summary>
+        Always = 5,
     }
 
     /// <summary>一条判定条件。</summary>
@@ -117,6 +124,9 @@ namespace Engineer.Core
                     }
                     return cnt >= Count;
                 }
+
+                case PlanCondType.Always:
+                    return true;
             }
             return false;
         }
@@ -134,6 +144,7 @@ namespace Engineer.Core
                 case PlanCondType.AnyInRange:       return $"{scopeName} 任意 ∈ [{Lo}, {Hi})";
                 case PlanCondType.AllAbove:         return $"{scopeName} 全部 ≥ {Threshold}";
                 case PlanCondType.AllAboveAndCount: return $"{scopeName} 全部 ≥ {Threshold} 且 ≥{Count} 项 ≥ {CountThreshold}";
+                case PlanCondType.Always:           return "其余情况";
                 default:                            return Type.ToString();
             }
         }

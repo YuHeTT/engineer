@@ -206,27 +206,29 @@ namespace Engineer.Core
             {
                 new TerrainDef { Id = "flat_plain", DisplayName = "平川台", PlayableInV1 = true,
                     Description = "地势平缓开阔，土层较厚，排水条件适中，地下水位适宜，便于农业利用。" },
-                new TerrainDef { Id = "low_wetland", DisplayName = "泽洼域",
+                new TerrainDef { Id = "low_wetland", DisplayName = "泽洼域", PlayableInV1 = true,
                     Description = "地势低洼，地下水位较高，雨季容易积水，土壤湿度偏大，需做好排水防涝。" },
-                new TerrainDef { Id = "steep_ridge", DisplayName = "崇岭阶",
+                new TerrainDef { Id = "steep_ridge", DisplayName = "崇岭阶", PlayableInV1 = true,
                     Description = "坡度过大，土层较薄，地表径流较强，易发生水土流失，需加强植被保护。" },
-                new TerrainDef { Id = "plateau", DisplayName = "高原坪",
+                new TerrainDef { Id = "plateau", DisplayName = "高原坪", PlayableInV1 = true,
                     Description = "海拔高，气压较低，昼夜温差较大，地势相对平缓，气候较凉爽。" },
             };
 
             // ---------- 8. 作物（文档 TABLE 1）----------
+            // 四种作物都开放；TABLE 1 没有给甜菜/红薯/土豆的独立数值，
+            // 所以先共用玉米这一套曲线与产量（占位），等策划补数据后在 CropDef 上拆开。
             c.Crops = new[]
             {
                 new CropDef { Id = "corn", DisplayName = "玉米", PlayableInV1 = true,
                     Curves = c.Curves,
                     Description = "玉米适宜在地势平缓、土层较厚的地块生长，喜温喜光，生长期需要充足水分。平川台排水适中，有利于根系发育和籽粒成熟。" },
-                new CropDef { Id = "beet", DisplayName = "甜菜",
-                    Curves = c.Curves,   // TODO 后续为每种作物配独立曲线
+                new CropDef { Id = "beet", DisplayName = "甜菜", PlayableInV1 = true,
+                    Curves = c.Curves,
                     Description = "甜菜属于根用作物，喜凉爽气候和疏松土壤，块根可用于制糖。泽洼域需改善排水，避免雨季积水影响根系生长和糖分积累。" },
-                new CropDef { Id = "sweet_potato", DisplayName = "红薯",
+                new CropDef { Id = "sweet_potato", DisplayName = "红薯", PlayableInV1 = true,
                     Curves = c.Curves,
                     Description = "红薯喜温暖、光照充足的环境，块根可作粮食和加工原料。崇岭阶坡度较大，种植应选择梯田，覆盖并控制径流，减轻水土流失。" },
-                new CropDef { Id = "potato", DisplayName = "土豆",
+                new CropDef { Id = "potato", DisplayName = "土豆", PlayableInV1 = true,
                     Curves = c.Curves,
                     Description = "土豆喜凉爽气候和疏松、排水良好的土壤，地下块茎可食用。高原坪昼夜温差较大，种植时应注意防霜和补水，保障块茎发育。" },
             };
@@ -238,6 +240,13 @@ namespace Engineer.Core
             c.Growth = new GrowthRule { GoodAllAbove = 0.6f, BadAllBelow = 0.6f };
             // Ymax,geo = 733（文档：平川台+玉米），水分系数走 Jensen 加权（α3=0.4）
             c.Yield  = new YieldConfig { YmaxGeo = 733f, UseWeightedWater = true, SStatic = 1f };
+            if (c.Crops != null)
+            {
+                for (var i = 0; i < c.Crops.Length; i++)
+                {
+                    if (c.Crops[i] != null) c.Crops[i].Yield = c.Yield;
+                }
+            }
             c.Inputs = new InputLimits();      // 下限 0 / 上限=建议量×5，具体见 InputLimits 注释
 
             return c;
@@ -248,14 +257,15 @@ namespace Engineer.Core
         // ===================================================================
 
         /// <summary>
-        /// 按文档 TABLE 13 构建 11 条规则。
-        /// 判定顺序（Priority 越小越先）见 Docs/数值内核与设计表实现方案.md 第 4.2 节。
+        /// 按 2026-10-16 策划方案 TABLE 10 构建 12 条规则。
+        /// 判定顺序（Priority 越小越先）见 Docs/数值内核与设计表实现方案.md。
+        /// 每个阶段最后一条都是「其余情况」，保证规则表无空洞。
         /// </summary>
         public static PlanRule[] BuildDefaultPlanRules()
         {
             var list = new System.Collections.Generic.List<PlanRule>();
 
-            // ---------------- S1 播种苗期（文档行 1~2）----------------
+            // ---------------- S1 播种苗期（文档 3 条）----------------
             list.Add(Rule(Stage.S1, 1,
                 new PlanCondition { Type = PlanCondType.AnyBelow, Threshold = 0.6f },
                 "有机肥 + 少量氮磷肥",
@@ -269,7 +279,13 @@ namespace Engineer.Core
                 "本底土壤优，控水防烧苗",
                 new FertilizerAmounts { Organic = 40f, N = 1.5f }, 20f));
 
-            // ---------------- S2 营养旺长期（文档行 3~5）----------------
+            list.Add(Rule(Stage.S1, 3,
+                new PlanCondition { Type = PlanCondType.Always },
+                "微量有机肥",
+                "土壤中等水平，维持基础肥力，避免基肥过量抑制出苗",
+                new FertilizerAmounts { Organic = 20f, N = 1f }, 22f));
+
+            // ---------------- S2 营养旺长期（文档 3 条）----------------
             list.Add(Rule(Stage.S2, 1,
                 new PlanCondition { Type = PlanCondType.Below, Scope = new[]{ SoilMetric.N }, Threshold = 0.6f },
                 "氮肥为主 + 磷肥",
@@ -283,12 +299,12 @@ namespace Engineer.Core
                 new FertilizerAmounts { N = 7f, P = 3f }, 30f));
 
             list.Add(Rule(Stage.S2, 3,
-                new PlanCondition { Type = PlanCondType.AllAbove, Threshold = 0.8f },
+                new PlanCondition { Type = PlanCondType.Always },
                 "少量氮肥",
                 "少追肥，控旺防倒伏",
                 new FertilizerAmounts { N = 3f }, 25f));
 
-            // ---------------- S3 生殖关键期（文档行 6~8）----------------
+            // ---------------- S3 生殖关键期（文档 3 条）----------------
             //  文档条件写"fN 或 fP 或 fK＜0.6" -> 限定指标集合的 AnyBelow
             list.Add(Rule(Stage.S3, 1,
                 new PlanCondition { Type = PlanCondType.AnyBelow,
@@ -306,12 +322,12 @@ namespace Engineer.Core
                 new FertilizerAmounts { Compound = 14f }, 40f));
 
             list.Add(Rule(Stage.S3, 3,
-                new PlanCondition { Type = PlanCondType.AllAbove, Threshold = 0.8f },
+                new PlanCondition { Type = PlanCondType.Always },
                 "仅少量钾肥",
                 "只补钾，防贪青",
                 new FertilizerAmounts { K = 5f }, 32f));
 
-            // ---------------- S4 灌浆成熟期（文档行 9~11）----------------
+            // ---------------- S4 灌浆成熟期（文档 3 条）----------------
             list.Add(Rule(Stage.S4, 1,
                 new PlanCondition { Type = PlanCondType.Below, Scope = new[]{ SoilMetric.K }, Threshold = 0.6f },
                 "钾肥为主，禁大量氮",
@@ -325,7 +341,7 @@ namespace Engineer.Core
                 new FertilizerAmounts { K = 5f }, 16f));
 
             list.Add(Rule(Stage.S4, 3,
-                new PlanCondition { Type = PlanCondType.AllAbove, Threshold = 0.8f },
+                new PlanCondition { Type = PlanCondType.Always },
                 "不施肥",
                 "控水促成熟",
                 FertilizerAmounts.None, 12f));

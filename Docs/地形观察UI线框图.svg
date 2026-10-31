@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a2430"/>
+      <stop offset="0.45" stop-color="#4b4a3c"/>
+      <stop offset="0.75" stop-color="#6b5a3f"/>
+    </linearGradient>
+    <linearGradient id="hillFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5b5a45"/>
+      <stop offset="1" stop-color="#3d3a2a"/>
+    </linearGradient>
+    <linearGradient id="hillNear" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7d6a48"/>
+      <stop offset="1" stop-color="#4a3d29"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ffe6b0" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#ffe6b0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="panelShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="18" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+    <style>
+      .cn { font-family: "Microsoft YaHei", "Noto Sans CJK SC", "PingFang SC", sans-serif; }
+      .title { font-size: 44px; fill: #f5ede0; font-weight: 700; }
+      .badge { font-size: 20px; fill: #f9ba6d; letter-spacing: 1px; }
+      .body { font-size: 24px; fill: #f5ede0; }
+      .meta { font-size: 20px; fill: #bfb3a0; }
+      .muted { font-size: 20px; fill: #8c8071; }
+      .hint { font-size: 18px; fill: #bfb3a0; }
+      .btn { font-size: 26px; fill: #f5ede0; font-weight: 600; }
+      .label { font-size: 16px; fill: #d9c9b3; letter-spacing: 2px; }
+    </style>
+  </defs>
+
+  <!-- 3D 地形背景示意 -->
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <circle cx="1500" cy="180" r="180" fill="url(#sun)"/>
+  <path d="M0 560 L180 470 L340 520 L520 430 L720 500 L900 440 L1100 510 L1300 430 L1500 500 L1700 450 L1920 520 L1920 1080 L0 1080 Z" fill="url(#hillFar)" opacity="0.9"/>
+  <path d="M0 720 L220 640 L420 690 L620 600 L840 670 L1040 610 L1260 680 L1480 620 L1700 690 L1920 630 L1920 1080 L0 1080 Z" fill="url(#hillNear)" opacity="0.95"/>
+  <path d="M0 880 C260 830 430 900 650 860 C900 815 1120 900 1360 850 C1580 805 1780 870 1920 840 L1920 1080 L0 1080 Z" fill="#3a3020" opacity="0.9"/>
+  <!-- 地形等高线示意 -->
+  <g stroke="#d8c39a" stroke-opacity="0.10" stroke-width="2" fill="none">
+    <path d="M0 760 C260 720 430 770 650 735 C900 695 1120 770 1360 725 C1580 685 1780 745 1920 720"/>
+    <path d="M0 810 C260 775 430 820 650 790 C900 755 1120 820 1360 780 C1580 745 1780 800 1920 775"/>
+    <path d="M0 860 C260 830 430 870 650 845 C900 815 1120 870 1360 835 C1580 805 1780 855 1920 830"/>
+  </g>
+  <!-- 顶部/底部渐暗，保证文字可读 -->
+  <rect width="1920" height="260" fill="#000000" opacity="0.18"/>
+  <rect y="820" width="1920" height="260" fill="#000000" opacity="0.25"/>
+
+  <!-- 左上介绍面板 -->
+  <g filter="url(#panelShadow)">
+    <rect x="72" y="44" width="620" height="340" rx="14" fill="#2a1d12" fill-opacity="0.94" stroke="#f9ba6d" stroke-opacity="0.35" stroke-width="2"/>
+  </g>
+  <text x="96" y="82" class="cn badge">地形观察 · 平川台</text>
+  <text x="96" y="140" class="cn title">平川台</text>
+  <text x="96" y="186" class="cn body">地势平缓开阔，土层较厚，</text>
+  <text x="96" y="220" class="cn body">排水条件适中，地下水位适宜，</text>
+  <text x="96" y="254" class="cn body">便于农业利用。</text>
+  <line x1="96" y1="282" x2="668" y2="282" stroke="#ffffff" stroke-opacity="0.10" stroke-width="1"/>
+  <text x="96" y="318" class="cn meta">坡度 0~5°　·　土层 2.0 m　·　排水 适中</text>
+
+  <!-- 右上面包屑 -->
+  <text x="1848" y="80" text-anchor="end" class="cn muted">土地选择　›　地形观察</text>
+
+  <!-- 底部操作提示 -->
+  <g>
+    <rect x="560" y="968" width="800" height="52" rx="26" fill="#000000" fill-opacity="0.35"/>
+    <text x="960" y="1002" text-anchor="middle" class="cn meta">WASD 飞行　·　右键拖拽转视角　·　Q/E 升降　·　Shift 加速</text>
+  </g>
+
+  <!-- 左下返回 -->
+  <g>
+    <rect x="72" y="972" width="240" height="64" rx="8" fill="#593114" stroke="#f9ba6d" stroke-opacity="0.45" stroke-width="2"/>
+    <text x="192" y="1013" text-anchor="middle" class="cn btn">返回选地</text>
+  </g>
+
+  <!-- 右下构建 -->
+  <text x="1848" y="946" text-anchor="end" class="cn hint">将在平坦处安置农场与房车</text>
+  <g filter="url(#panelShadow)">
+    <rect x="1508" y="964" width="340" height="72" rx="10" fill="#b85c19" stroke="#ffc47a" stroke-opacity="0.6" stroke-width="2"/>
+    <text x="1678" y="1010" text-anchor="middle" class="cn btn">构建农场</text>
+  </g>
+
+  <!-- 标注 -->
+  <g opacity="0.75">
+    <text x="96" y="430" class="cn label">介绍面板 620 × 340</text>
+    <text x="1540" y="430" class="cn label" text-anchor="end">3D 地形层（无全屏底板）</text>
+    <text x="96" y="940" class="cn label">返回 240 × 64</text>
+    <text x="1848" y="1064" class="cn label" text-anchor="end">构建 340 × 72</text>
+  </g>
+</svg>

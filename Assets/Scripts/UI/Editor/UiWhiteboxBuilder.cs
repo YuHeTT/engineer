@@ -359,6 +359,16 @@ namespace Engineer.UI.EditorTools
             var flow = flowObject.AddComponent<GameFlowController>();
             flow.SetScreens(screens);
 
+            // ---------- 动效：整屏转场 + 点击反馈 ----------
+            // 两者都和状态机挂在同一个对象上，运行时互相按 GetComponent 找得到，不用拖引用。
+            var transition = flowObject.AddComponent<ScreenTransitionPlayer>();
+            transition.Style = ScreenTransitionStyle.Hologram;
+
+            var feedback = flowObject.AddComponent<UiClickFeedback>();
+            feedback.clickClip = AssetDatabase.LoadAssetAtPath<AudioClip>(UiClickFeedback.ClipPath);
+            if (feedback.clickClip == null)
+                Debug.LogWarning("[UI] 找不到点击音效 " + UiClickFeedback.ClipPath + "，点击将静音。");
+
             // 除起始屏外全部隐藏（Play 后状态机还会再确认一次）。
             foreach (var screen in screens)
             {

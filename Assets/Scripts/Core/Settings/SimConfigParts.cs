@@ -196,6 +196,12 @@ namespace Engineer.Core
         /// 将来多作物时，每种作物挂自己的一套。
         /// </summary>
         public SuitabilityCurve[] Curves;
+
+        /// <summary>
+        /// 该作物使用的产量配置；null 时回退到 <see cref="SimConfig.Yield"/>。
+        /// 目前四种作物共用同一份占位配置，等策划给 Ymax 再拆开。
+        /// </summary>
+        public YieldConfig Yield;
     }
 
     /// <summary>
